@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LaunchLocal - Marketing Website
 
-## Getting Started
+A modern, dark-mode marketing website for web + automation services, built with Next.js and TailwindCSS.
 
-First, run the development server:
+## 🚀 Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Framework**: Next.js 14 (App Router)
+- **Styling**: TailwindCSS
+- **Language**: TypeScript
+- **Deployment**: Vercel
+- **Package Manager**: npm (with virtual environment)
+
+## 🎨 Design System
+
+- **Background**: `#0d1117` (Dark)
+- **Section Background**: `#161b22` (Darker)
+- **Text Primary**: `#ffffff` (White)
+- **Text Secondary**: `#c9d1d9` (Light Gray)
+- **Text Muted**: `#8b949e` (Muted Gray)
+- **Accent**: `#3b82f6` (Electric Blue)
+- **Fonts**: Poppins (Headings), Inter (Body)
+
+## 🛠️ Setup Instructions
+
+### Prerequisites
+- Node.js 18+ 
+- Python 3.8+ (for virtual environment)
+
+### Installation
+
+1. **Activate Virtual Environment**
+   ```bash
+   source venv/bin/activate
+   ```
+
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Environment Variables**
+   - Copy `.env.local.example` to `.env.local`
+   - Fill in your actual values (Google Analytics ID, API keys, etc.)
+
+4. **Development Server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Build for Production**
+   ```bash
+   npm run build
+   npm start
+   ```
+
+## 📁 Project Structure
+
+```
+src/
+├── app/
+│   ├── globals.css          # Global styles + Tailwind
+│   ├── layout.tsx           # Root layout
+│   └── page.tsx             # Home page
+├── components/               # Reusable components (to be created)
+└── lib/                     # Utility functions (to be created)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔧 Available Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run type-check` - Run TypeScript type checking
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌐 Deployment
 
-## Learn More
+The site is configured for Vercel deployment with:
+- Automatic builds from Git
+- Environment variable support
+- Edge functions ready
+- Optimized for performance
 
-To learn more about Next.js, take a look at the following resources:
+## 📊 Performance Targets
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Performance**: >90
+- **Accessibility**: >95
+- **Best Practices**: >95
+- **SEO**: >95
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔑 Environment Variables
 
-## Deploy on Vercel
+Create a `.env.local` file with:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```env
+# Google Analytics
+NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Contact Form (Future)
+NEXT_PUBLIC_CONTACT_FORM_ENDPOINT=
+FORMSPREE_ACCESS_KEY=
+RESEND_API_KEY=
+
+# Database (Future)
+DATABASE_URL=
+```
+
+## 🎯 Next Steps
+
+1. ✅ Project Setup (Complete)
+2. 🔄 Layout & Global Styles
+3. 🔄 Hero Section
+4. 🔄 Pricing & Services
+5. 🔄 Benefits Section
+6. 🔄 About Section
+7. 🔄 Contact Form
+8. 🔄 Final Polish
+9. 🚀 Deploy to Vercel
+
+## 📝 Notes
+
+- Dark mode is enabled by default
+- Google Analytics is scaffolded and ready for integration
+- Contact form API route structure is prepared
+- Mobile-first responsive design
+- SEO meta tags configured
+- Performance optimized with Next.js best practices

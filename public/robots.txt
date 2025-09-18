@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://launchlocal.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
