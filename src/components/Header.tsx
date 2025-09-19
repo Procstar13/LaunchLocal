@@ -83,6 +83,12 @@ export default function Header() {
               About
             </button>
             <button 
+              onClick={() => scrollToSection('faq')}
+              className="text-text-secondary hover:text-text-primary transition-colors duration-200 font-inter"
+            >
+              FAQ
+            </button>
+            <button 
               onClick={() => scrollToSection('contact')}
               className="text-text-secondary hover:text-text-primary transition-colors duration-200 font-inter"
             >
@@ -145,6 +151,12 @@ export default function Header() {
                 className="block w-full text-left text-text-secondary hover:text-text-primary transition-colors duration-200 font-inter py-2 px-3 rounded-lg hover:bg-background/50"
               >
                 About
+              </button>
+              <button 
+                onClick={() => scrollToSection('faq')}
+                className="block w-full text-left text-text-secondary hover:text-text-primary transition-colors duration-200 font-inter py-2 px-3 rounded-lg hover:bg-background/50"
+              >
+                FAQ
               </button>
               <button 
                 onClick={() => scrollToSection('contact')}

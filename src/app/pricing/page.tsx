@@ -3,18 +3,6 @@ import Pricing from '@/components/Pricing'
 export default function PricingPage() {
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-text-primary font-poppins mb-6">
-            Pricing Plans
-          </h1>
-          <p className="text-xl text-text-secondary font-inter mb-8 max-w-3xl mx-auto">
-            Choose the perfect plan for your business growth. All plans include our core website and automation services.
-          </p>
-        </div>
-      </section>
-
       {/* Pricing Cards Component */}
       <Pricing />
 
