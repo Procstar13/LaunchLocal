@@ -16,7 +16,7 @@ export default function FAQ() {
     },
     {
       question: "How do the automations work?",
-      answer: "We connect your forms, CRM, or messaging tools to automate follow-ups, review requests, and more. We will try and make sure there isn't any additional work, or training, required from you and your team."
+      answer: "We connect your forms, CRM, or messaging tools to automate follow-ups, review requests, and more. We will make sure there isn't any additional work, or training, required from you and your team."
     },
     {
       question: "Can I choose which automations I want?",

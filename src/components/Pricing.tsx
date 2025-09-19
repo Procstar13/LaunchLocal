@@ -79,13 +79,12 @@ export default function Pricing() {
             </span>
             <button
               onClick={() => setIsAnnual(!isAnnual)}
-              className="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background ${
+                isAnnual ? 'bg-accent' : 'bg-text-muted/30'
+              }`}
             >
-              <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+              <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform shadow-sm ${
                 isAnnual ? 'translate-x-6' : 'translate-x-1'
-              }`} />
-              <span className={`inline-block h-4 w-4 transform rounded-full transition-colors ${
-                isAnnual ? 'bg-accent' : 'bg-text-muted'
               }`} />
             </button>
             <span className={`text-sm font-medium ${isAnnual ? 'text-text-primary' : 'text-text-muted'}`}>
@@ -178,10 +177,10 @@ export default function Pricing() {
         {/* Additional Info */}
         <div className="text-center mt-16">
           <p className="text-text-muted font-inter mb-4">
-            Need a custom solution? Let&apos;s discuss your specific requirements.
+            Need more details? Compare all features and pricing options.
           </p>
-          <Link href="#contact" className="btn-secondary inline-block">
-            Contact Us for Custom Quote
+          <Link href="/pricing" className="btn-secondary inline-block">
+            View Full Plan Comparison
           </Link>
         </div>
       </div>
