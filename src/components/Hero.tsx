@@ -12,19 +12,19 @@ export default function Hero() {
       id: 1,
       type: 'website',
       title: 'Professional Website Design',
-      image: '/images/carousel/website-1.jpg'
+      image: '/Images/Carousel/website-1.jpg'
     },
     {
       id: 2,
       type: 'analytics',
       title: 'Analytics Dashboard',
-      image: '/images/carousel/analytics-1.jpg'
+      image: '/Images/Carousel/analytics-1.jpg'
     },
     {
       id: 3,
       type: 'website',
       title: 'Mobile-Responsive Design',
-      image: '/images/carousel/website-2.jpg'
+      image: '/Images/Carousel/website-2.jpg'
     }
   ]
 
