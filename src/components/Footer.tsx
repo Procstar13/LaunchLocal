@@ -19,7 +19,7 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-4 text-center md:text-left">
+          <div className="space-y-4 text-center">
             <h3 className="text-text-primary font-semibold font-poppins">Quick Links</h3>
             <ul className="space-y-2">
               <li>
@@ -41,7 +41,7 @@ export default function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-4 text-center md:text-left">
+          <div className="space-y-4 text-center md:text-left md:mr-8">
             <h3 className="text-text-primary font-semibold font-poppins">Contact</h3>
             <div className="space-y-2 text-sm font-inter">
               <p className="text-text-secondary">
