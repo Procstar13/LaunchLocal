@@ -22,7 +22,7 @@ export default function About() {
               {/* Main content */}
               <div className="space-y-6 text-center">
                 <p className="text-xl text-text-secondary font-inter leading-relaxed">
-                  At LaunchLocal, we believe every small business deserves a professional online presence without the big agency price tag. We keep things simple: affordable websites, local SEO, and automation tools that help you get found and save time, without changing you process. No jargon, no hassle — just results that grow with your business.
+                  At LaunchLocal, we believe every small business deserves a professional online presence without the big agency price tag. We keep things simple: affordable websites, local SEO, and automation tools that help you get found and save time, <strong>without changing you process</strong>. No jargon, no hassle — just results that grow with your business.
                 </p>
                 
                 <p className="text-lg text-text-muted font-inter leading-relaxed">
