@@ -38,8 +38,8 @@ export const metadata: Metadata = {
     images: ['/og-image.png'],
   },
   other: {
-    'theme-color': '#0d1117',
-    'color-scheme': 'dark',
+    'theme-color': '#ffffff',
+    'color-scheme': 'light',
   },
 }
 
@@ -49,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />

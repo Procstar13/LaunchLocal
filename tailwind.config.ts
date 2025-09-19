@@ -10,12 +10,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Dark mode design system
-        background: '#0d1117',
-        'section-bg': '#161b22',
-        'text-primary': '#ffffff',
-        'text-secondary': '#c9d1d9',
-        'text-muted': '#8b949e',
+        // Light mode design system
+        background: '#ffffff',
+        'section-bg': '#f8fafc',
+        'text-primary': '#1e293b',
+        'text-secondary': '#475569',
+        'text-muted': '#64748b',
         accent: '#3b82f6', // Electric Blue
       },
       fontFamily: {

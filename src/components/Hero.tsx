@@ -17,7 +17,7 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden py-20">
       {/* Background with gradient overlay */}
       <div className="absolute inset-0 bg-background">
         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/10"></div>
