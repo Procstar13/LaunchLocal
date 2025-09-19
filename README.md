@@ -39,7 +39,7 @@ A modern, dark-mode marketing website for web + automation services, built with 
    ```
 
 3. **Environment Variables**
-   - Copy `.env.local.example` to `.env.local`
+   - Create `.env.local` file with the required environment variables
    - Fill in your actual values (Google Analytics ID, API keys, etc.)
 
 4. **Development Server**
@@ -96,13 +96,12 @@ Create a `.env.local` file with:
 # Google Analytics
 NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 
-# Contact Form (Future)
-NEXT_PUBLIC_CONTACT_FORM_ENDPOINT=
-FORMSPREE_ACCESS_KEY=
-RESEND_API_KEY=
+# Contact Form (Resend)
+RESEND_API_KEY=your_resend_api_key_here
 
-# Database (Future)
-DATABASE_URL=
+# reCAPTCHA v3
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_recaptcha_site_key_here
+RECAPTCHA_SECRET_KEY=your_recaptcha_secret_key_here
 ```
 
 ## 🎯 Next Steps

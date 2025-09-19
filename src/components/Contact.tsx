@@ -1,17 +1,47 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
+declare global {
+  interface Window {
+    grecaptcha: {
+      ready: (callback: () => void) => void
+      execute: (siteKey: string, options: { action: string }) => Promise<string>
+    }
+  }
+}
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     businessName: '',
-    message: ''
+    message: '',
+    website: '' // Honeypot field
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [errors, setErrors] = useState<{[key: string]: string}>({})
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false)
+
+  // Load reCAPTCHA script
+  useEffect(() => {
+    const loadRecaptcha = () => {
+      if (window.grecaptcha) {
+        setRecaptchaLoaded(true)
+        return
+      }
+
+      const script = document.createElement('script')
+      script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`
+      script.async = true
+      script.defer = true
+      script.onload = () => setRecaptchaLoaded(true)
+      document.head.appendChild(script)
+    }
+
+    loadRecaptcha()
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -24,6 +54,13 @@ export default function Contact() {
 
   const validateForm = () => {
     const newErrors: {[key: string]: string} = {}
+    
+    // Honeypot validation - if filled, it's likely a bot
+    if (formData.website.trim()) {
+      newErrors.submit = 'Spam detected. Please try again.'
+      setErrors(newErrors)
+      return false
+    }
     
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required'
@@ -49,6 +86,26 @@ export default function Contact() {
     return Object.keys(newErrors).length === 0
   }
 
+  const getRecaptchaToken = async (): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      if (!window.grecaptcha || !recaptchaLoaded) {
+        reject(new Error('reCAPTCHA not loaded'))
+        return
+      }
+
+      window.grecaptcha.ready(() => {
+        const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+        if (!siteKey) {
+          reject(new Error('reCAPTCHA site key not configured'))
+          return
+        }
+        window.grecaptcha.execute(siteKey, { action: 'contact_form' })
+          .then((token: string) => resolve(token))
+          .catch((error: unknown) => reject(error))
+      })
+    })
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
@@ -59,19 +116,25 @@ export default function Contact() {
     setIsSubmitting(true)
     
     try {
+      // Get reCAPTCHA token
+      const recaptchaToken = await getRecaptchaToken()
+      
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          recaptchaToken
+        }),
       })
 
       const result = await response.json()
 
       if (response.ok && result.success) {
         setIsSubmitted(true)
-        setFormData({ name: '', email: '', businessName: '', message: '' })
+        setFormData({ name: '', email: '', businessName: '', message: '', website: '' })
         setErrors({})
       } else {
         setErrors({ submit: result.error || 'Failed to send message. Please try again.' })
@@ -221,6 +284,20 @@ export default function Contact() {
                 {errors.message && (
                   <p className="mt-1 text-red-400 text-sm font-inter">{errors.message}</p>
                 )}
+              </div>
+
+              {/* Honeypot Field - Hidden from users */}
+              <div style={{ display: 'none' }}>
+                <label htmlFor="website">Website (leave blank)</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
               </div>
 
               {/* Submit Error */}
