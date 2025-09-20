@@ -176,12 +176,23 @@ export default function Pricing() {
 
         {/* Additional Info */}
         <div className="text-center mt-16">
-          <p className="text-text-muted font-inter mb-4">
-            Need more details? Compare all features and pricing options.
+          <p className="text-text-muted font-inter mb-6">
+            Don't see exactly what you need? We can create a custom plan tailored to your specific requirements.
           </p>
-          <Link href="/pricing" className="btn-secondary inline-block">
-            View Full Plan Comparison
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button 
+              onClick={() => {
+                const element = document.getElementById('contact')
+                if (element) element.scrollIntoView({ behavior: 'smooth' })
+              }}
+              className="btn-secondary"
+            >
+              Get Custom Quote
+            </button>
+            <Link href="/pricing" className="btn-primary">
+              View Full Plan Comparison
+            </Link>
+          </div>
         </div>
       </div>
     </section>
