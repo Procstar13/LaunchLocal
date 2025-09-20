@@ -98,14 +98,6 @@ export default function Benefits() {
           ))}
         </div>
 
-        {/* Additional Trust Elements */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-1 gap-8 text-center max-w-2xl mx-auto">
-          <div className="space-y-2">
-            <div className="text-3xl font-bold text-accent font-poppins">48hrs</div>
-            <div className="text-text-secondary font-inter">Average Setup Time</div>
-          </div>
-
-        </div>
 
         {/* CTA Section */}
         <div className="text-center mt-16">
