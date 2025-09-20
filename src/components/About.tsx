@@ -7,7 +7,7 @@ export default function About() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-text-primary font-poppins mb-6">
-            Built for Small Business Owners, Not Tech Experts.
+            Our Philosophy and Process
           </h2>
           <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
         </div>
@@ -55,21 +55,21 @@ export default function About() {
                 <div className="text-center p-6 bg-background/50 rounded-xl border border-accent/20">
                   <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-3">
                     <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <h4 className="text-lg font-semibold text-text-primary font-poppins mb-2">Automate</h4>
-                  <p className="text-text-muted font-inter text-sm">Save time with smart tools that handle follow-ups, missed calls, and scheduling.</p>
-                </div>
-                
-                <div className="text-center p-6 bg-background/50 rounded-xl border border-accent/20">
-                  <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                     </svg>
                   </div>
                   <h4 className="text-lg font-semibold text-text-primary font-poppins mb-2">Analyze</h4>
                   <p className="text-text-muted font-inter text-sm">Track what's working (and what's not) with clear data you can actually understand.</p>
+                </div>
+                
+                <div className="text-center p-6 bg-background/50 rounded-xl border border-accent/20">
+                  <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <h4 className="text-lg font-semibold text-text-primary font-poppins mb-2">Automate</h4>
+                  <p className="text-text-muted font-inter text-sm">Save time with smart tools that handle follow-ups, missed calls, and scheduling.</p>
                 </div>
                 
                 <div className="text-center p-6 bg-background/50 rounded-xl border border-accent/20">
@@ -97,7 +97,7 @@ export default function About() {
               {/* Closing Statement */}
               <div className="mt-12 p-6 bg-background/50 rounded-xl border border-accent/20">
                 <p className="text-text-secondary font-inter text-center leading-relaxed">
-                  With this framework, LaunchLocal takes the guesswork out of digital marketing — so you can focus on running your business while we handle the tech.
+                  With this framework, LaunchLocal takes the guesswork out of your digital presence, so you can focus on running your business while we handle the tech.
                 </p>
               </div>
 
