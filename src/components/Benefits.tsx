@@ -12,7 +12,7 @@ export default function Benefits() {
       )
     },
     {
-      title: 'Google Business Profile Optimization',
+      title: 'Google Business Profile',
       description: 'Maximize your local visibility with optimized Google Business Profile. Get found by customers searching for your services.',
       icon: (
         <svg className="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
