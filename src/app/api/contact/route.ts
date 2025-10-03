@@ -218,8 +218,8 @@ export async function POST(request: NextRequest) {
 
     // Send email using Resend
     const emailData = {
-      from: 'LaunchLocal <launchlocal@gmail.com>',
-      to: ['launchlocal@gmail.com'], // Your business email
+      from: 'LaunchLocal <noreply@yourdomain.com>', // Use your verified domain
+      to: ['Launchlocalaz@gmail.com'], // Your business email
       subject: `New Contact Form Submission from ${sanitizedBusinessName}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
