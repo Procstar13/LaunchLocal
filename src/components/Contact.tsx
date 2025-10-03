@@ -327,20 +327,6 @@ export default function Contact() {
             </form>
           </div>
 
-          {/* Additional Contact Info */}
-          <div className="mt-12 text-center">
-            <p className="text-text-muted font-inter mb-6">
-              Prefer to talk directly? We&apos;re here to help.
-            </p>
-            <div className="flex justify-center">
-              <div className="flex items-center justify-center space-x-2 text-text-secondary font-inter">
-                <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <span>launchlocal@gmail.com</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
