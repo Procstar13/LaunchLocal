@@ -2,101 +2,65 @@
 
 import { useState } from 'react'
 
+const faqs = [
+  {
+    question: 'Is there a contract?',
+    answer: 'Plans begin with a three-month commitment because local visibility and SEO need time to produce useful signals. We will explain renewal and cancellation terms before you sign anything.',
+  },
+  {
+    question: 'What if I already have a website?',
+    answer: 'We can assess and improve your current site or rebuild it on our system. We will recommend the route that makes the most sense after reviewing what you have.',
+  },
+  {
+    question: 'What can LaunchLocal automate?',
+    answer: 'The standard launch and managed service can cover lead notifications, simple follow-up, review requests, and basic tracking. Scheduling, data entry, CRM workflows, email or text communication, and more advanced agent-powered work can be scoped separately when there is a clear business need.',
+  },
+  {
+    question: 'Will I be able to edit my site myself?',
+    answer: "Your plan includes managed edits, so you can send changes to us and keep running your business. If self-service editing is important, we can discuss that during your consultation.",
+  },
+  {
+    question: 'How quickly can we get started?',
+    answer: 'Timing depends on the size of the site and how quickly content is available. After the first conversation, we will give you a clear scope and launch schedule.',
+  },
+  {
+    question: 'Do I need the monthly service?',
+    answer: 'No. You own the website, and there is no required monthly plan. LaunchLocal Ops is optional for businesses that want us to keep managing their website, visibility, reporting, and included workflows.',
+  },
+]
+
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
-
-  const faqs = [
-    {
-      question: "Do I need to sign a long-term contract?",
-      answer: "There is a 3-month contract. This is due to the fact that SEO and online visibility take time. You'll see results in less than 90 days."
-    },
-    {
-      question: "What if I already have a website?",
-      answer: "We can either optimize your current site or rebuild a fresh one on our system at no extra cost beyond setup."
-    },
-    {
-      question: "How do the automations work?",
-      answer: "We connect your forms, CRM, or messaging tools to automate follow-ups, review requests, and more. We will work to understand your business and your goals, and then we will create the automations that make the most sense for you."
-    },
-    {
-      question: "Can I choose which automations I want?",
-      answer: "Yes! Each plan includes a set number of add-ons. You pick the ones that make the most sense for your business."
-    },
-    {
-      question: "Will I be able to edit my site myself?",
-      answer: "We include 3 monthly edits, so you can just email us and we'll handle it. If you'd like a one-time payment with a CMS so you can edit your site, let us know. We can make it happen."
-    },
-    {
-      question: "How fast can I get started?",
-      answer: "Most sites are live within 2 days after our initial consultation. Automations require further consultation because we do not want to impede on your current operations, or change your business processes that work for you."
-    }
-  ]
-
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-text-primary font-poppins mb-8">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-xl text-text-secondary font-inter mb-8 max-w-3xl mx-auto">
-            Got questions? We&apos;ve got answers. Here are the most common questions we receive about our services.
+    <section id="faq" className="bg-background py-24 sm:py-32">
+      <div className="page-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <div>
+          <div className="eyebrow">Common questions</div>
+          <h2 className="section-title">Straight answers before you commit.</h2>
+          <p className="mt-6 max-w-sm leading-7 text-text-secondary">
+            If your question is not here, send it our way. A useful first conversation should feel clear, not salesy.
           </p>
         </div>
 
-        {/* FAQ Items */}
-        <div className="max-w-4xl mx-auto">
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="bg-background rounded-xl border border-text-muted/20 overflow-hidden transition-all duration-300 hover:border-accent/50"
-              >
+        <div className="border-t border-line">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index
+            return (
+              <div key={faq.question} className="border-b border-line">
                 <button
-                  onClick={() => toggleFAQ(index)}
-                  className="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none transition-colors duration-200"
+                  type="button"
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                  className="flex w-full items-center justify-between gap-6 py-6 text-left"
+                  aria-expanded={isOpen}
                 >
-                  <h3 className="text-lg font-semibold text-text-primary font-poppins pr-4">
-                    {faq.question}
-                  </h3>
-                  <div className="flex-shrink-0">
-                    <svg
-                      className={`w-5 h-5 text-accent transition-transform duration-300 ${
-                        openIndex === index ? 'rotate-180' : ''
-                      }`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </div>
+                  <span className="font-display text-lg font-bold text-text-primary sm:text-xl">{faq.question}</span>
+                  <span className="text-2xl font-light text-rust" aria-hidden="true">{isOpen ? '−' : '+'}</span>
                 </button>
-                
-                <div
-                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                  }`}
-                >
-                  <div className="px-6 pb-5">
-                    <p className="text-text-secondary font-inter leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </div>
-                </div>
+                {isOpen && <p className="max-w-2xl pb-7 leading-7 text-text-secondary">{faq.answer}</p>}
               </div>
-            ))}
-          </div>
+            )
+          })}
         </div>
       </div>
     </section>

@@ -137,7 +137,7 @@ export async function POST(request: NextRequest) {
     try {
       body = await request.json()
     } catch (parseError) {
-      const errorId = logError(parseError, 'JSON_PARSE_ERROR', { requestId, ip })
+      logError(parseError, 'JSON_PARSE_ERROR', { requestId, ip })
       return NextResponse.json(
         { error: 'Invalid request format' },
         { status: 400 }
@@ -209,7 +209,7 @@ export async function POST(request: NextRequest) {
     // Resend integration
     const resendApiKey = process.env.RESEND_API_KEY
     if (!resendApiKey) {
-      const errorId = logError(new Error('RESEND_API_KEY not configured'), 'RESEND_CONFIG_ERROR', { requestId, ip })
+      logError(new Error('RESEND_API_KEY not configured'), 'RESEND_CONFIG_ERROR', { requestId, ip })
       return NextResponse.json(
         { error: 'Email service not configured' },
         { status: 500 }
@@ -250,7 +250,7 @@ export async function POST(request: NextRequest) {
         body: JSON.stringify(emailData),
       })
     } catch (networkError) {
-      const errorId = logError(networkError, 'RESEND_NETWORK_ERROR', { requestId, ip })
+      logError(networkError, 'RESEND_NETWORK_ERROR', { requestId, ip })
       return NextResponse.json(
         { error: 'Failed to send message. Please try again later.' },
         { status: 500 }
@@ -261,11 +261,11 @@ export async function POST(request: NextRequest) {
       let errorData
       try {
         errorData = await resendResponse.json()
-      } catch (parseError) {
+      } catch {
         errorData = { error: 'Failed to parse error response' }
       }
       
-      const errorId = logError(new Error('Resend API error'), 'RESEND_API_ERROR', { 
+      logError(new Error('Resend API error'), 'RESEND_API_ERROR', {
         requestId, 
         ip, 
         status: resendResponse.status,
@@ -303,7 +303,7 @@ export async function POST(request: NextRequest) {
     )
 
   } catch (error) {
-    const errorId = logError(error, 'UNEXPECTED_ERROR', { 
+    logError(error, 'UNEXPECTED_ERROR', {
       requestId, 
       ip, 
       userAgent: request.headers.get('user-agent'),

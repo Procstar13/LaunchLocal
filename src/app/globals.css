@@ -1,35 +1,81 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: 'Inter', system-ui, sans-serif;
+  :root {
+    color-scheme: light;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', system-ui, sans-serif;
-  }
-}
 
-@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    font-family: 'DM Sans', system-ui, sans-serif;
+  }
+
   body {
-    @apply bg-background text-text-primary;
-    font-family: 'Inter', system-ui, sans-serif;
+    @apply bg-background text-text-primary antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Manrope', system-ui, sans-serif;
+    letter-spacing: -0.035em;
+  }
+
+  ::selection {
+    @apply bg-accent text-white;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-background;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
 @layer components {
+  .page-shell {
+    @apply box-border mx-auto w-full max-w-[1180px] px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-rust;
+  }
+
+  .eyebrow::before {
+    content: '';
+    @apply h-px w-7 bg-rust;
+  }
+
+  .section-title {
+    @apply max-w-3xl font-display text-3xl font-bold leading-[1.08] text-text-primary sm:text-4xl lg:text-5xl;
+  }
+
+  .section-copy {
+    @apply max-w-2xl text-lg leading-8 text-text-secondary;
+  }
+
   .btn-primary {
-    @apply bg-accent hover:bg-accent/90 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105;
+    @apply inline-flex min-h-12 items-center justify-center rounded-full bg-text-primary px-6 py-3 text-sm font-bold text-white transition-colors duration-200 hover:bg-accent;
   }
-  
+
   .btn-secondary {
-    @apply bg-section-bg hover:bg-section-bg/80 text-text-primary border border-text-muted hover:border-accent font-medium py-3 px-6 rounded-lg transition-all duration-200;
+    @apply inline-flex min-h-12 items-center justify-center rounded-full border border-text-primary/25 bg-transparent px-6 py-3 text-sm font-bold text-text-primary transition-colors duration-200 hover:border-text-primary hover:bg-white/60;
   }
-  
+
   .card {
-    @apply bg-section-bg rounded-xl p-6 border border-text-muted/20;
+    @apply rounded-[1.5rem] border border-line bg-white/65 p-6;
   }
 }

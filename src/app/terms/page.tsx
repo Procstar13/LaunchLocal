@@ -1,14 +1,15 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | LaunchLocal',
-  description: 'Terms of Service for LaunchLocal - Websites and automation services for small businesses.',
+  title: 'Terms of Service',
+  description: 'Terms of Service for LaunchLocal online presence, digital operations, and automation services.',
+  alternates: { canonical: '/terms' },
 }
 
 export default function TermsOfService() {
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-16">
+      <div className="page-shell py-20 sm:py-28">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold text-text-primary font-poppins mb-8">
             Terms of Service
@@ -16,7 +17,7 @@ export default function TermsOfService() {
           
           <div className="prose prose-lg max-w-none text-text-secondary font-inter">
             <p className="text-sm text-text-muted mb-8">
-              Last updated: {new Date().toLocaleDateString()}
+              Last updated: September 9, 2026
             </p>
 
             <section className="mb-8">
@@ -33,12 +34,12 @@ export default function TermsOfService() {
                 2. Description of Service
               </h2>
               <p>
-                LaunchLocal provides website development, automation services, and related digital solutions for small businesses. Our services include but are not limited to:
+                LaunchLocal provides website development, local visibility support, digital audits, and related services for small businesses. Our services include but are not limited to:
               </p>
               <ul className="list-disc pl-6 mt-4">
                 <li>Website design and development</li>
-                <li>Business automation solutions</li>
-                <li>Digital marketing support</li>
+                <li>Local SEO and business profile support</li>
+                <li>Workflow and automation audits</li>
                 <li>Technical consulting services</li>
               </ul>
             </section>
@@ -115,7 +116,7 @@ export default function TermsOfService() {
                 9. Contact Information
               </h2>
               <p>
-                If you have any questions about these Terms of Service, please contact us through our website or at the contact information provided in our service agreements.
+                If you have any questions about these Terms of Service, contact us through our website or email Launchlocalaz@gmail.com.
               </p>
             </section>
           </div>

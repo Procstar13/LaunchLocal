@@ -1,14 +1,15 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | LaunchLocal',
+  title: 'Privacy Policy',
   description: 'Privacy Policy for LaunchLocal - How we collect, use, and protect your personal information.',
+  alternates: { canonical: '/privacy' },
 }
 
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-16">
+      <div className="page-shell py-20 sm:py-28">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold text-text-primary font-poppins mb-8">
             Privacy Policy
@@ -16,7 +17,7 @@ export default function PrivacyPolicy() {
           
           <div className="prose prose-lg max-w-none text-text-secondary font-inter">
             <p className="text-sm text-text-muted mb-8">
-              Last updated: {new Date().toLocaleDateString()}
+              Last updated: September 9, 2026
             </p>
 
             <section className="mb-8">
@@ -29,7 +30,6 @@ export default function PrivacyPolicy() {
               <ul className="list-disc pl-6 mt-4">
                 <li>Contact us through our website or email</li>
                 <li>Request a quote or consultation</li>
-                <li>Subscribe to our newsletter</li>
                 <li>Engage with our services</li>
               </ul>
               <p className="mt-4">
@@ -144,7 +144,7 @@ export default function PrivacyPolicy() {
                 11. Contact Us
               </h2>
               <p>
-                If you have any questions about this privacy policy or our privacy practices, please contact us through our website or at the contact information provided in our service agreements.
+                If you have any questions about this privacy policy or our privacy practices, contact us through our website or email Launchlocalaz@gmail.com.
               </p>
             </section>
           </div>

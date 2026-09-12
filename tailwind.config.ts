@@ -6,26 +6,25 @@ const config: Config = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        // Light mode design system
-        background: '#ffffff',
-        'section-bg': '#f8fafc',
-        'text-primary': '#1e293b',
-        'text-secondary': '#475569',
-        'text-muted': '#64748b',
-        accent: '#3b82f6', // Electric Blue
+        background: '#f7f3ea',
+        'section-bg': '#eee7da',
+        'text-primary': '#192621',
+        'text-secondary': '#53615b',
+        'text-muted': '#758079',
+        line: '#d9d0c1',
+        accent: '#2f63d8',
+        rust: '#b65332',
+        sun: '#e5aa3d',
+        sage: '#7b8f76',
       },
       fontFamily: {
-        'poppins': ['Poppins', 'sans-serif'],
-        'inter': ['Inter', 'sans-serif'],
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        display: ['Manrope', 'sans-serif'],
+        sans: ['DM Sans', 'sans-serif'],
+        poppins: ['Manrope', 'sans-serif'],
+        inter: ['DM Sans', 'sans-serif'],
       },
     },
   },

@@ -4,41 +4,35 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://launchlocal.com'),
-  title: 'LaunchLocal - Websites + Automation for Small Businesses',
-  description: 'Get online, get found, and save time — starting at just $50/month. Professional websites and automation services for small businesses.',
-  keywords: 'small business website, automation, local business, web development, digital marketing, affordable website, business automation, local SEO',
+  metadataBase: new URL('https://launchlocalaz.com'),
+  title: {
+    default: 'LaunchLocal Arizona | Online Presence & Business Automation',
+    template: '%s | LaunchLocal Arizona',
+  },
+  description: 'LaunchLocal helps Arizona small businesses modernize their online presence and automate repetitive work — from websites and local visibility to leads, reviews, and follow-up.',
+  keywords: 'Arizona small business website, local SEO Arizona, Google Business Profile, lead automation, review automation, business automation',
   authors: [{ name: 'LaunchLocal' }],
   creator: 'LaunchLocal',
   publisher: 'LaunchLocal',
   robots: 'index, follow',
   alternates: {
-    canonical: 'https://launchlocal.com',
+    canonical: '/',
   },
   openGraph: {
-    title: 'LaunchLocal - Websites + Automation for Small Businesses',
-    description: 'Get online, get found, and save time — starting at just $50/month.',
+    title: 'LaunchLocal Arizona | Online Presence & Business Automation',
+    description: 'We build the digital front door for your business, then help automate the repetitive work behind it.',
     type: 'website',
     locale: 'en_US',
-    url: 'https://launchlocal.com',
+    url: 'https://launchlocalaz.com',
     siteName: 'LaunchLocal',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'LaunchLocal - Websites + Automation for Small Businesses',
-      },
-    ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'LaunchLocal - Websites + Automation for Small Businesses',
-    description: 'Get online, get found, and save time — starting at just $50/month.',
-    images: ['/og-image.png'],
+    card: 'summary',
+    title: 'LaunchLocal Arizona | Online Presence & Business Automation',
+    description: 'Modern websites. Smarter workflows. Less busywork.',
   },
   other: {
-    'theme-color': '#ffffff',
+    'theme-color': '#f7f3ea',
     'color-scheme': 'light',
   },
 }
@@ -64,21 +58,13 @@ export default function RootLayout({
                   function gtag(){dataLayer.push(arguments);}
                   gtag('js', new Date());
                   gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
-                    page_title: 'LaunchLocal - Home',
+                    page_title: 'LaunchLocal Arizona',
                     page_location: window.location.href,
                   });
                 `,
               }}
             />
           </>
-        )}
-        {/* reCAPTCHA */}
-        {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
-          <script
-            src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
-            async
-            defer
-          />
         )}
       </head>
       <body className="bg-background text-text-primary antialiased min-h-screen flex flex-col">

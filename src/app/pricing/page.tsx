@@ -1,266 +1,69 @@
-import Pricing from '@/components/Pricing'
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import Pricing from '../../components/Pricing'
+import { comparisonRows, pricingTiers } from '@/data/pricing'
+
+export const metadata: Metadata = {
+  title: 'Local Business Launch & Operations Pricing',
+  description: 'Launch your online presence for $750 one-time, with optional ongoing digital operations support for $150 per month.',
+  alternates: { canonical: '/pricing' },
+}
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen">
-      {/* Pricing Cards Component */}
+    <div>
       <Pricing />
 
-      {/* Feature Comparison Table */}
-      <section className="py-20 bg-section-bg relative">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-text-primary font-poppins mb-6">
-              Feature Comparison
-            </h2>
-            <p className="text-xl text-text-secondary font-inter mb-8 max-w-3xl mx-auto">
-              See exactly what&apos;s included in each plan to make the best choice for your business.
-            </p>
+      <section className="bg-background py-24 sm:py-32">
+        <div className="page-shell">
+          <div className="eyebrow">Plan details</div>
+          <h1 className="section-title">Launch your online presence. Add ongoing operations when you need them.</h1>
+          <p className="section-copy mt-5">
+            Local Business Launch gives you the website, Google foundation, lead tracking, and a starter automation. LaunchLocal Ops is the optional next step for ongoing management and workflow improvement.
+          </p>
+
+          <div className="mt-12 overflow-x-auto rounded-[1.5rem] border border-line bg-white">
+            <table className="w-full min-w-[680px] border-collapse text-left">
+              <thead>
+                <tr className="border-b border-line bg-section-bg">
+                  <th className="p-5 text-xs font-bold uppercase tracking-wider text-text-muted">Service</th>
+                  {pricingTiers.map((tier) => (
+                    <th key={tier.name} className="p-5 font-display text-lg font-bold text-text-primary">{tier.shortName}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonRows.map((row) => (
+                  <tr key={row.label} className="border-b border-line last:border-b-0">
+                    <th className="p-5 text-sm font-semibold text-text-primary">{row.label}</th>
+                    {row.values.map((value, index) => (
+                      <td key={`${row.label}-${index}`} className={`p-5 text-sm ${value === '—' ? 'text-text-muted' : 'font-medium text-text-secondary'}`}>
+                        {value}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
 
-          <div className="overflow-x-auto mt-8">
-            <div className="min-w-full inline-block align-middle">
-              <table className="w-full border-collapse text-center text-sm md:text-base">
-                <thead>
-                  <tr>
-                    <th className="bg-background/50 p-4 text-left font-semibold text-text-primary border-b border-text-muted/20 sticky left-0 z-20 shadow-lg">
-                      Features
-                    </th>
-                    <th className="bg-background/50 p-4 font-semibold text-text-primary border-b border-text-muted/20 pt-8">
-                      <div className="font-poppins text-lg mt-2">Local Foundation</div>
-                      <div className="text-accent font-bold text-xl mt-1">$97/mo</div>
-                    </th>
-                    <th className="bg-accent/10 p-4 font-semibold text-text-primary border-b border-text-muted/20 relative pt-8">
-                      <span className="absolute top-2 left-1/2 transform -translate-x-1/2 bg-accent text-white px-2 py-0.5 md:px-3 md:py-1 rounded-full text-xs font-semibold z-10">
-                        Most Popular
-                      </span>
-                      <div className="font-poppins text-lg mt-2">Reputation Builder</div>
-                      <div className="text-accent font-bold text-xl mt-1">$197/mo</div>
-                    </th>
-                    <th className="bg-green-50 dark:bg-green-900/20 p-4 font-semibold text-text-primary border-b border-text-muted/20 relative pt-8">
-                      <span className="absolute top-2 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-2 py-0.5 md:px-3 md:py-1 rounded-full text-xs font-semibold z-10">
-                        Best Value
-                      </span>
-                      <div className="font-poppins text-lg mt-2">Growth Accelerator</div>
-                      <div className="text-accent font-bold text-xl mt-1">$299/mo</div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="p-4 text-left font-medium text-text-primary bg-background/30 border-b border-text-muted/10 sticky left-0 z-10 shadow-md">
-                      Mobile-responsive website
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-accent/5">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-green-50/50 dark:bg-green-900/10">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-left font-medium text-text-primary bg-background/30 border-b border-text-muted/10 sticky left-0 z-10 shadow-md">
-                      Google Business Profile setup & optimization
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-accent/5">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-green-50/50 dark:bg-green-900/10">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-left font-medium text-text-primary bg-background/30 border-b border-text-muted/10 sticky left-0 z-10 shadow-md">
-                      SEO foundation (keywords, tags, indexing)
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-accent/5">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-green-50/50 dark:bg-green-900/10">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-left font-medium text-text-primary bg-background/30 border-b border-text-muted/10 sticky left-0 z-10 shadow-md">
-                      Contact form → email automation
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-accent/5">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-green-50/50 dark:bg-green-900/10">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-left font-medium text-text-primary bg-background/30 border-b border-text-muted/10 sticky left-0 z-10 shadow-md">
-                      Website edits per month
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10">
-                      <span className="text-text-primary font-semibold">3</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-accent/5">
-                      <span className="text-text-primary font-semibold">3</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-green-50/50 dark:bg-green-900/10">
-                      <span className="text-text-primary font-semibold">3+</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-left font-medium text-text-primary bg-background/30 border-b border-text-muted/10 sticky left-0 z-10 shadow-md">
-                      Automated review requests
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10">
-                      <span className="text-red-500 text-xl">❌</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-accent/5">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-green-50/50 dark:bg-green-900/10">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-left font-medium text-text-primary bg-background/30 border-b border-text-muted/10 sticky left-0 z-10 shadow-md">
-                      Automated review responses
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10">
-                      <span className="text-red-500 text-xl">❌</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-accent/5">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-green-50/50 dark:bg-green-900/10">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-left font-medium text-text-primary bg-background/30 border-b border-text-muted/10 sticky left-0 z-10 shadow-md">
-                      Monthly keyword & reputation report
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10">
-                      <span className="text-red-500 text-xl">❌</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-accent/5">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-green-50/50 dark:bg-green-900/10">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-left font-medium text-text-primary bg-background/30 border-b border-text-muted/10 sticky left-0 z-10 shadow-md">
-                      Google Analytics setup
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10">
-                      <span className="text-red-500 text-xl">❌</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-accent/5">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-green-50/50 dark:bg-green-900/10">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-left font-medium text-text-primary bg-background/30 border-b border-text-muted/10 sticky left-0 z-10 shadow-md">
-                      Add-on automations included
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10">
-                      <span className="text-red-500 text-xl">❌</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-accent/5">
-                      <span className="text-text-primary font-semibold">1</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-green-50/50 dark:bg-green-900/10">
-                      <span className="text-text-primary font-semibold">3</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-left font-medium text-text-primary bg-background/30 border-b border-text-muted/10 sticky left-0 z-10 shadow-md">
-                      Advanced SEO (content + backlinks)
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10">
-                      <span className="text-red-500 text-xl">❌</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-accent/5">
-                      <span className="text-red-500 text-xl">❌</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-green-50/50 dark:bg-green-900/10">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-left font-medium text-text-primary bg-background/30 border-b border-text-muted/10 sticky left-0 z-10 shadow-md">
-                      Social media page setup & integration
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10">
-                      <span className="text-red-500 text-xl">❌</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-accent/5">
-                      <span className="text-red-500 text-xl">❌</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-green-50/50 dark:bg-green-900/10">
-                      <span className="text-text-primary font-semibold">✅ + lead tracking links</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-left font-medium text-text-primary bg-background/30 border-b border-text-muted/10 sticky left-0 z-10 shadow-md">
-                      Monthly performance report
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10">
-                      <span className="text-red-500 text-xl">❌</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-accent/5">
-                      <span className="text-red-500 text-xl">❌</span>
-                    </td>
-                    <td className="p-4 border-b border-text-muted/10 bg-green-50/50 dark:bg-green-900/10">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-left font-medium text-text-primary bg-background/30">
-                      Monthly strategy call
-                    </td>
-                    <td className="p-4">
-                      <span className="text-red-500 text-xl">❌</span>
-                    </td>
-                    <td className="p-4 bg-accent/5">
-                      <span className="text-red-500 text-xl">❌</span>
-                    </td>
-                    <td className="p-4 bg-green-50/50 dark:bg-green-900/10">
-                      <span className="text-green-600 text-xl">✅</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+          <div className="mt-16 grid gap-8 rounded-[2rem] bg-text-primary p-8 text-white sm:p-12 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sun">Need something beyond the standard workflows?</p>
+              <h2 className="mt-4 font-display text-3xl font-bold sm:text-4xl">Custom automation can be scoped separately.</h2>
+              <p className="mt-4 max-w-2xl leading-7 text-white/65">
+                LaunchLocal Ops includes practical lead response, follow-up, review requests, and ongoing improvements to those workflows. Scheduling, CRM, data entry, email or text communication, and more advanced agent-powered work start with a separate conversation and clear scope.
+              </p>
             </div>
+            <Link href="/#contact" className="inline-flex min-h-12 items-center justify-center rounded-full bg-sun px-6 py-3 text-sm font-bold text-text-primary hover:bg-white">
+              Discuss a custom workflow
+            </Link>
           </div>
 
-          {/* Call to Action */}
-          <div className="text-center mt-16">
-            <p className="text-text-muted font-inter mb-6 text-lg">
-              Ready to get started? Choose your plan above or contact us for a custom solution.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#pricing" className="btn-primary">
-                View Plans
-              </a>
-              <a href="#contact" className="btn-secondary">
-                Contact Us
-              </a>
-            </div>
+          <div className="mt-16 text-center">
+            <h2 className="font-display text-3xl font-bold text-text-primary">Still deciding?</h2>
+            <p className="mx-auto mt-3 max-w-xl text-text-secondary">Start with Local Business Launch, add Ops when it helps, or tell us what your business needs.</p>
+            <Link href="/#contact" className="btn-primary mt-7">Book a free conversation</Link>
           </div>
         </div>
       </section>

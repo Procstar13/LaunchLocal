@@ -1,129 +1,68 @@
-'use client'
+import Link from 'next/link'
+
+const services = [
+  {
+    number: '01',
+    title: 'Websites & Online Presence',
+    description: 'A professional, mobile-responsive digital home built around your brand, services, and the customers you want to reach.',
+  },
+  {
+    number: '02',
+    title: 'Google & Local Visibility',
+    description: 'Google Business Profile optimization, local search foundations, and clear reporting that help nearby customers find you.',
+  },
+  {
+    number: '03',
+    title: 'Lead & Review Automation',
+    description: 'Capture new inquiries, notify your team, follow up quickly, and make it easier for happy customers to leave reviews.',
+  },
+  {
+    number: '04',
+    title: 'Business Process Automation',
+    description: 'Reduce repetitive work across follow-ups, scheduling, data entry, CRM handoffs, and customer communication.',
+  },
+  {
+    number: '05',
+    title: 'AI & Agent Workflows',
+    description: 'Custom solutions for work that needs more than a standard automation — scoped around a clear business outcome, not technology for its own sake.',
+    href: '/automations',
+  },
+]
 
 export default function Benefits() {
-  const services = [
-    {
-      title: 'Custom Website Design',
-      description: 'Professional, mobile-responsive websites tailored to your business needs. Modern design that converts visitors into customers.',
-      icon: (
-        <svg className="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      )
-    },
-    {
-      title: 'Google Business Profile',
-      description: 'Maximize your local visibility with optimized Google Business Profile. Get found by customers searching for your services.',
-      icon: (
-        <svg className="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-      )
-    },
-    {
-      title: 'SEO',
-      description: 'Search engine optimization to improve your website\'s ranking and drive organic traffic from potential customers.',
-      icon: (
-        <svg className="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-      )
-    },
-    {
-      title: 'Google Analytics and Reporting',
-      description: 'Track your website performance with detailed analytics and monthly reports to measure your success.',
-      icon: (
-        <svg className="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-        </svg>
-      )
-    },
-    {
-      title: 'Custom Business Automations',
-      description: 'Streamline your business processes with custom automation solutions. Save time and reduce manual work.',
-      icon: (
-        <svg className="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-      ),
-      link: '/automations'
-    }
-  ]
-
   return (
-    <section className="py-20 bg-section-bg">
-      <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-text-primary font-poppins mb-6">
-            What We Offer
-          </h2>
-          <p className="text-xl text-text-secondary font-inter max-w-3xl mx-auto">
-            Comprehensive digital solutions to help your business grow and succeed online.
+    <section id="services" className="bg-section-bg py-24 sm:py-32">
+      <div className="page-shell">
+        <div className="grid gap-8 border-b border-line pb-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div>
+            <div className="eyebrow">What we offer</div>
+            <h2 className="section-title">Build the front door. Improve what happens behind it.</h2>
+          </div>
+          <p className="section-copy lg:justify-self-end">
+            Your website is the starting point. From there, we help your business get found, capture leads, earn reviews, and spend less time on repetitive work.
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 max-w-7xl mx-auto">
+        <div className="divide-y divide-line">
           {services.map((service) => (
-            <div
+            <article
               key={service.title}
-              className={`text-center group hover:transform hover:scale-105 transition-all duration-300 ${service.link ? 'cursor-pointer' : ''}`}
-              onClick={service.link ? () => window.location.href = service.link : undefined}
+              className="group grid gap-4 py-8 sm:grid-cols-[80px_0.8fr_1.2fr] sm:items-start sm:gap-8 sm:py-10"
             >
-              {/* Icon Container */}
-              <div className="mb-6 flex justify-center">
-                <div className="w-20 h-20 bg-background rounded-2xl flex items-center justify-center group-hover:bg-accent/10 transition-colors duration-300 border border-accent/20">
-                  {service.icon}
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-text-primary font-poppins">
-                  {service.title}
-                </h3>
-                <p className="text-text-muted font-inter leading-relaxed">
-                  {service.description}
-                </p>
-                {service.link && (
-                  <div className="text-accent font-inter text-sm font-medium">
-                    Learn More →
-                  </div>
+              <span className="font-display text-sm font-bold text-rust">{service.number}</span>
+              <h3 className="font-display text-2xl font-bold leading-tight text-text-primary">
+                {service.title}
+              </h3>
+              <div>
+                <p className="max-w-xl leading-7 text-text-secondary">{service.description}</p>
+                {service.href && (
+                  <Link href={service.href} className="mt-4 inline-flex border-b border-text-primary pb-1 text-sm font-bold text-text-primary transition-colors hover:border-accent hover:text-accent">
+                    Explore custom workflows <span className="ml-2" aria-hidden="true">↗</span>
+                  </Link>
                 )}
               </div>
-            </div>
+            </article>
           ))}
-        </div>
-
-
-        {/* CTA Section */}
-        <div className="text-center mt-16">
-          <p className="text-lg text-text-secondary font-inter mb-6">
-            Ready to take your business online?
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
-              onClick={() => {
-                const element = document.getElementById('contact')
-                if (element) element.scrollIntoView({ behavior: 'smooth' })
-              }}
-              className="btn-primary text-lg px-8 py-4"
-            >
-              Get Started Today
-            </button>
-            <button 
-              onClick={() => {
-                const element = document.getElementById('pricing')
-                if (element) element.scrollIntoView({ behavior: 'smooth' })
-              }}
-              className="btn-secondary text-lg px-8 py-4"
-            >
-              View Pricing
-            </button>
-          </div>
         </div>
       </div>
     </section>

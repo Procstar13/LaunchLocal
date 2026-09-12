@@ -27,13 +27,16 @@ export default function Contact() {
   // Load reCAPTCHA script
   useEffect(() => {
     const loadRecaptcha = () => {
+      const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+      if (!siteKey) return
+
       if (window.grecaptcha) {
         setRecaptchaLoaded(true)
         return
       }
 
       const script = document.createElement('script')
-      script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`
+      script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`
       script.async = true
       script.defer = true
       script.onload = () => setRecaptchaLoaded(true)
@@ -149,20 +152,20 @@ export default function Contact() {
 
   if (isSubmitted) {
     return (
-      <section id="contact" className="py-20 bg-section-bg">
-        <div className="container mx-auto px-4">
+      <section id="contact" className="bg-section-bg py-24">
+        <div className="page-shell">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="card">
-              <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="rounded-[2rem] border border-line bg-white p-8 sm:p-12">
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-sage/15">
                 <svg className="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h2 className="text-3xl font-bold text-text-primary font-poppins mb-4">
-                Message Sent Successfully!
+              <h2 className="font-display text-3xl font-bold text-text-primary mb-4">
+                Your message is on its way.
               </h2>
-              <p className="text-text-secondary font-inter mb-8">
-                Thank you for reaching out! We&apos;ll get back to you within 24 hours to discuss your project.
+              <p className="text-text-secondary mb-8">
+                Thanks for reaching out. We&apos;ll respond within one business day to discuss what your business needs.
               </p>
               <button
                 onClick={() => setIsSubmitted(false)}
@@ -178,25 +181,29 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-20 bg-section-bg">
-      <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-text-primary font-poppins mb-6">
-            Get In Touch
+    <section id="contact" className="bg-rust py-24 sm:py-32">
+      <div className="page-shell grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+        <div>
+          <div className="eyebrow text-sun before:bg-sun">Start a conversation</div>
+          <h2 className="font-display text-4xl font-bold leading-[1.05] text-white sm:text-5xl">
+            What should your digital front door do better?
           </h2>
-          <p className="text-xl text-text-secondary font-inter max-w-3xl mx-auto">
-            Ready to take your business online? Let&apos;s discuss your project and get you started.
+          <p className="mt-6 max-w-md text-lg leading-8 text-white/75">
+            Tell us where your online presence or day-to-day workflow feels stuck. We&apos;ll respond within one business day with a useful next step.
           </p>
+          <div className="mt-10 border-t border-white/20 pt-6 text-sm leading-7 text-white/70">
+            <p>No hard sell.</p>
+            <p>No technical homework.</p>
+            <p>No commitment from the first conversation.</p>
+          </div>
         </div>
 
-        {/* Contact Form */}
-        <div className="max-w-2xl mx-auto">
-          <div className="card">
+        <div className="min-w-0">
+          <div className="rounded-[2rem] bg-background p-6 shadow-[0_30px_70px_rgba(80,30,16,0.22)] sm:p-10">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name Field */}
               <div>
-                <label htmlFor="name" className="block text-text-primary font-medium font-inter mb-2">
+                <label htmlFor="name" className="mb-2 block text-sm font-bold text-text-primary">
                   Full Name *
                 </label>
                 <input
@@ -205,7 +212,7 @@ export default function Contact() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent transition-colors duration-200 ${
+                  className={`w-full rounded-xl border bg-white px-4 py-3.5 text-text-primary ${
                     errors.name 
                       ? 'border-red-500 focus:ring-red-500' 
                       : 'border-text-muted/30 focus:border-accent'
@@ -219,7 +226,7 @@ export default function Contact() {
 
               {/* Email Field */}
               <div>
-                <label htmlFor="email" className="block text-text-primary font-medium font-inter mb-2">
+                <label htmlFor="email" className="mb-2 block text-sm font-bold text-text-primary">
                   Email Address *
                 </label>
                 <input
@@ -228,7 +235,7 @@ export default function Contact() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent transition-colors duration-200 ${
+                  className={`w-full rounded-xl border bg-white px-4 py-3.5 text-text-primary ${
                     errors.email 
                       ? 'border-red-500 focus:ring-red-500' 
                       : 'border-text-muted/30 focus:border-accent'
@@ -242,7 +249,7 @@ export default function Contact() {
 
               {/* Business Name Field */}
               <div>
-                <label htmlFor="businessName" className="block text-text-primary font-medium font-inter mb-2">
+                <label htmlFor="businessName" className="mb-2 block text-sm font-bold text-text-primary">
                   Business Name *
                 </label>
                 <input
@@ -251,7 +258,7 @@ export default function Contact() {
                   name="businessName"
                   value={formData.businessName}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent transition-colors duration-200 ${
+                  className={`w-full rounded-xl border bg-white px-4 py-3.5 text-text-primary ${
                     errors.businessName 
                       ? 'border-red-500 focus:ring-red-500' 
                       : 'border-text-muted/30 focus:border-accent'
@@ -265,7 +272,7 @@ export default function Contact() {
 
               {/* Message Field */}
               <div>
-                <label htmlFor="message" className="block text-text-primary font-medium font-inter mb-2">
+                <label htmlFor="message" className="mb-2 block text-sm font-bold text-text-primary">
                   Message *
                 </label>
                 <textarea
@@ -274,12 +281,12 @@ export default function Contact() {
                   rows={5}
                   value={formData.message}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent transition-colors duration-200 resize-none ${
+                  className={`w-full resize-none rounded-xl border bg-white px-4 py-3.5 text-text-primary ${
                     errors.message 
                       ? 'border-red-500 focus:ring-red-500' 
                       : 'border-text-muted/30 focus:border-accent'
                   }`}
-                  placeholder="Tell us about your project, timeline, and any specific requirements..."
+                  placeholder="What would you like to improve—your website, local visibility, leads, follow-up, reviews, or another repetitive task?"
                 />
                 {errors.message && (
                   <p className="mt-1 text-red-400 text-sm font-inter">{errors.message}</p>
@@ -311,7 +318,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full btn-primary text-lg py-4 ${
+                className={`btn-primary w-full py-4 text-base ${
                   isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               >
@@ -321,12 +328,11 @@ export default function Contact() {
                     <span>Sending Message...</span>
                   </div>
                 ) : (
-                  'Send Message'
+                  'Send my message'
                 )}
               </button>
             </form>
           </div>
-
         </div>
       </div>
     </section>
