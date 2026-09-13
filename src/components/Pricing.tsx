@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { pricingTiers } from '@/data/pricing'
+import { pricingFootnote, pricingTiers } from '@/data/pricing'
 
 export default function Pricing() {
   return (
@@ -59,6 +59,10 @@ export default function Pricing() {
             </article>
           ))}
         </div>
+
+        <p className="mt-6 max-w-3xl text-sm leading-6 text-text-muted">
+          {pricingFootnote}
+        </p>
 
         <div className="mt-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
           <p className="max-w-2xl text-sm leading-6 text-text-secondary">

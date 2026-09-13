@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Pricing from '../../components/Pricing'
-import { comparisonRows, pricingTiers } from '@/data/pricing'
+import { comparisonRows, pricingFootnote, pricingTiers } from '@/data/pricing'
 
 export const metadata: Metadata = {
   title: 'Local Business Launch & Operations Pricing',
@@ -46,6 +46,7 @@ export default function PricingPage() {
               </tbody>
             </table>
           </div>
+          <p className="mt-4 max-w-3xl text-sm leading-6 text-text-muted">{pricingFootnote}</p>
 
           <div className="mt-16 grid gap-8 rounded-[2rem] bg-text-primary p-8 text-white sm:p-12 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>

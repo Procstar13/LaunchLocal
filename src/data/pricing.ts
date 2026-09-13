@@ -27,6 +27,7 @@ export const pricingTiers: PricingTier[] = [
       'Analytics, conversion, and click-to-call tracking',
       'Search Console, indexing, and local SEO foundation',
       'Domain connection and launch',
+      '90 days of minor website updates included after launch',
       'You own your website — no required monthly plan',
     ],
   },
@@ -58,7 +59,7 @@ export const comparisonRows = [
   { label: 'Payment', values: ['$750 one-time', '$150 / month'] },
   { label: 'Website ownership', values: ['Customer owns it', 'Customer owns it'] },
   { label: 'Hosting and maintenance', values: ['—', 'Included'] },
-  { label: 'Managed updates', values: ['—', '3 / month'] },
+  { label: 'Managed updates', values: ['90 days of minor edits', '3 / month'] },
   { label: 'Analytics and lead tracking', values: ['Setup included', 'Monitored monthly'] },
   { label: 'Google Business Profile', values: ['Audit and optimization', 'Monitored and optimized'] },
   { label: 'Starter automation', values: ['One included', 'Maintained and improved'] },
@@ -66,3 +67,6 @@ export const comparisonRows = [
   { label: 'Lead follow-up', values: ['Available starter option', 'Included'] },
   { label: 'Business Automation Audit', values: ['Included', 'Reviewed periodically'] },
 ]
+
+export const pricingFootnote =
+  'Minor updates include content, image, contact, and basic page edits. New pages, redesigns, or custom functionality are quoted separately.'
