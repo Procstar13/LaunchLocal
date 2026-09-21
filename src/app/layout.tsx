@@ -2,15 +2,16 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import StickyCta from '@/components/StickyCta'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://launchlocalaz.com'),
   title: {
-    default: 'LaunchLocal Arizona | Online Presence & Business Automation',
+    default: 'LaunchLocal Arizona | Websites, Google, Local SEO & Reviews',
     template: '%s | LaunchLocal Arizona',
   },
-  description: 'LaunchLocal helps Arizona small businesses modernize their online presence and automate repetitive work — from websites and local visibility to leads, reviews, and follow-up.',
-  keywords: 'Arizona small business website, local SEO Arizona, Google Business Profile, lead automation, review automation, business automation',
+  description: 'We help Arizona service businesses get found and turn local searches into customers. We build and manage your website, Google presence, local SEO, and reviews.',
+  keywords: 'Arizona service business website, Google Business Profile Arizona, local SEO Arizona, online reviews, local search visibility',
   authors: [{ name: 'LaunchLocal' }],
   creator: 'LaunchLocal',
   publisher: 'LaunchLocal',
@@ -19,8 +20,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'LaunchLocal Arizona | Online Presence & Business Automation',
-    description: 'We build the digital front door for your business, then help automate the repetitive work behind it.',
+    title: 'LaunchLocal Arizona | Websites, Google, Local SEO & Reviews',
+    description: 'We help Arizona service businesses get found and turn local searches into customers.',
     type: 'website',
     locale: 'en_US',
     url: 'https://launchlocalaz.com',
@@ -28,8 +29,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: 'LaunchLocal Arizona | Online Presence & Business Automation',
-    description: 'Modern websites. Smarter workflows. Less busywork.',
+    title: 'LaunchLocal Arizona | Websites, Google, Local SEO & Reviews',
+    description: 'Website, Google presence, local SEO, and reviews for Arizona service businesses.',
   },
   other: {
     'theme-color': '#f7f3ea',
@@ -73,6 +74,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <StickyCta />
       </body>
     </html>
   )

@@ -2,10 +2,10 @@ import Image from 'next/image'
 
 const work = [
   {
-    title: "King Jack's",
-    category: 'Local service website',
-    image: '/Images/Carousel/website-1.jpg',
-    alt: "King Jack's landscaping website",
+    title: 'Desert Air',
+    category: 'Local HVAC website',
+    image: '/Images/Carousel/desert-air.png',
+    alt: 'Desert Air Heating & Cooling website',
   },
   {
     title: 'Golf Simulator Directory',
@@ -25,7 +25,7 @@ export default function Work() {
             <h2 className="section-title">Designed around the business, not a template.</h2>
           </div>
           <p className="max-w-sm text-base leading-7 text-text-secondary">
-            The website is where customers meet the business. Clear lead capture and useful follow-up make sure the next step does not get lost.
+            The website, Google listing, and reviews should make it obvious who you are and how to get in touch.
           </p>
         </div>
 

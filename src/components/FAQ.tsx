@@ -5,15 +5,15 @@ import { useState } from 'react'
 const faqs = [
   {
     question: 'Is there a contract?',
-    answer: 'Plans begin with a three-month commitment because local visibility and SEO need time to produce useful signals. We will explain renewal and cancellation terms before you sign anything.',
+    answer: 'Local Growth is month-to-month. Local Business Launch is a one-time project with no required monthly marketing plan. We will explain renewal and cancellation terms before you sign anything.',
   },
   {
     question: 'What if I already have a website?',
     answer: 'We can assess and improve your current site or rebuild it on our system. We will recommend the route that makes the most sense after reviewing what you have.',
   },
   {
-    question: 'What can LaunchLocal automate?',
-    answer: 'The standard launch and managed service can cover lead notifications, simple follow-up, review requests, and basic tracking. Scheduling, data entry, CRM workflows, email or text communication, and more advanced agent-powered work can be scoped separately when there is a clear business need.',
+    question: 'What do you manage each month?',
+    answer: 'Local Growth covers your website, Google presence, local SEO, and reviews. That includes hosting, listing management, review requests, search monitoring, and up to three website updates each month.',
   },
   {
     question: 'Will I be able to edit my site myself?',
@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     question: 'Do I need the monthly service?',
-    answer: 'No. You own the website, and there is no required monthly plan. LaunchLocal Ops is optional for businesses that want us to keep managing their website, visibility, reporting, and included workflows.',
+    answer: 'No. You own the website, and there is no required monthly marketing plan. Local Growth is optional for businesses that want ongoing management of their website, Google presence, local search, and reputation.',
   },
 ]
 

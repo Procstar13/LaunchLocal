@@ -7,9 +7,9 @@ export default function Pricing() {
       <div className="page-shell">
         <div className="max-w-3xl">
           <div className="eyebrow">Two simple ways to work with us</div>
-          <h2 className="section-title">Launch the digital front door. Keep improving the operation.</h2>
+          <h2 className="section-title">Get found locally. Keep showing up.</h2>
           <p className="section-copy mt-5">
-            Start with a complete online presence and one useful automation. Add optional ongoing support when you want us to manage the website, visibility, reporting, and included workflows.
+            Start with a one-time launch, or have us build and manage your website, Google presence, local SEO, and reviews for $399/month with a $1,000 initial setup.
           </p>
         </div>
 
@@ -40,14 +40,20 @@ export default function Pricing() {
                 </span>
                 <span className="pb-1 text-sm font-semibold text-text-muted">{tier.priceLabel}</span>
               </div>
+              {tier.setupNote && (
+                <p className="mt-2 text-sm font-semibold text-text-secondary">{tier.setupNote}</p>
+              )}
 
               <ul className="mt-8 flex-1 space-y-4 border-t border-line pt-7">
-                {tier.features.map((feature) => (
-                  <li key={feature} className="flex gap-3 text-sm leading-6 text-text-secondary">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rust" />
-                    {feature}
-                  </li>
-                ))}
+                {tier.features.map((feature) => {
+                  const isGroupHeading = feature.endsWith('plus:')
+                  return (
+                    <li key={feature} className={`flex gap-3 text-sm leading-6 ${isGroupHeading ? 'font-bold text-text-primary' : 'text-text-secondary'}`}>
+                      {!isGroupHeading && <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rust" />}
+                      {feature}
+                    </li>
+                  )
+                })}
               </ul>
 
               <Link
@@ -66,7 +72,7 @@ export default function Pricing() {
 
         <div className="mt-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
           <p className="max-w-2xl text-sm leading-6 text-text-secondary">
-            Custom or more advanced automation—including specialized AI or agent workflows—can be scoped separately around a clear business need.
+            Custom website work, extra pages, or add-on projects can be quoted separately.
           </p>
           <Link href="/pricing" className="shrink-0 text-sm font-bold text-text-primary hover:text-accent">
             Compare the offers <span aria-hidden="true">→</span>

@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
-  description: 'Terms of Service for LaunchLocal online presence, digital operations, and automation services.',
+  description: 'Terms of Service for LaunchLocal website, Google, local SEO, and review services.',
   alternates: { canonical: '/terms' },
 }
 

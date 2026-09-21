@@ -47,7 +47,7 @@ export default function AutomationsClient() {
             <div className="eyebrow">What we review</div>
             <h2 className="section-title">Start with the work your team repeats.</h2>
             <p className="mt-5 leading-7 text-text-secondary">
-              Local Business Launch includes an onboarding Automation Audit and one starter workflow. LaunchLocal Ops revisits those opportunities periodically. More advanced work is scoped separately.
+              Local Growth includes review generation and ongoing visibility work. More specialized automation and agent-powered workflows can be scoped separately.
             </p>
           </div>
           <ul className="grid border-l border-t border-line sm:grid-cols-2">

@@ -186,10 +186,10 @@ export default function Contact() {
         <div>
           <div className="eyebrow text-sun before:bg-sun">Start a conversation</div>
           <h2 className="font-display text-4xl font-bold leading-[1.05] text-white sm:text-5xl">
-            What should your digital front door do better?
+            Ready to get found by more local customers?
           </h2>
           <p className="mt-6 max-w-md text-lg leading-8 text-white/75">
-            Tell us where your online presence or day-to-day workflow feels stuck. We&apos;ll respond within one business day with a useful next step.
+            Tell us about your website, Google listing, local search, or reviews. We&apos;ll respond within one business day with a useful next step.
           </p>
           <div className="mt-10 border-t border-white/20 pt-6 text-sm leading-7 text-white/70">
             <p>No hard sell.</p>
@@ -286,7 +286,7 @@ export default function Contact() {
                       ? 'border-red-500 focus:ring-red-500' 
                       : 'border-text-muted/30 focus:border-accent'
                   }`}
-                  placeholder="What would you like to improve—your website, local visibility, leads, follow-up, reviews, or another repetitive task?"
+                  placeholder="What would you like to improve—your website, Google listing, local search, or reviews?"
                 />
                 {errors.message && (
                   <p className="mt-1 text-red-400 text-sm font-inter">{errors.message}</p>

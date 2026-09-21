@@ -3,29 +3,23 @@ import Link from 'next/link'
 const services = [
   {
     number: '01',
-    title: 'Websites & Online Presence',
-    description: 'A professional, mobile-responsive digital home built around your brand, services, and the customers you want to reach.',
+    title: 'Website',
+    description: 'A professional, mobile-friendly site that makes it easy for local customers to understand what you do and contact you.',
   },
   {
     number: '02',
-    title: 'Google & Local Visibility',
-    description: 'Google Business Profile optimization, local search foundations, and clear reporting that help nearby customers find you.',
+    title: 'Google presence',
+    description: 'A complete, accurate Google Business Profile so your business shows up with the right services, photos, hours, and contact info.',
   },
   {
     number: '03',
-    title: 'Lead & Review Automation',
-    description: 'Capture new inquiries, notify your team, follow up quickly, and make it easier for happy customers to leave reviews.',
+    title: 'Local search visibility',
+    description: 'Local SEO that helps nearby customers find you when they search for the services you offer.',
   },
   {
     number: '04',
-    title: 'Business Process Automation',
-    description: 'Reduce repetitive work across follow-ups, scheduling, data entry, CRM handoffs, and customer communication.',
-  },
-  {
-    number: '05',
-    title: 'AI & Agent Workflows',
-    description: 'Custom solutions for work that needs more than a standard automation — scoped around a clear business outcome, not technology for its own sake.',
-    href: '/automations',
+    title: 'Reviews',
+    description: 'A simple system to request, monitor, and grow the reviews that help people choose your business.',
   },
 ]
 
@@ -36,10 +30,10 @@ export default function Benefits() {
         <div className="grid gap-8 border-b border-line pb-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>
             <div className="eyebrow">What we offer</div>
-            <h2 className="section-title">Build the front door. Improve what happens behind it.</h2>
+            <h2 className="section-title">Four things that help local customers find you.</h2>
           </div>
           <p className="section-copy lg:justify-self-end">
-            Your website is the starting point. From there, we help your business get found, capture leads, earn reviews, and spend less time on repetitive work.
+            We build and manage your website, Google presence, local SEO, and reviews so you can spend more time on the job and less time trying to get found online.
           </p>
         </div>
 
@@ -47,23 +41,24 @@ export default function Benefits() {
           {services.map((service) => (
             <article
               key={service.title}
-              className="group grid gap-4 py-8 sm:grid-cols-[80px_0.8fr_1.2fr] sm:items-start sm:gap-8 sm:py-10"
+              className="grid gap-4 py-8 sm:grid-cols-[80px_0.8fr_1.2fr] sm:items-start sm:gap-8 sm:py-10"
             >
               <span className="font-display text-sm font-bold text-rust">{service.number}</span>
               <h3 className="font-display text-2xl font-bold leading-tight text-text-primary">
                 {service.title}
               </h3>
-              <div>
-                <p className="max-w-xl leading-7 text-text-secondary">{service.description}</p>
-                {service.href && (
-                  <Link href={service.href} className="mt-4 inline-flex border-b border-text-primary pb-1 text-sm font-bold text-text-primary transition-colors hover:border-accent hover:text-accent">
-                    Explore custom workflows <span className="ml-2" aria-hidden="true">↗</span>
-                  </Link>
-                )}
-              </div>
+              <p className="max-w-xl leading-7 text-text-secondary">{service.description}</p>
             </article>
           ))}
         </div>
+
+        <p className="mt-10 text-sm text-text-muted">
+          Need help with repetitive office work later?{' '}
+          <Link href="/automations" className="font-bold text-text-primary hover:text-accent">
+            See our automation options
+          </Link>
+          .
+        </p>
       </div>
     </section>
   )

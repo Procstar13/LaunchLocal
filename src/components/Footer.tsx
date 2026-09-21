@@ -11,7 +11,7 @@ export default function Footer() {
               <span className="h-2 w-2 rounded-full bg-accent" />
             </Link>
             <p className="mt-4 max-w-sm text-base leading-7 text-text-secondary">
-              We build the digital front door for Arizona small businesses, then help automate the repetitive work behind it.
+              We help Arizona service businesses get found and turn local searches into customers.
             </p>
           </div>
 

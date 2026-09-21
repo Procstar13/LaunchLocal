@@ -1,12 +1,12 @@
 import Link from 'next/link'
 
 const principles = [
-  ['Source', 'Identify where your customers are searching and make sure your business shows up.'],
-  ['Convert', 'Turn visitors into leads with websites and funnels designed to drive action.'],
-  ['Analyze', "Track what's working (and what's not) with clear data you can actually understand."],
-  ['Automate', 'Save time with smart tools that handle follow-ups, missed calls, and scheduling.'],
-  ['Report', 'Get simple, transparent updates that show your progress without the fluff.'],
-  ['Optimize', "Continuously improve your online presence so your growth doesn't stall."],
+  ['Show up', 'Make sure your business appears where local customers are already searching.'],
+  ['Convert', 'Turn those searches into calls, quotes, and booked jobs with a clear website and contact path.'],
+  ['Build trust', 'Keep your Google listing accurate and make it easy for happy customers to leave reviews.'],
+  ['Track', 'See what is working with simple reporting you can actually understand.'],
+  ['Report', 'Get straightforward updates on visibility, leads, and reviews — without the fluff.'],
+  ['Improve', 'Keep the website, Google presence, and local search working so growth does not stall.'],
 ]
 
 export default function About() {
@@ -17,12 +17,12 @@ export default function About() {
           <div>
             <div className="eyebrow text-sun before:bg-sun">Our philosophy and process</div>
             <h2 className="font-display text-4xl font-bold leading-[1.05] text-white sm:text-5xl">
-              Good technology should fit the way you work.
+              Get found. Make it easy to choose you.
             </h2>
           </div>
           <div>
             <p className="text-xl leading-9 text-white/75">
-              At LaunchLocal, we believe every small business deserves a professional online presence and practical tools that make the workday easier. We start with your digital front door, then improve how leads, reviews, follow-ups, and routine admin move through the business — <strong className="font-semibold text-white">without replacing the processes that already work</strong>.
+              LaunchLocal helps Arizona service businesses get found and turn local searches into customers. We keep it simple: a professional website, a strong Google presence, local search visibility, and reviews — <strong className="font-semibold text-white">without making you become a marketer</strong>.
             </p>
             <p className="mt-6 text-white/55">
               To keep things clear and effective, we follow six key principles.
@@ -42,7 +42,7 @@ export default function About() {
 
         <div className="mt-12 flex flex-col justify-between gap-6 border-t border-white/15 pt-8 sm:flex-row sm:items-center">
           <p className="max-w-2xl text-lg leading-8 text-white/70">
-            The result is a stronger online presence now and a practical path to smarter operations later, so you can focus on running the business while we handle the digital work.
+            You run the business. We manage the local presence that helps customers find you.
           </p>
           <Link href="/#contact" className="inline-flex shrink-0 items-center font-bold text-sun hover:text-white">
             Let&apos;s talk <span className="ml-2" aria-hidden="true">↗</span>
