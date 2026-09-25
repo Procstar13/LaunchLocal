@@ -16,7 +16,8 @@ export default function Header() {
     { href: '/#services', label: 'What we offer' },
     { href: '/#process', label: 'Our process' },
     { href: '/pricing', label: 'Pricing' },
-    { href: '/automations', label: 'Automation' },
+    { href: '/website-tune-up', label: 'Tune-Up' },
+    { href: '/automations', label: 'Systems & Automation' },
   ]
 
   return (

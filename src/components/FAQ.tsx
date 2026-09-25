@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     question: 'What if I already have a website?',
-    answer: 'We can assess and improve your current site or rebuild it on our system. We will recommend the route that makes the most sense after reviewing what you have.',
+    answer: 'A Website Tune-Up starts at $350. We audit the current site, repair broken pages, forms, and links, clean up mobile issues, and confirm leads reach you. Larger repairs are quoted after the audit. If a rebuild is the better path, we will say so.',
   },
   {
     question: 'What do you manage each month?',

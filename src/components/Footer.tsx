@@ -21,7 +21,8 @@ export default function Footer() {
               <Link href="/#services" className="hover:text-text-primary">What we offer</Link>
               <Link href="/#process" className="hover:text-text-primary">Our process</Link>
               <Link href="/pricing" className="hover:text-text-primary">Pricing</Link>
-              <Link href="/automations" className="hover:text-text-primary">Automation</Link>
+              <Link href="/website-tune-up" className="hover:text-text-primary">Website Tune-Up</Link>
+              <Link href="/automations" className="hover:text-text-primary">Business Systems & Automation</Link>
             </nav>
           </div>
 

@@ -53,9 +53,13 @@ export default function Benefits() {
         </div>
 
         <p className="mt-10 text-sm text-text-muted">
-          Need help with repetitive office work later?{' '}
+          Already have a website that needs work?{' '}
+          <Link href="/website-tune-up" className="font-bold text-text-primary hover:text-accent">
+            See Website Tune-Up
+          </Link>
+          . Need your website, CRM, and follow-up to work together?{' '}
           <Link href="/automations" className="font-bold text-text-primary hover:text-accent">
-            See our automation options
+            See business systems & automation
           </Link>
           .
         </p>

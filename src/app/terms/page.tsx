@@ -39,7 +39,7 @@ export default function TermsOfService() {
               <ul className="list-disc pl-6 mt-4">
                 <li>Website design and development</li>
                 <li>Local SEO and business profile support</li>
-                <li>Workflow and automation audits</li>
+                <li>Business systems and automation</li>
                 <li>Technical consulting services</li>
               </ul>
             </section>

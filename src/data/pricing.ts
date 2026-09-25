@@ -80,5 +80,26 @@ export const comparisonRows = [
   { label: 'Website ownership', values: ['Customer owns it', 'Customer owns it'] },
 ]
 
+export const websiteTuneUp = {
+  name: 'Website Tune-Up',
+  shortName: 'Tune-Up',
+  description:
+    'Already have a website? We audit it, repair what is broken, and make sure leads actually reach you.',
+  price: 350,
+  priceLabel: 'starting',
+  setupNote: 'Larger repairs quoted after the audit',
+  href: '/website-tune-up',
+  cta: 'See the Tune-Up',
+  features: [
+    'Audit of your existing website',
+    'Repair broken pages, forms, and links',
+    'WordPress and plugin maintenance',
+    'Mobile cleanup so the site works on phones',
+    'Basic SEO and indexing',
+    'Analytics and conversion tracking',
+    'Verify that leads actually reach the business',
+  ],
+}
+
 export const pricingFootnote =
   'Minor updates include content, image, contact, and basic page edits. New pages, redesigns, or custom functionality are quoted separately.'

@@ -4,8 +4,8 @@ import Pricing from '../../components/Pricing'
 import { comparisonRows, pricingFootnote, pricingTiers } from '@/data/pricing'
 
 export const metadata: Metadata = {
-  title: 'Local Business Launch & Local Growth Pricing',
-  description: 'Launch your local presence for $750 one-time, or add ongoing website, Google, SEO, and reputation management for $399 per month.',
+  title: 'Local Business Launch, Local Growth & Website Tune-Up Pricing',
+  description: 'Launch for $750, grow for $399/month, or start a Website Tune-Up from $350 if you already have a site.',
   alternates: { canonical: '/pricing' },
 }
 
@@ -19,7 +19,7 @@ export default function PricingPage() {
           <div className="eyebrow">Plan details</div>
           <h1 className="section-title">Launch your local presence. Add growth when you are ready.</h1>
           <p className="section-copy mt-5">
-            Local Business Launch gives you the website, content, Google foundation, and tracking to get found. Local Growth is the ongoing plan for website, Google presence, local search, and reputation.
+            Local Business Launch gives you the website, content, Google foundation, and tracking to get found. Local Growth is the ongoing plan for website, Google presence, local search, and reputation. If you already have a site, start with a Website Tune-Up.
           </p>
 
           <div className="mt-12 overflow-x-auto rounded-[1.5rem] border border-line bg-white">
@@ -53,7 +53,7 @@ export default function PricingPage() {
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-sun">Not sure which plan fits?</p>
               <h2 className="mt-4 font-display text-3xl font-bold sm:text-4xl">Start with a conversation.</h2>
               <p className="mt-4 max-w-2xl leading-7 text-white/65">
-                Tell us where you want more local customers. We&apos;ll recommend Local Business Launch, Local Growth, or a scoped project around your website, Google presence, local SEO, and reviews.
+                Tell us where you want more local customers. We&apos;ll recommend Local Business Launch, Local Growth, a Website Tune-Up, or a scoped project around your website, Google presence, local SEO, and reviews.
               </p>
             </div>
             <Link href="/#contact" className="inline-flex min-h-12 items-center justify-center rounded-full bg-sun px-6 py-3 text-sm font-bold text-text-primary hover:bg-white">
@@ -63,7 +63,7 @@ export default function PricingPage() {
 
           <div className="mt-16 text-center">
             <h2 className="font-display text-3xl font-bold text-text-primary">Still deciding?</h2>
-            <p className="mx-auto mt-3 max-w-xl text-text-secondary">Start with Local Business Launch, add Local Growth when it helps, or tell us what your business needs.</p>
+            <p className="mx-auto mt-3 max-w-xl text-text-secondary">Start with Local Business Launch, add Local Growth when it helps, book a Website Tune-Up, or tell us what your business needs.</p>
             <Link href="/#contact" className="btn-primary mt-7">Book a free conversation</Link>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { pricingFootnote, pricingTiers } from '@/data/pricing'
+import { pricingFootnote, pricingTiers, websiteTuneUp } from '@/data/pricing'
 
 export default function Pricing() {
   return (
@@ -65,6 +65,31 @@ export default function Pricing() {
             </article>
           ))}
         </div>
+
+        <article className="mt-8 grid gap-8 rounded-[2rem] border border-line bg-white p-7 sm:p-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+          <div>
+            <div className="eyebrow">Already have a website?</div>
+            <h3 className="font-display text-3xl font-bold text-text-primary">{websiteTuneUp.name}</h3>
+            <p className="mt-4 max-w-xl text-lg leading-7 text-text-secondary">{websiteTuneUp.description}</p>
+            <p className="mt-4 text-sm leading-6 text-text-muted">{websiteTuneUp.setupNote}.</p>
+          </div>
+          <div className="flex flex-col gap-4 lg:items-end">
+            <div className="flex items-end gap-2">
+              <span className="font-display text-5xl font-extrabold tracking-tight text-text-primary">
+                ${websiteTuneUp.price}
+              </span>
+              <span className="pb-1 text-sm font-semibold text-text-muted">{websiteTuneUp.priceLabel}</span>
+            </div>
+            <div className="flex w-full flex-col gap-3 sm:flex-row lg:w-auto">
+              <Link href={websiteTuneUp.href} className="btn-secondary">
+                {websiteTuneUp.cta}
+              </Link>
+              <Link href={`/?plan=${encodeURIComponent(websiteTuneUp.shortName)}#contact`} className="btn-primary">
+                Request a Tune-Up
+              </Link>
+            </div>
+          </div>
+        </article>
 
         <p className="mt-6 max-w-3xl text-sm leading-6 text-text-muted">
           {pricingFootnote}
