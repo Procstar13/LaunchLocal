@@ -50,7 +50,7 @@ export default function StickyCta() {
           <p className="truncate font-display text-sm font-bold text-text-primary">
             Website, Google, local SEO, and reviews
           </p>
-          <p className="text-xs text-text-muted">$399/month · $1,000 setup</p>
+          <p className="text-xs text-text-muted">$399/month · $750 setup</p>
         </div>
         <Link
           href="/?plan=Growth#contact"

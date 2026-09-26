@@ -5,7 +5,7 @@ import { useState } from 'react'
 const faqs = [
   {
     question: 'Is there a contract?',
-    answer: 'Local Growth is month-to-month. Local Business Launch is a one-time project with no required monthly marketing plan. We will explain renewal and cancellation terms before you sign anything.',
+    answer: 'Local Business Launch is a $1,000 one-time setup with no required monthly marketing plan. Local Growth is month-to-month with a $750 setup. Veteran-owned businesses receive 10% off either setup. We will explain renewal and cancellation terms before you sign anything.',
   },
   {
     question: 'What if I already have a website?',

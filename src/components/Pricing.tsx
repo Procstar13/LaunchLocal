@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { pricingFootnote, pricingTiers, websiteTuneUp } from '@/data/pricing'
+import { pricingFootnote, pricingTiers, veteranDiscountNote, websiteTuneUp } from '@/data/pricing'
 
 export default function Pricing() {
   return (
@@ -9,7 +9,7 @@ export default function Pricing() {
           <div className="eyebrow">Two simple ways to work with us</div>
           <h2 className="section-title">Get found locally. Keep showing up.</h2>
           <p className="section-copy mt-5">
-            Start with a one-time launch, or have us build and manage your website, Google presence, local SEO, and reviews for $399/month with a $1,000 initial setup.
+            Start with a one-time launch, or have us build and manage your website, Google presence, local SEO, and reviews for $399/month with a $750 initial setup.
           </p>
         </div>
 
@@ -36,13 +36,14 @@ export default function Pricing() {
 
               <div className="mt-7 flex items-end gap-2">
                 <span className="font-display text-5xl font-extrabold tracking-tight text-text-primary">
-                  ${tier.price}
+                  ${tier.price.toLocaleString('en-US')}
                 </span>
                 <span className="pb-1 text-sm font-semibold text-text-muted">{tier.priceLabel}</span>
               </div>
               {tier.setupNote && (
                 <p className="mt-2 text-sm font-semibold text-text-secondary">{tier.setupNote}</p>
               )}
+              <p className="mt-2 text-sm font-semibold text-rust">{veteranDiscountNote}</p>
 
               <ul className="mt-8 flex-1 space-y-4 border-t border-line pt-7">
                 {tier.features.map((feature) => {

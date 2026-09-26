@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Pricing from '../../components/Pricing'
-import { comparisonRows, pricingFootnote, pricingTiers } from '@/data/pricing'
+import { comparisonRows, pricingFootnote, pricingTiers, veteranDiscountNote } from '@/data/pricing'
 
 export const metadata: Metadata = {
   title: 'Local Business Launch, Local Growth & Website Tune-Up Pricing',
-  description: 'Launch for $750, grow for $399/month, or start a Website Tune-Up from $350 if you already have a site.',
+  description: 'Launch for $1,000 setup, grow for $399/month with a $750 setup, or start a Website Tune-Up from $350. Veteran-owned businesses receive 10% off setup.',
   alternates: { canonical: '/pricing' },
 }
 
@@ -46,7 +46,9 @@ export default function PricingPage() {
               </tbody>
             </table>
           </div>
-          <p className="mt-4 max-w-3xl text-sm leading-6 text-text-muted">{pricingFootnote}</p>
+          <p className="mt-4 max-w-3xl text-sm leading-6 text-text-muted">
+            {veteranDiscountNote} on Local Business Launch and Local Growth. {pricingFootnote}
+          </p>
 
           <div className="mt-16 grid gap-8 rounded-[2rem] bg-text-primary p-8 text-white sm:p-12 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>

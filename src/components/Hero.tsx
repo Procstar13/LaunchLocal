@@ -12,7 +12,7 @@ export default function Hero() {
             <span className="mt-1 block text-rust">Turn searches into customers.</span>
           </h1>
           <p className="mt-8 max-w-xl text-xl leading-8 text-text-secondary sm:text-2xl sm:leading-9">
-            We help Arizona service businesses get found and turn local searches into customers. We build and manage your website, Google presence, local SEO, and reviews for $399/month with a $1,000 initial setup.
+            We help Arizona service businesses get found and turn local searches into customers. We build and manage your website, Google presence, local SEO, and reviews for $399/month with a $750 initial setup.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Link href="/?plan=Growth#contact" className="btn-primary w-full sm:w-auto">

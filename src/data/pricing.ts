@@ -16,9 +16,10 @@ export const pricingTiers: PricingTier[] = [
     name: 'Local Business Launch',
     shortName: 'Launch',
     description: 'Everything you need to build a professional local presence and start getting found online.',
-    price: 750,
-    priceLabel: 'one-time',
+    price: 1000,
+    priceLabel: 'setup',
     cta: 'Launch My Business',
+    setupNote: 'One-time · No monthly plan required',
     features: [
       'Custom 4–10 page mobile-responsive website',
       'Professionally written, locally optimized website content',
@@ -27,7 +28,6 @@ export const pricingTiers: PricingTier[] = [
       'Local keyword research and on-page SEO',
       'Google Analytics and conversion tracking',
       'Google Search Console setup and indexing',
-      'Click-to-call and lead tracking',
       'Domain connection and website launch',
       '90 days of minor website updates',
       'You own your website. No required monthly marketing plan',
@@ -41,7 +41,7 @@ export const pricingTiers: PricingTier[] = [
     priceLabel: '/ month',
     cta: 'Grow My Business',
     featured: true,
-    setupNote: '$1,000 setup · Month-to-month',
+    setupNote: '$750 setup · Month-to-month',
     features: [
       'Everything in Local Business Launch, plus:',
       'Website hosting, maintenance, backups, and security',
@@ -61,8 +61,9 @@ export const pricingTiers: PricingTier[] = [
 ]
 
 export const comparisonRows = [
-  { label: 'Payment', values: ['$750 one-time', '$399 / month'] },
-  { label: 'Setup', values: ['Included', '$1,000'] },
+  { label: 'Payment', values: ['$1,000 one-time', '$399 / month'] },
+  { label: 'Setup', values: ['$1,000', '$750'] },
+  { label: 'Veteran-owned discount', values: ['10% off setup', '10% off setup'] },
   { label: 'Commitment', values: ['No monthly plan required', 'Month-to-month'] },
   { label: 'Website', values: ['Custom 4–10 page site', 'Included + hosted'] },
   { label: 'Website content', values: ['Professionally written', 'Ongoing content and SEO updates'] },
@@ -100,6 +101,8 @@ export const websiteTuneUp = {
     'Verify that leads actually reach the business',
   ],
 }
+
+export const veteranDiscountNote = '10% off setup for veteran-owned businesses'
 
 export const pricingFootnote =
   'Minor updates include content, image, contact, and basic page edits. New pages, redesigns, or custom functionality are quoted separately.'
