@@ -9,7 +9,7 @@ export default function Pricing() {
           <div className="eyebrow">Two simple ways to work with us</div>
           <h2 className="section-title">Get found locally. Keep showing up.</h2>
           <p className="section-copy mt-5">
-            Start with a one-time launch, or have us build and manage your website, Google presence, local SEO, and reviews for $399/month with a $750 initial setup.
+            Start with a one-time launch, or have us build and manage your website, Google presence, local SEO, and reviews for $249/month with a $750 initial setup.
           </p>
         </div>
 

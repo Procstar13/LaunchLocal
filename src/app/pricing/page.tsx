@@ -5,7 +5,7 @@ import { comparisonRows, pricingFootnote, pricingTiers, veteranDiscountNote } fr
 
 export const metadata: Metadata = {
   title: 'Local Business Launch, Local Growth & Website Tune-Up Pricing',
-  description: 'Launch for $1,000 setup, grow for $399/month with a $750 setup, or start a Website Tune-Up from $350. Veteran-owned businesses receive 10% off setup.',
+  description: 'Launch for $1,000 setup, grow for $249/month with a $750 setup, or start a Website Tune-Up from $350. Veteran-owned businesses receive 10% off setup.',
   alternates: { canonical: '/pricing' },
 }
 

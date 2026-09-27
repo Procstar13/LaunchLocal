@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     question: 'What do you manage each month?',
-    answer: 'Local Growth covers your website, Google presence, local SEO, and reviews. That includes hosting, listing management, review requests, search monitoring, and up to three website updates each month.',
+    answer: 'Local Growth covers your website, Google presence, local SEO, and reviews. That includes hosting, listing management, review requests, four social media posts, and unlimited minor website changes each month.',
   },
   {
     question: 'Will I be able to edit my site myself?',
