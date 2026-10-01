@@ -5,11 +5,11 @@ import { useState } from 'react'
 const faqs = [
   {
     question: 'Is there a contract?',
-    answer: 'Local Business Launch is a $1,000 one-time setup with no required monthly marketing plan. Local Growth is month-to-month with a $750 setup. Veteran-owned businesses receive 10% off either setup. We will explain renewal and cancellation terms before you sign anything.',
+    answer: 'Local Business Launch is a $999 one-time setup with no required monthly marketing plan. Local Growth is month-to-month with a $750 setup. Veteran-owned businesses receive 10% off either setup. We will explain renewal and cancellation terms before you sign anything.',
   },
   {
     question: 'What if I already have a website?',
-    answer: 'A Website Tune-Up starts at $350. We audit the current site, repair broken pages, forms, and links, clean up mobile issues, and confirm leads reach you. Larger repairs are quoted after the audit. If a rebuild is the better path, we will say so.',
+    answer: 'A Website Tune-Up starts at $349. We audit the current site, repair broken pages, forms, and links, clean up mobile issues, and confirm leads reach you. Larger repairs are quoted after the audit. If a rebuild is the better path, we will say so.',
   },
   {
     question: 'What do you manage each month?',

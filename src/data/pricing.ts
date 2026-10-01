@@ -16,7 +16,7 @@ export const pricingTiers: PricingTier[] = [
     name: 'Local Business Launch',
     shortName: 'Launch',
     description: 'Everything you need to build a professional local presence and start getting found online.',
-    price: 1000,
+    price: 999,
     priceLabel: 'setup',
     cta: 'Launch My Business',
     setupNote: 'One-time · No monthly plan required',
@@ -61,8 +61,8 @@ export const pricingTiers: PricingTier[] = [
 ]
 
 export const comparisonRows = [
-  { label: 'Payment', values: ['$1,000 one-time', '$249 / month'] },
-  { label: 'Setup', values: ['$1,000', '$750'] },
+  { label: 'Payment', values: ['$999 one-time', '$249 / month'] },
+  { label: 'Setup', values: ['$999', '$750'] },
   { label: 'Veteran-owned discount', values: ['10% off setup', '10% off setup'] },
   { label: 'Commitment', values: ['No monthly plan required', 'Month-to-month'] },
   { label: 'Website', values: ['Custom 4–10 page site', 'Included + hosted'] },
@@ -86,7 +86,7 @@ export const websiteTuneUp = {
   shortName: 'Tune-Up',
   description:
     'Already have a website? We audit it, repair what is broken, and make sure leads actually reach you.',
-  price: 350,
+  price: 349,
   priceLabel: 'starting',
   setupNote: 'Larger repairs quoted after the audit',
   href: '/website-tune-up',

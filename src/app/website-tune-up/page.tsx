@@ -5,7 +5,7 @@ import { websiteTuneUp } from '@/data/pricing'
 export const metadata: Metadata = {
   title: 'Website Tune-Up',
   description:
-    'Audit and repair an existing website starting at $350. We fix broken pages, forms, and links, clean up mobile issues, set basic SEO and tracking, and verify that leads reach your business.',
+    'Audit and repair an existing website starting at $349. We fix broken pages, forms, and links, clean up mobile issues, set basic SEO and tracking, and verify that leads reach your business.',
   alternates: { canonical: '/website-tune-up' },
 }
 
