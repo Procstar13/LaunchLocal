@@ -10,11 +10,11 @@ const GA_MEASUREMENT_ID = 'G-99W9PQTM4B'
 export const metadata: Metadata = {
   metadataBase: new URL('https://launchlocalaz.com'),
   title: {
-    default: 'LaunchLocal Arizona | Websites, Google, Local SEO & Reviews',
+    default: 'LaunchLocal Arizona | Business Systems & Automation',
     template: '%s | LaunchLocal Arizona',
   },
-  description: 'We help Arizona service businesses get found and turn local searches into customers. We build and manage your website, Google presence, local SEO, and reviews.',
-  keywords: 'Arizona service business website, Google Business Profile Arizona, local SEO Arizona, online reviews, local search visibility',
+  description: 'We connect the tools service businesses already use and automate repetitive work across leads, CRM, scheduling, follow-up, and reporting.',
+  keywords: 'business automation Arizona, workflow automation, CRM integration, lead follow-up automation, service business systems',
   authors: [{ name: 'LaunchLocal' }],
   creator: 'LaunchLocal',
   publisher: 'LaunchLocal',
@@ -23,8 +23,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'LaunchLocal Arizona | Websites, Google, Local SEO & Reviews',
-    description: 'We help Arizona service businesses get found and turn local searches into customers.',
+    title: 'LaunchLocal Arizona | Business Systems & Automation',
+    description: 'Connect your business systems and automate the repetitive work between leads, teams, and customers.',
     type: 'website',
     locale: 'en_US',
     url: 'https://launchlocalaz.com',
@@ -32,11 +32,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: 'LaunchLocal Arizona | Websites, Google, Local SEO & Reviews',
-    description: 'Website, Google presence, local SEO, and reviews for Arizona service businesses.',
+    title: 'LaunchLocal Arizona | Business Systems & Automation',
+    description: 'Practical workflow automation and system integration for service businesses.',
   },
   other: {
-    'theme-color': '#f7f3ea',
+    'theme-color': '#ffffff',
     'color-scheme': 'light',
   },
 }
@@ -50,7 +50,6 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </head>
       <body className="bg-background text-text-primary antialiased min-h-screen flex flex-col">
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} strategy="afterInteractive" />

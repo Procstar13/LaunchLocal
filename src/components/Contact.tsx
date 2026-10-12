@@ -24,6 +24,23 @@ export default function Contact() {
   const [errors, setErrors] = useState<{[key: string]: string}>({})
   const [recaptchaLoaded, setRecaptchaLoaded] = useState(false)
 
+  useEffect(() => {
+    const plan = new URLSearchParams(window.location.search).get('plan')
+    if (!plan) return
+
+    const prompts: Record<string, string> = {
+      Automation: 'I would like to discuss a workflow or automation opportunity in my business.',
+      Launch: 'I am interested in the Local Business Launch package.',
+      Growth: 'I am interested in the Local Growth plan.',
+      'Tune-Up': 'I would like to request a Website Tune-Up.',
+    }
+
+    setFormData((current) => current.message ? current : {
+      ...current,
+      message: prompts[plan] ?? `I am interested in learning more about ${plan}.`,
+    })
+  }, [])
+
   // Load reCAPTCHA script
   useEffect(() => {
     const loadRecaptcha = () => {
@@ -155,8 +172,8 @@ export default function Contact() {
       <section id="contact" className="bg-section-bg py-24">
         <div className="page-shell">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="rounded-[2rem] border border-line bg-white p-8 sm:p-12">
-              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-sage/15">
+            <div className="rounded-xl border border-line bg-white p-8 shadow-sm sm:p-12">
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-blue-50">
                 <svg className="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
@@ -181,15 +198,15 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="bg-rust py-24 sm:py-32">
+    <section id="contact" className="bg-accent py-24 sm:py-32">
       <div className="page-shell grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
         <div>
-          <div className="eyebrow text-sun before:bg-sun">Start a conversation</div>
+          <div className="eyebrow text-blue-100 before:bg-blue-100">Start a conversation</div>
           <h2 className="font-display text-4xl font-bold leading-[1.05] text-white sm:text-5xl">
-            Ready to get found by more local customers?
+            Where does work slow down or fall through?
           </h2>
           <p className="mt-6 max-w-md text-lg leading-8 text-white/75">
-            Tell us about your website, Google listing, local search, or reviews. We&apos;ll respond within one business day with a useful next step.
+            Tell us which tools are involved, what your team repeats, or what gets missed. We&apos;ll respond within one business day with a useful next step.
           </p>
           <div className="mt-10 border-t border-white/20 pt-6 text-sm leading-7 text-white/70">
             <p>No hard sell.</p>
@@ -199,7 +216,7 @@ export default function Contact() {
         </div>
 
         <div className="min-w-0">
-          <div className="rounded-[2rem] bg-background p-6 shadow-[0_30px_70px_rgba(80,30,16,0.22)] sm:p-10">
+          <div className="rounded-xl bg-background p-6 shadow-[0_30px_70px_rgba(30,64,175,0.25)] sm:p-10">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name Field */}
               <div>
@@ -212,7 +229,7 @@ export default function Contact() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className={`w-full rounded-xl border bg-white px-4 py-3.5 text-text-primary ${
+                  className={`w-full rounded-lg border bg-white px-4 py-3.5 text-text-primary ${
                     errors.name 
                       ? 'border-red-500 focus:ring-red-500' 
                       : 'border-text-muted/30 focus:border-accent'
@@ -235,7 +252,7 @@ export default function Contact() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full rounded-xl border bg-white px-4 py-3.5 text-text-primary ${
+                  className={`w-full rounded-lg border bg-white px-4 py-3.5 text-text-primary ${
                     errors.email 
                       ? 'border-red-500 focus:ring-red-500' 
                       : 'border-text-muted/30 focus:border-accent'
@@ -258,7 +275,7 @@ export default function Contact() {
                   name="businessName"
                   value={formData.businessName}
                   onChange={handleChange}
-                  className={`w-full rounded-xl border bg-white px-4 py-3.5 text-text-primary ${
+                  className={`w-full rounded-lg border bg-white px-4 py-3.5 text-text-primary ${
                     errors.businessName 
                       ? 'border-red-500 focus:ring-red-500' 
                       : 'border-text-muted/30 focus:border-accent'
@@ -281,12 +298,12 @@ export default function Contact() {
                   rows={5}
                   value={formData.message}
                   onChange={handleChange}
-                  className={`w-full resize-none rounded-xl border bg-white px-4 py-3.5 text-text-primary ${
+                  className={`w-full resize-none rounded-lg border bg-white px-4 py-3.5 text-text-primary ${
                     errors.message 
                       ? 'border-red-500 focus:ring-red-500' 
                       : 'border-text-muted/30 focus:border-accent'
                   }`}
-                  placeholder="What would you like to improve—your website, Google listing, local search, or reviews?"
+                  placeholder="Which tools are involved, and what would you like to happen automatically?"
                 />
                 {errors.message && (
                   <p className="mt-1 text-red-400 text-sm font-inter">{errors.message}</p>

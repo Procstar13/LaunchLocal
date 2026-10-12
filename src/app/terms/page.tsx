@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
-  description: 'Terms of Service for LaunchLocal website, Google, local SEO, and review services.',
+  description: 'Terms of Service for LaunchLocal business automation, system integration, website, and local visibility services.',
   alternates: { canonical: '/terms' },
 }
 
@@ -34,12 +34,13 @@ export default function TermsOfService() {
                 2. Description of Service
               </h2>
               <p>
-                LaunchLocal provides website development, local visibility support, digital audits, and related services for small businesses. Our services include but are not limited to:
+                LaunchLocal provides business automation, system integration, website development, local visibility support, digital audits, and related services for small businesses. Our services include but are not limited to:
               </p>
               <ul className="list-disc pl-6 mt-4">
+                <li>Business systems and automation</li>
+                <li>System integration and workflow consulting</li>
                 <li>Website design and development</li>
                 <li>Local SEO and business profile support</li>
-                <li>Business systems and automation</li>
                 <li>Technical consulting services</li>
               </ul>
             </section>

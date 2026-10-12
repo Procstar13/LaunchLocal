@@ -11,26 +11,25 @@ export default function Footer() {
               <span className="h-2 w-2 rounded-full bg-accent" />
             </Link>
             <p className="mt-4 max-w-sm text-base leading-7 text-text-secondary">
-              We help Arizona service businesses get found and turn local searches into customers.
+              We connect business systems and automate the repetitive work between leads, teams, and customers.
             </p>
           </div>
 
           <div>
             <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-text-muted">Explore</h2>
             <nav className="mt-4 flex flex-col gap-3 text-sm font-semibold text-text-secondary">
-              <Link href="/#services" className="hover:text-text-primary">What we offer</Link>
-              <Link href="/#process" className="hover:text-text-primary">Our process</Link>
-              <Link href="/pricing" className="hover:text-text-primary">Pricing</Link>
-              <Link href="/website-tune-up" className="hover:text-text-primary">Website Tune-Up</Link>
               <Link href="/automations" className="hover:text-text-primary">Business Systems & Automation</Link>
+              <Link href="/#process" className="hover:text-text-primary">Our process</Link>
+              <Link href="/pricing" className="hover:text-text-primary">Website services</Link>
+              <Link href="/website-tune-up" className="hover:text-text-primary">Website Tune-Up</Link>
             </nav>
           </div>
 
           <div>
             <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-text-muted">Start here</h2>
-            <p className="mt-4 text-sm leading-6 text-text-secondary">Tell us what your business needs. We&apos;ll respond within one business day.</p>
-            <Link href="/#contact" className="mt-4 inline-flex border-b border-text-primary pb-1 text-sm font-bold text-text-primary hover:text-accent">
-              Book a conversation
+            <p className="mt-4 text-sm leading-6 text-text-secondary">Tell us where work gets repeated or falls through. We&apos;ll respond within one business day.</p>
+            <Link href="/?plan=Automation#contact" className="mt-4 inline-flex border-b border-text-primary pb-1 text-sm font-bold text-text-primary hover:text-accent">
+              Discuss a workflow
             </Link>
           </div>
         </div>

@@ -3,23 +3,23 @@ import Link from 'next/link'
 const services = [
   {
     number: '01',
-    title: 'Website',
-    description: 'A professional, mobile-friendly site that makes it easy for local customers to understand what you do and contact you.',
+    title: 'Lead capture & routing',
+    description: 'Move new inquiries from your website and lead sources into the right system, notify the right person, and reduce missed opportunities.',
   },
   {
     number: '02',
-    title: 'Google presence',
-    description: 'A complete, accurate Google Business Profile so your business shows up with the right services, photos, hours, and contact info.',
+    title: 'CRM & system integration',
+    description: 'Connect the tools your team already uses so customer information stays current without being copied from one place to another.',
   },
   {
     number: '03',
-    title: 'Local search visibility',
-    description: 'Local SEO that helps nearby customers find you when they search for the services you offer.',
+    title: 'Follow-up workflows',
+    description: 'Automate routine reminders, status updates, review requests, and follow-up while keeping your team in control of the conversation.',
   },
   {
     number: '04',
-    title: 'Reviews',
-    description: 'A simple system to request, monitor, and grow the reviews that help people choose your business.',
+    title: 'Reporting & visibility',
+    description: 'Bring the useful numbers together so you can see what entered the pipeline, what happened next, and where work gets stuck.',
   },
 ]
 
@@ -30,10 +30,10 @@ export default function Benefits() {
         <div className="grid gap-8 border-b border-line pb-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>
             <div className="eyebrow">What we offer</div>
-            <h2 className="section-title">Four things that help local customers find you.</h2>
+            <h2 className="section-title">Make the work between your tools happen automatically.</h2>
           </div>
           <p className="section-copy lg:justify-self-end">
-            We build and manage your website, Google presence, local SEO, and reviews so you can spend more time on the job and less time trying to get found online.
+            We map the handoffs that slow your team down, connect the systems involved, and automate the repeatable steps without forcing a full technology overhaul.
           </p>
         </div>
 
@@ -43,7 +43,7 @@ export default function Benefits() {
               key={service.title}
               className="grid gap-4 py-8 sm:grid-cols-[80px_0.8fr_1.2fr] sm:items-start sm:gap-8 sm:py-10"
             >
-              <span className="font-display text-sm font-bold text-rust">{service.number}</span>
+              <span className="font-display text-sm font-bold text-accent">{service.number}</span>
               <h3 className="font-display text-2xl font-bold leading-tight text-text-primary">
                 {service.title}
               </h3>
@@ -53,15 +53,14 @@ export default function Benefits() {
         </div>
 
         <p className="mt-10 text-sm text-text-muted">
-          Already have a website that needs work?{' '}
-          <Link href="/website-tune-up" className="font-bold text-text-primary hover:text-accent">
-            See Website Tune-Up
-          </Link>
-          . Need your website, CRM, and follow-up to work together?{' '}
+          Want the full approach?{' '}
           <Link href="/automations" className="font-bold text-text-primary hover:text-accent">
-            See business systems & automation
+            See business systems &amp; automation
           </Link>
-          .
+          . Need a website or local visibility support?{' '}
+          <Link href="/pricing" className="font-bold text-text-primary hover:text-accent">
+            Explore our web services
+          </Link>.
         </p>
       </div>
     </section>

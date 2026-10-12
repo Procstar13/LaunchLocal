@@ -13,11 +13,10 @@ export default function Header() {
   }, [pathname])
 
   const links = [
-    { href: '/#services', label: 'What we offer' },
-    { href: '/#process', label: 'Our process' },
-    { href: '/pricing', label: 'Pricing' },
-    { href: '/website-tune-up', label: 'Tune-Up' },
-    { href: '/automations', label: 'Systems & Automation' },
+    { href: '/#services', label: 'Automation' },
+    { href: '/#process', label: 'Process' },
+    { href: '/automations', label: 'How it works' },
+    { href: '/pricing', label: 'Web services' },
   ]
 
   return (
@@ -43,8 +42,8 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:block">
-          <Link href="/#contact" className="btn-primary min-h-10 px-5">
-            Book a conversation
+          <Link href="/?plan=Automation#contact" className="btn-primary min-h-10 px-5">
+            Discuss a workflow
           </Link>
         </div>
 
@@ -77,8 +76,8 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <Link href="/#contact" className="btn-primary mt-5">
-              Book a conversation
+            <Link href="/?plan=Automation#contact" className="btn-primary mt-5">
+              Discuss a workflow
             </Link>
           </nav>
         </div>

@@ -48,11 +48,11 @@ export default function Work() {
       <div className="page-shell">
         <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <div>
-            <div className="eyebrow">Selected builds</div>
-            <h2 className="section-title">Designed around the business, not a template.</h2>
+            <div className="eyebrow">Supporting web work</div>
+            <h2 className="section-title">A connected system still needs a clear front door.</h2>
           </div>
           <p className="max-w-sm text-base leading-7 text-text-secondary">
-            The website, Google listing, and reviews should make it obvious who you are and how to get in touch.
+            We also build practical websites and directories that capture the information your workflows need. These are selected web builds—not automation case studies.
           </p>
         </div>
 
@@ -61,14 +61,14 @@ export default function Work() {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          <div className="overflow-hidden rounded-[1.75rem] border border-line bg-white p-2">
+          <div className="overflow-hidden rounded-xl border border-line bg-white p-2 shadow-sm">
             <div
               className="flex transition-transform duration-500 ease-out"
               style={{ transform: `translateX(-${current * 100}%)` }}
             >
               {work.map((project) => (
                 <figure key={project.title} className="min-w-full">
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-[1.25rem] bg-section-bg">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-section-bg">
                     <Image
                       src={project.image}
                       alt={project.alt}
@@ -92,7 +92,7 @@ export default function Work() {
               <button
                 type="button"
                 onClick={() => goTo(current - 1)}
-                className="grid h-10 w-10 place-items-center rounded-full border border-line text-text-primary hover:border-text-primary"
+                className="grid h-10 w-10 place-items-center rounded-lg border border-line text-text-primary hover:border-accent hover:text-accent"
                 aria-label="Previous project"
               >
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -107,7 +107,7 @@ export default function Work() {
                     type="button"
                     onClick={() => goTo(index)}
                     className={`h-2.5 rounded-full transition-all ${
-                      current === index ? 'w-7 bg-rust' : 'w-2.5 bg-line hover:bg-text-muted'
+                      current === index ? 'w-7 bg-accent' : 'w-2.5 bg-line hover:bg-text-muted'
                     }`}
                     aria-label={`Show ${project.title}`}
                     aria-current={current === index}
@@ -118,7 +118,7 @@ export default function Work() {
               <button
                 type="button"
                 onClick={() => goTo(current + 1)}
-                className="grid h-10 w-10 place-items-center rounded-full border border-line text-text-primary hover:border-text-primary"
+                className="grid h-10 w-10 place-items-center rounded-lg border border-line text-text-primary hover:border-accent hover:text-accent"
                 aria-label="Next project"
               >
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

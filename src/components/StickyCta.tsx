@@ -48,16 +48,16 @@ export default function StickyCta() {
       <div className="page-shell flex items-center justify-between gap-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <div className="hidden min-w-0 sm:block">
           <p className="truncate font-display text-sm font-bold text-text-primary">
-            Website, Google, local SEO, and reviews
+            Connect your systems. Automate the handoffs.
           </p>
-          <p className="text-xs text-text-muted">$249/month · $750 setup</p>
+          <p className="text-xs text-text-muted">Custom-scoped after a systems conversation</p>
         </div>
         <Link
-          href="/?plan=Growth#contact"
+          href="/?plan=Automation#contact"
           className="btn-primary w-full sm:w-auto sm:min-w-[220px]"
           tabIndex={visible ? 0 : -1}
         >
-          Grow my business
+          Discuss a workflow
         </Link>
       </div>
     </div>

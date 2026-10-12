@@ -61,7 +61,7 @@ export default function WebsiteTuneUpPage() {
       <section className="overflow-hidden border-b border-line bg-text-primary py-24 text-white sm:py-32">
         <div className="page-shell relative">
           <div className="absolute -right-20 top-0 h-64 w-64 rounded-full border border-white/10" />
-          <div className="eyebrow text-sun before:bg-sun">Website Tune-Up</div>
+          <div className="eyebrow text-blue-300 before:bg-blue-300">Website Tune-Up</div>
           <h1 className="max-w-4xl font-display text-5xl font-extrabold leading-[0.98] tracking-[-0.055em] sm:text-7xl">
             Fix the site you already have.
           </h1>
@@ -71,13 +71,13 @@ export default function WebsiteTuneUpPage() {
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Link
               href={`/?plan=${encodeURIComponent(websiteTuneUp.shortName)}#contact`}
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-sun px-6 py-3 text-sm font-bold text-text-primary hover:bg-white"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-bold text-white hover:bg-blue-600"
             >
               Request a Tune-Up
             </Link>
             <Link
               href="/pricing"
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/25 px-6 py-3 text-sm font-bold text-white hover:border-white"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/25 px-6 py-3 text-sm font-bold text-white hover:border-white"
             >
               See all pricing
             </Link>
@@ -101,7 +101,7 @@ export default function WebsiteTuneUpPage() {
                 key={item.title}
                 className="grid gap-4 py-8 sm:grid-cols-[80px_0.8fr_1.2fr] sm:items-start sm:gap-8"
               >
-                <span className="font-display text-sm font-bold text-rust">0{index + 1}</span>
+                <span className="font-display text-sm font-bold text-accent">0{index + 1}</span>
                 <h3 className="font-display text-2xl font-bold leading-tight text-text-primary">{item.title}</h3>
                 <p className="max-w-xl leading-7 text-text-secondary">{item.description}</p>
               </article>
@@ -117,7 +117,7 @@ export default function WebsiteTuneUpPage() {
           <ol className="mt-12 divide-y divide-line border-y border-line">
             {steps.map((step, index) => (
               <li key={step.title} className="grid gap-4 py-8 sm:grid-cols-[70px_0.55fr_1.2fr] sm:gap-8">
-                <span className="text-sm font-bold text-rust">0{index + 1}</span>
+                <span className="text-sm font-bold text-accent">0{index + 1}</span>
                 <h3 className="font-display text-2xl font-bold text-text-primary">{step.title}</h3>
                 <p className="max-w-2xl leading-7 text-text-secondary">{step.description}</p>
               </li>
@@ -128,7 +128,7 @@ export default function WebsiteTuneUpPage() {
 
       <section className="bg-background py-24 sm:py-32">
         <div className="page-shell grid gap-8 lg:grid-cols-2">
-          <article className="rounded-[2rem] border border-line bg-white p-8 sm:p-10">
+          <article className="rounded-xl border border-line bg-white p-8 shadow-sm sm:p-10">
             <h2 className="font-display text-3xl font-bold text-text-primary">A Tune-Up is the right start if</h2>
             <ul className="mt-6 space-y-4 text-text-secondary">
               {[
@@ -138,14 +138,14 @@ export default function WebsiteTuneUpPage() {
                 'WordPress or plugins have gone without maintenance.',
               ].map((item) => (
                 <li key={item} className="flex gap-3 leading-7">
-                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-rust" />
+                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                   {item}
                 </li>
               ))}
             </ul>
           </article>
 
-          <article className="rounded-[2rem] border border-line bg-white p-8 sm:p-10">
+          <article className="rounded-xl border border-line bg-white p-8 shadow-sm sm:p-10">
             <h2 className="font-display text-3xl font-bold text-text-primary">A rebuild may be better if</h2>
             <ul className="mt-6 space-y-4 text-text-secondary">
               {[
@@ -154,7 +154,7 @@ export default function WebsiteTuneUpPage() {
                 'The current platform is too far gone to repair at a reasonable cost.',
               ].map((item) => (
                 <li key={item} className="flex gap-3 leading-7">
-                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-rust" />
+                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                   {item}
                 </li>
               ))}
@@ -168,9 +168,9 @@ export default function WebsiteTuneUpPage() {
 
       <section className="bg-section-bg py-24">
         <div className="page-shell">
-          <div className="grid gap-8 rounded-[2rem] bg-text-primary p-8 text-white sm:p-12 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div className="grid gap-8 rounded-xl bg-text-primary p-8 text-white shadow-lg sm:p-12 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sun">Starting at ${websiteTuneUp.price}</p>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-300">Starting at ${websiteTuneUp.price}</p>
               <h2 className="mt-4 font-display text-3xl font-bold sm:text-4xl">Send the site. We will tell you what it needs.</h2>
               <p className="mt-4 max-w-2xl leading-7 text-white/65">
                 No hard sell. After the audit, you will know what is included in the starting Tune-Up and what, if anything, should be quoted separately.
@@ -178,7 +178,7 @@ export default function WebsiteTuneUpPage() {
             </div>
             <Link
               href={`/?plan=${encodeURIComponent(websiteTuneUp.shortName)}#contact`}
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-sun px-6 py-3 text-sm font-bold text-text-primary hover:bg-white"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-bold text-white hover:bg-blue-600"
             >
               Request a Tune-Up
             </Link>

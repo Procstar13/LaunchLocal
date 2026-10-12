@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,7 +11,7 @@
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
   body {
@@ -20,8 +20,8 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Manrope', system-ui, sans-serif;
-    letter-spacing: -0.035em;
+    font-family: 'Poppins', system-ui, sans-serif;
+    letter-spacing: -0.025em;
   }
 
   ::selection {
@@ -51,12 +51,12 @@
   }
 
   .eyebrow {
-    @apply mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-rust;
+    @apply mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-accent;
   }
 
   .eyebrow::before {
     content: '';
-    @apply h-px w-7 bg-rust;
+    @apply h-px w-7 bg-accent;
   }
 
   .section-title {
@@ -68,14 +68,14 @@
   }
 
   .btn-primary {
-    @apply inline-flex min-h-12 items-center justify-center rounded-full bg-text-primary px-6 py-3 text-sm font-bold text-white transition-colors duration-200 hover:bg-accent;
+    @apply inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-bold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-600 hover:shadow-lg;
   }
 
   .btn-secondary {
-    @apply inline-flex min-h-12 items-center justify-center rounded-full border border-text-primary/25 bg-transparent px-6 py-3 text-sm font-bold text-text-primary transition-colors duration-200 hover:border-text-primary hover:bg-white/60;
+    @apply inline-flex min-h-12 items-center justify-center rounded-lg border border-line bg-white px-6 py-3 text-sm font-bold text-text-primary transition-colors duration-200 hover:border-accent hover:text-accent;
   }
 
   .card {
-    @apply rounded-[1.5rem] border border-line bg-white/65 p-6;
+    @apply rounded-xl border border-line bg-white p-6 shadow-sm;
   }
 }

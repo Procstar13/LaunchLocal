@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Business Systems & Automation',
+  title: 'Business Automation & System Integration',
   description:
-    'We connect the website, CRM, leads, scheduling, and follow-up you already use, then automate the work between them.',
+    'Connect your CRM, lead sources, scheduling, and follow-up. LaunchLocal builds practical automation workflows for service businesses.',
   alternates: { canonical: '/automations' },
 }
 
@@ -42,7 +42,7 @@ export default function AutomationsPage() {
       <section className="overflow-hidden border-b border-line bg-text-primary py-24 text-white sm:py-32">
         <div className="page-shell relative">
           <div className="absolute -right-20 top-0 h-64 w-64 rounded-full border border-white/10" />
-          <div className="eyebrow text-sun before:bg-sun">Business Systems & Automation</div>
+          <div className="eyebrow text-blue-300 before:bg-blue-300">Business Systems &amp; Automation</div>
           <h1 className="max-w-4xl font-display text-5xl font-extrabold leading-[0.98] tracking-[-0.055em] sm:text-7xl">
             Connect the systems. Automate the work between them.
           </h1>
@@ -51,14 +51,14 @@ export default function AutomationsPage() {
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Link
-              href="/#contact"
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-sun px-6 py-3 text-sm font-bold text-text-primary hover:bg-white"
+              href="/?plan=Automation#contact"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-bold text-white hover:bg-blue-600"
             >
               Talk about your systems
             </Link>
             <Link
               href="/pricing"
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/25 px-6 py-3 text-sm font-bold text-white hover:border-white"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/30 px-6 py-3 text-sm font-bold text-white hover:border-white"
             >
               See website and growth plans
             </Link>
@@ -79,7 +79,7 @@ export default function AutomationsPage() {
           <ol className="mt-12 divide-y divide-line border-y border-line">
             {offerings.map((item, index) => (
               <li key={item.title} className="grid gap-4 py-8 sm:grid-cols-[70px_0.7fr_1.2fr] sm:items-start sm:gap-8">
-                <span className="text-sm font-bold text-rust">0{index + 1}</span>
+                <span className="text-sm font-bold text-accent">0{index + 1}</span>
                 <h3 className="font-display text-2xl font-bold leading-tight text-text-primary">{item.title}</h3>
                 <p className="max-w-2xl leading-7 text-text-secondary">{item.description}</p>
               </li>
@@ -90,17 +90,17 @@ export default function AutomationsPage() {
 
       <section className="bg-section-bg py-24">
         <div className="page-shell">
-          <div className="grid gap-8 rounded-[2rem] bg-text-primary p-8 text-white sm:p-12 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div className="grid gap-8 rounded-xl bg-text-primary p-8 text-white shadow-lg sm:p-12 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sun">Scoped after the audit</p>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-300">Scoped after the audit</p>
               <h2 className="mt-4 font-display text-3xl font-bold sm:text-4xl">Tell us what you use today.</h2>
               <p className="mt-4 max-w-2xl leading-7 text-white/65">
                 We will look at your website, CRM, and follow-up, then recommend the integrations and automations that are worth doing. No hard sell.
               </p>
             </div>
             <Link
-              href="/#contact"
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-sun px-6 py-3 text-sm font-bold text-text-primary hover:bg-white"
+              href="/?plan=Automation#contact"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-bold text-white hover:bg-blue-600"
             >
               Start the conversation
             </Link>

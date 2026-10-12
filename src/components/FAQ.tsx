@@ -4,28 +4,28 @@ import { useState } from 'react'
 
 const faqs = [
   {
-    question: 'Is there a contract?',
-    answer: 'Local Business Launch is a $999 one-time setup with no required monthly marketing plan. Local Growth is month-to-month with a $750 setup. Veteran-owned businesses receive 10% off either setup. We will explain renewal and cancellation terms before you sign anything.',
+    question: 'What can you automate?',
+    answer: 'We focus on the repeatable work between lead sources, websites, CRMs, scheduling, customer follow-up, review requests, and reporting. The first conversation is used to understand your current tools and identify which handoffs are worth automating.',
   },
   {
-    question: 'What if I already have a website?',
-    answer: 'A Website Tune-Up starts at $349. We audit the current site, repair broken pages, forms, and links, clean up mobile issues, and confirm leads reach you. Larger repairs are quoted after the audit. If a rebuild is the better path, we will say so.',
+    question: 'Do I have to replace the tools I already use?',
+    answer: 'Usually, no. We start by mapping the systems you already have and look for practical ways to connect them. If a tool is the source of the problem, we will explain the tradeoff before recommending a change.',
   },
   {
-    question: 'What do you manage each month?',
-    answer: 'Local Growth covers your website, Google presence, local SEO, and reviews. That includes hosting, listing management, review requests, four social media posts, and unlimited minor website changes each month.',
+    question: 'How is automation priced?',
+    answer: 'Automation work is custom-scoped after an audit because the number of systems, workflow complexity, access requirements, and testing needs vary. You will receive a clear scope before implementation begins.',
   },
   {
-    question: 'Will I be able to edit my site myself?',
-    answer: "Your plan includes managed edits, so you can send changes to us and keep running your business. If self-service editing is important, we can discuss that during your consultation.",
+    question: 'Will automation remove people from the process?',
+    answer: 'Not where judgment is useful. Good automation handles predictable steps, routes information, and prompts action. We define where a person should review, approve, or take over before the workflow is built.',
   },
   {
     question: 'How quickly can we get started?',
-    answer: 'Timing depends on the size of the site and how quickly content is available. After the first conversation, we will give you a clear scope and launch schedule.',
+    answer: 'Timing depends on the systems involved and the complexity of the workflow. After the audit, we will give you a clear scope, implementation sequence, and testing plan.',
   },
   {
-    question: 'Do I need the monthly service?',
-    answer: 'No. You own the website, and there is no required monthly marketing plan. Local Growth is optional for businesses that want ongoing management of their website, Google presence, local search, and reputation.',
+    question: 'Do you still build and improve websites?',
+    answer: 'Yes. Website launches, ongoing local visibility support, and Website Tune-Ups remain available as supporting services. Those offers have published pricing on the website services page.',
   },
 ]
 
@@ -55,7 +55,7 @@ export default function FAQ() {
                   aria-expanded={isOpen}
                 >
                   <span className="font-display text-lg font-bold text-text-primary sm:text-xl">{faq.question}</span>
-                  <span className="text-2xl font-light text-rust" aria-hidden="true">{isOpen ? '−' : '+'}</span>
+                  <span className="text-2xl font-light text-accent" aria-hidden="true">{isOpen ? '−' : '+'}</span>
                 </button>
                 {isOpen && <p className="max-w-2xl pb-7 leading-7 text-text-secondary">{faq.answer}</p>}
               </div>

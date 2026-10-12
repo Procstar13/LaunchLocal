@@ -10,9 +10,9 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <Hero />
-      <Work />
       <Benefits />
       <About />
+      <Work />
       <Pricing />
       <FAQ />
       <Contact />
