@@ -1,4 +1,4 @@
-# LaunchLocal - Marketing Website
+# LeverVantage - Marketing Website
 
 A modern, dark-mode marketing website for web + automation services, built with Next.js and TailwindCSS.
 

@@ -1,4 +1,4 @@
-# LaunchLocal Project Milestones
+# LeverVantage Project Milestones
 
 ## ✅ Completed Milestones
 

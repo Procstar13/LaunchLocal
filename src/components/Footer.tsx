@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { siteConfig } from '@/config/site'
 
 export default function Footer() {
   return (
@@ -7,7 +8,7 @@ export default function Footer() {
         <div className="grid gap-10 lg:grid-cols-[1.3fr_0.7fr_0.7fr]">
           <div>
             <Link href="/" className="inline-flex items-center gap-2">
-              <span className="font-display text-2xl font-extrabold tracking-[-0.045em] text-text-primary">LaunchLocal</span>
+              <span className="font-display text-2xl font-extrabold tracking-[-0.045em] text-text-primary">{siteConfig.name}</span>
               <span className="h-2 w-2 rounded-full bg-accent" />
             </Link>
             <p className="mt-4 max-w-sm text-base leading-7 text-text-secondary">
@@ -35,7 +36,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-4 border-t border-line pt-6 text-xs text-text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} LaunchLocal. Arizona, USA.</p>
+          <p>© {new Date().getFullYear()} {siteConfig.name}. Arizona, USA.</p>
           <div className="flex gap-5">
             <Link href="/privacy" className="hover:text-text-primary">Privacy</Link>
             <Link href="/terms" className="hover:text-text-primary">Terms</Link>

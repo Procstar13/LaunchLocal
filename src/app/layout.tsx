@@ -4,35 +4,36 @@ import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import StickyCta from '@/components/StickyCta'
+import { siteConfig } from '@/config/site'
 
 const GA_MEASUREMENT_ID = 'G-99W9PQTM4B'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://launchlocalaz.com'),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: 'LaunchLocal Arizona | Business Systems & Automation',
-    template: '%s | LaunchLocal Arizona',
+    default: `${siteConfig.name} | Business Systems & Automation`,
+    template: `%s | ${siteConfig.name}`,
   },
   description: 'We connect the tools service businesses already use and automate repetitive work across leads, CRM, scheduling, follow-up, and reporting.',
   keywords: 'business automation Arizona, workflow automation, CRM integration, lead follow-up automation, service business systems',
-  authors: [{ name: 'LaunchLocal' }],
-  creator: 'LaunchLocal',
-  publisher: 'LaunchLocal',
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
   robots: 'index, follow',
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'LaunchLocal Arizona | Business Systems & Automation',
+    title: `${siteConfig.name} | Business Systems & Automation`,
     description: 'Connect your business systems and automate the repetitive work between leads, teams, and customers.',
     type: 'website',
     locale: 'en_US',
-    url: 'https://launchlocalaz.com',
-    siteName: 'LaunchLocal',
+    url: siteConfig.url,
+    siteName: siteConfig.name,
   },
   twitter: {
     card: 'summary',
-    title: 'LaunchLocal Arizona | Business Systems & Automation',
+    title: `${siteConfig.name} | Business Systems & Automation`,
     description: 'Practical workflow automation and system integration for service businesses.',
   },
   other: {
