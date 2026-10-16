@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { siteConfig } from '@/config/site'
 
 export default function Header() {
   const pathname = usePathname()
@@ -22,9 +23,9 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-line/80 bg-background/90 backdrop-blur-xl">
       <div className="page-shell flex h-[72px] items-center justify-between">
-        <Link href="/" className="group flex items-center gap-2" aria-label="LaunchLocal home">
+        <Link href="/" className="group flex items-center gap-2" aria-label={`${siteConfig.name} home`}>
           <span className="font-display text-xl font-extrabold tracking-[-0.045em] text-text-primary">
-            LaunchLocal
+            {siteConfig.name}
           </span>
           <span className="h-2 w-2 rounded-full bg-accent transition-transform group-hover:translate-y-[-2px]" />
         </Link>

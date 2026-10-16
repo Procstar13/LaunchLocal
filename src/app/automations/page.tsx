@@ -4,7 +4,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Business Automation & System Integration',
   description:
-    'Connect your CRM, lead sources, scheduling, and follow-up. LaunchLocal builds practical automation workflows for service businesses.',
+    'Connect your CRM, lead sources, scheduling, and follow-up. LeverVantage builds practical automation workflows for service businesses.',
   alternates: { canonical: '/automations' },
 }
 

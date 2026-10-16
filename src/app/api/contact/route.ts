@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { siteConfig } from '@/config/site'
 
 // In-memory rate limiting store (in production, use Redis)
 const rateLimitMap = new Map<string, number[]>()
@@ -218,8 +219,8 @@ export async function POST(request: NextRequest) {
 
     // Send email using Resend
     const emailData = {
-      from: 'LaunchLocal <noreply@launchlocalaz.com>', // Use your verified domain
-      to: ['Launchlocalaz@gmail.com'], // Your business email
+      from: `${siteConfig.name} <noreply@levervantage.com>`, // Requires a verified Resend domain
+      to: ['LeverVantage@gmail.com'],
       subject: `New Contact Form Submission from ${sanitizedBusinessName}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -232,7 +233,7 @@ export async function POST(request: NextRequest) {
             <p style="white-space: pre-wrap;">${sanitizedMessage}</p>
           </div>
           <p style="color: #6c757d; font-size: 14px;">
-            This message was sent from the LaunchLocal contact form.
+            This message was sent from the ${siteConfig.name} contact form.
           </p>
         </div>
       `,

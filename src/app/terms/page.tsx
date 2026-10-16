@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
-  description: 'Terms of Service for LaunchLocal business automation, system integration, website, and local visibility services.',
+  description: 'Terms of Service for LeverVantage business automation, system integration, website, and local visibility services.',
   alternates: { canonical: '/terms' },
 }
 
@@ -25,7 +25,7 @@ export default function TermsOfService() {
                 1. Acceptance of Terms
               </h2>
               <p>
-                By accessing and using LaunchLocal's services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
+                By accessing and using LeverVantage&apos;s services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
               </p>
             </section>
 
@@ -34,7 +34,7 @@ export default function TermsOfService() {
                 2. Description of Service
               </h2>
               <p>
-                LaunchLocal provides business automation, system integration, website development, local visibility support, digital audits, and related services for small businesses. Our services include but are not limited to:
+                LeverVantage provides business automation, system integration, website development, local visibility support, digital audits, and related services for small businesses. Our services include but are not limited to:
               </p>
               <ul className="list-disc pl-6 mt-4">
                 <li>Business systems and automation</li>
@@ -81,7 +81,7 @@ export default function TermsOfService() {
                 5. Intellectual Property
               </h2>
               <p>
-                All content, designs, and materials created by LaunchLocal remain our intellectual property unless otherwise specified in writing. Clients retain rights to their own content and materials provided to us.
+                All content, designs, and materials created by LeverVantage remain our intellectual property unless otherwise specified in writing. Clients retain rights to their own content and materials provided to us.
               </p>
             </section>
 
@@ -90,7 +90,7 @@ export default function TermsOfService() {
                 6. Limitation of Liability
               </h2>
               <p>
-                LaunchLocal shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your use of our services.
+                LeverVantage shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your use of our services.
               </p>
             </section>
 
