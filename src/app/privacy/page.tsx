@@ -17,9 +17,15 @@ export default function PrivacyPolicy() {
           
           <div className="prose prose-lg max-w-none text-text-secondary font-inter">
             <p className="text-sm text-text-muted mb-8">
-              Last updated: September 9, 2026
+              Last updated: October 20, 2026
             </p>
 
+            <section className="mb-8">
+              <h2 className="text-2xl font-semibold text-text-primary font-poppins mb-4">Business Systems Snapshot</h2>
+              <p>Our Business Systems Snapshot collects your contact details and answers to business operations questions when you submit the form. We use these to review potential improvements and contact you about your request. We also record an anonymous experiment assignment and form-step events to compare questionnaire completion rates.</p>
+              <p className="mt-3">If you separately opt in to a resume link, we securely save a draft and email a one-time continuation link that expires after seven days. If you do not opt in, your incomplete contact details are not saved to our database. We use service providers including Vercel, Supabase, and Resend to operate this feature. Please avoid including passwords or sensitive customer information in answers.</p>
+              <p className="mt-3">To request access to, correction of, or deletion of your Snapshot information, contact us using the contact details on this website.</p>
+            </section>
             <section className="mb-8">
               <h2 className="text-2xl font-semibold text-text-primary font-poppins mb-4">
                 1. Information We Collect
