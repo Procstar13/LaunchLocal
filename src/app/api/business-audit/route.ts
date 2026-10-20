@@ -19,7 +19,7 @@ async function db(path: string, method: string, value?: unknown, prefer = 'resol
   return null
 }
 const digest = (s: string) => createHash('sha256').update(s).digest('hex')
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://levervantage.com'
+// Resume URLs use the current deployment host (preview or production).
 
 export async function POST(req: NextRequest) {
   try {
@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
       if (action === 'draft') token = randomBytes(32).toString('hex')
       await db('audit_submissions?on_conflict=visitor_id', 'POST', { visitor_id: visitorId, variant, status: action === 'submit' ? 'submitted' : 'draft', answers, resume_consent: resumeConsent === true, updated_at: new Date().toISOString(), ...(token ? {resume_token_hash:digest(token),resume_expires_at:new Date(Date.now()+7*86400000).toISOString()} : {}), ...(action === 'submit' ? { submitted_at: new Date().toISOString(),resume_token_hash:null,resume_expires_at:null } : {}) })
       if (action === 'draft' && token) {
-        const emailResult = await fetch('https://api.resend.com/emails', { method:'POST', headers:{ Authorization:'Bearer '+process.env.RESEND_API_KEY,'Content-Type':'application/json'},body:JSON.stringify({from:'LeverVantage <hello@levervantage.com>',to:[answers.email],subject:'Your Business Systems Snapshot — resume link',text:'You asked us to save your progress. Continue your questionnaire using this private link (valid for 7 days): '+baseUrl+'/business-audit?resume='+token+'\n\nIf you did not request this link, you can ignore this email.'}) })
+        const emailResult = await fetch('https://api.resend.com/emails', { method:'POST', headers:{ Authorization:'Bearer '+process.env.RESEND_API_KEY,'Content-Type':'application/json'},body:JSON.stringify({from:'LeverVantage <hello@levervantage.com>',to:[answers.email],subject:'Your Business Systems Snapshot — resume link',text:'You asked us to save your progress. Continue your questionnaire using this private link (valid for 7 days): '+req.nextUrl.origin+'/business-audit?resume='+token+'\n\nIf you did not request this link, you can ignore this email.'}) })
         if (!emailResult.ok) throw new Error('Unable to send resume link')
         await db('audit_submissions?visitor_id=eq.'+visitorId,'PATCH',{resume_email_sent_at:new Date().toISOString()})
       }
@@ -68,4 +68,17 @@ export async function POST(req: NextRequest) {
     console.error('Business audit intake error', err instanceof Error ? err.message : 'unknown')
     return NextResponse.json({ error: 'Unable to save response' }, { status: 503 })
   }
+}
+
+export async function GET(req: NextRequest) {
+ try {
+  const token=req.nextUrl.searchParams.get('resume')
+  if(!token || !/^[0-9a-f]{64}$/.test(token)) return NextResponse.json({error:'Invalid link'},{status:400})
+  const {url,secret}=connection()
+  const response=await fetch(url+'/rest/v1/audit_submissions?resume_token_hash=eq.'+digest(token)+'&status=eq.draft&resume_expires_at=gt.'+encodeURIComponent(new Date().toISOString())+'&select=answers,variant,visitor_id', {headers:{apikey:secret,Authorization:'Bearer '+secret},cache:'no-store'})
+  if(!response.ok) throw Error('Unable to load draft')
+  const records=await response.json()
+  if(!records[0]) return NextResponse.json({error:'This resume link has expired'},{status:404})
+  return NextResponse.json({answers:records[0].answers,variant:records[0].variant,visitorId:records[0].visitor_id},{headers:{'Cache-Control':'no-store'}})
+ }catch{return NextResponse.json({error:'Unable to load draft'},{status:503})}
 }
