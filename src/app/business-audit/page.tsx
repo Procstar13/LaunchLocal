@@ -50,6 +50,18 @@ export default function BusinessAudit() {
   const [botField, setBotField] = useState('')
 
   useEffect(() => {
+    const resumeToken = new URLSearchParams(window.location.search).get('resume')
+    if (resumeToken && /^[0-9a-f]{64}$/.test(resumeToken)) {
+      fetch('/api/business-audit?resume='+resumeToken).then(r=>r.ok?r.json():Promise.reject()).then(data=>{
+        localStorage.setItem('lv_audit_visitor',data.visitorId)
+        localStorage.setItem('lv_audit_variant',data.variant)
+        sessionStorage.setItem('lv_audit_answers',JSON.stringify(data.answers))
+        setVisitorId(data.visitorId);setVariant(data.variant);setAnswers(data.answers)
+        setStep(data.variant==='A'?1:3)
+        window.history.replaceState({},'',window.location.pathname)
+      }).catch(()=>setError('Your resume link may have expired. You can start a new questionnaire.'))
+      return
+    }
     const id = getOrCreate('lv_audit_visitor')
     let assigned = localStorage.getItem('lv_audit_variant') as 'A' | 'B' | null
     if (assigned !== 'A' && assigned !== 'B') {
@@ -143,7 +155,7 @@ export default function BusinessAudit() {
                 <input type="checkbox" className="mt-1 accent-blue-600" checked={resumeConsent} onChange={e => setResumeConsent(e.target.checked)} />
                 Email me one link to resume if I don't finish. If selected, my contact details and draft answers may be saved before final submission.
               </label>
-              <p className="mt-3 text-xs text-slate-500">Otherwise, your contact information is only sent when you submit the full questionnaire. See our privacy notice before submitting.</p>
+              <p className="mt-3 text-xs text-slate-500">Otherwise, your contact information is only sent when you submit the full questionnaire. Review our <a className="underline text-blue-700" href="/privacy">privacy notice</a> before submitting.</p>
             </div>}
             <div className="absolute -left-[10000px]" aria-hidden="true"><label>Leave this blank<input tabIndex={-1} autoComplete="off" value={botField} onChange={e => setBotField(e.target.value)} /></label></div>
           </div>
