@@ -59,7 +59,7 @@ export default function BusinessAudit() {
         setVisitorId(data.visitorId);setVariant(data.variant);setAnswers(data.answers)
         setStep(data.variant==='A'?1:3)
         window.history.replaceState({},'',window.location.pathname)
-      }).catch(()=>setError('Your resume link may have expired. You can start a new questionnaire.'))
+      }).catch(()=>{setError('Your resume link may have expired. You can start a new questionnaire.');setVisitorId(getOrCreate('lv_audit_visitor'));setVariant('A')})
       return
     }
     const id = getOrCreate('lv_audit_visitor')
