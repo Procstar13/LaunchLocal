@@ -41,7 +41,13 @@ export async function POST(req: NextRequest) {
       if (!answers || typeof answers !== 'object' || Array.isArray(answers) || JSON.stringify(answers).length > 14000) return NextResponse.json({ error: 'Invalid answers' }, { status: 400 })
       if (!email(answers.email) || typeof answers.name !== 'string' || !answers.name.trim() || typeof answers.business !== 'string' || !answers.business.trim()) return NextResponse.json({ error: 'Contact details required' }, { status: 400 })
       if (action === 'draft' && resumeConsent !== true) return NextResponse.json({ error: 'Consent required' }, { status: 400 })
-      if (action === 'submit' && !['industry','team_size','intent','goal'].every(k => typeof answers[k] === 'string' && answers[k].trim()) || (answers.intent === 'I have a specific problem I want to solve' && !String(answers.specific_problem || '').trim()) || (answers.intent === "I'm curious what AI or automation could do for my business" && !String(answers.familiarity || '').trim()) || (answers.intent === 'I want to get more from software we already use' && !String(answers.software_challenge || '').trim()) || (answers.intent === "I'm not sure where to start" && !String(answers.pain_area || '').trim())) return NextResponse.json({ error: 'Incomplete answers' }, { status: 400 })
+      if (action === 'submit' && (
+        !['industry','team_size','intent','goal'].every(k => typeof answers[k] === 'string' && answers[k].trim()) ||
+        (answers.intent === 'I have a specific problem I want to solve' && !String(answers.specific_problem || '').trim()) ||
+        (answers.intent === "I'm curious what AI or automation could do for my business" && !String(answers.familiarity || '').trim()) ||
+        (answers.intent === 'I want to get more from software we already use' && !String(answers.software_challenge || '').trim()) ||
+        (answers.intent === "I'm not sure where to start" && !String(answers.pain_area || '').trim())
+      )) return NextResponse.json({error:'Incomplete answers'},{status:400})
       let token: string | undefined
       if (action === 'draft') token = randomBytes(32).toString('hex')
       await db('audit_submissions?on_conflict=visitor_id', 'POST', { visitor_id: visitorId, variant, status: action === 'submit' ? 'submitted' : 'draft', answers, resume_consent: resumeConsent === true, updated_at: new Date().toISOString(), ...(token ? {resume_token_hash:digest(token),resume_expires_at:new Date(Date.now()+7*86400000).toISOString()} : {}), ...(action === 'submit' ? { submitted_at: new Date().toISOString(),resume_token_hash:null,resume_expires_at:null } : {}) })
