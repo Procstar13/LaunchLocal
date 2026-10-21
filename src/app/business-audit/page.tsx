@@ -10,27 +10,46 @@ const contact: Field[] = [
   { key: 'email', label: 'Work email address', type: 'email', required: true },
   { key: 'business', label: 'Business name', type: 'text', required: true },
 ]
-const business: Field[] = [
-  { key: 'industry', label: 'What type of business do you operate?', type: 'single', required: true, options: ['HVAC', 'Plumbing', 'Electrical', 'Landscaping', 'Cleaning', 'Construction / contracting', 'Other'] },
-  { key: 'team_size', label: 'How many people work at your company?', type: 'single', required: true, options: ['1–5', '6–10', '11–25', '26–50', '51+'] },
-  { key: 'software', label: 'What tools does your team use?', type: 'multi', max: 8, options: ['Jobber', 'Housecall Pro', 'ServiceTitan', 'QuickBooks', 'Microsoft 365', 'Google Workspace', 'Spreadsheets', 'Other / not sure'] },
+const intent: Field[] = [
+  { key:'intent', label:'What brings you here today?', type:'single', required:true, options:[
+    'I have a specific problem I want to solve',
+    "I'm curious what AI or automation could do for my business",
+    'I want to get more from software we already use',
+    "I'm not sure where to start"
+  ] }
 ]
-const tasks = ['Responding to leads or missed calls', 'Scheduling or dispatching jobs', 'Preparing or following up on estimates', 'Job paperwork and data entry', 'Invoicing or collections', 'Customer updates or reviews', 'Reporting and tracking performance', 'Finding information across systems', 'Other']
-const operations: Field[] = [
-  { key: 'time_consumers', label: 'Which tasks take more employee time than you would like? Choose up to three.', type: 'multi', max: 3, required: true, options: tasks },
-  { key: 'duplicate_entry', label: 'Does your team enter the same customer or job information into more than one system?', type: 'single', required: true, options: ['Yes, frequently', 'Sometimes', 'Rarely or never', 'Not sure'] },
-  { key: 'delays', label: 'Where does work most often get delayed?', type: 'single', required: true, options: ['Waiting on customers', 'Estimates or approvals', 'Scheduling / dispatch', 'Office paperwork or billing', 'Finding information or getting updates', 'Other / not sure'] },
+const areas = ['Responding to new inquiries','Estimates and follow-up','Scheduling and dispatch','Job paperwork and information','Invoices and payments','Customer communication','Reporting and visibility','Not sure yet']
+const context: Field[] = [
+  { key:'industry',label:'What type of business do you run?',type:'single',required:true,options:['HVAC','Plumbing','Electrical','Landscaping','Cleaning','Construction / contracting','Other'] },
+  { key:'team_size',label:'How many people are on your team?',type:'single',required:true,options:['1–5','6–10','11–25','26–50','51+'] },
+  { key:'software',label:'Which tools does your team use? (Optional)',type:'multi',max:8,options:['Jobber','Housecall Pro','ServiceTitan','QuickBooks','Microsoft 365','Google Workspace','Spreadsheets','Other / not sure'] }
 ]
 const goals: Field[] = [
-  { key: 'priority', label: 'If you could improve one task first, which would it be?', type: 'single', required: true, options: tasks },
-  { key: 'hours', label: 'Roughly how many staff hours per week does that task take?', type: 'single', required: true, options: ['Under 2', '2–5', '6–10', '11–20', 'Over 20', 'Not sure'] },
-  { key: 'consequence', label: 'What happens when that task is delayed or missed?', type: 'single', required: true, options: ['Lost customers or jobs', 'Delayed payments', 'Unhappy customers', 'Extra staff time', 'Owner or manager steps in', 'Nothing significant / not sure'] },
-  { key: 'goal', label: 'What outcome matters most to you?', type: 'single', required: true, options: ['Save staff time', 'Book more jobs', 'Complete more work with existing staff', 'Get paid faster', 'Improve customer experience', 'Better visibility into operations'] },
-  { key: 'notes', label: 'Anything else you want us to know? (Optional)', type: 'textarea' },
+  { key:'goal',label:'What would make this conversation worthwhile?',type:'single',required:true,options:['See practical AI examples for my business','Save my team time','Book or complete more jobs','Improve how our software works together','Get better visibility into the business','Figure out where to start'] },
+  { key:'notes',label:'Anything else you would like us to know? (Optional)',type:'textarea' }
 ]
-const groups = { contact: { title: 'Let’s get acquainted', subtitle: 'First, a little about you and your business.', fields: contact }, business: { title: 'Your business & tools', subtitle: 'Help us understand how you work today.', fields: business }, operations: { title: 'Where time gets lost', subtitle: 'Let’s identify bottlenecks and repeated work.', fields: operations }, goals: { title: 'Your biggest opportunity', subtitle: 'What would a meaningful improvement look like?', fields: goals } }
+const groups = {
+  contact:{title:'Let’s get acquainted',subtitle:'We’ll use this to follow up about your snapshot.',fields:contact},
+  intent:{title:'What brings you here?',subtitle:'There is no right answer. We’ll tailor the next questions to you.',fields:intent},
+  context:{title:'A little about your business',subtitle:'Just enough background to make our recommendations relevant.',fields:context},
+  goals:{title:'What would success look like?',subtitle:'One last thing, then you’re done.',fields:goals}
+}
 type GroupKey = keyof typeof groups
-const sequences: Record<'A' | 'B', GroupKey[]> = { A: ['contact', 'business', 'operations', 'goals'], B: ['business', 'operations', 'goals', 'contact'] }
+const sequences: Record<'A' | 'B', GroupKey[]> = {A:['contact','intent','context','goals'],B:['intent','context','goals','contact']}
+const intentExtras: Record<string,Field[]> = {
+  'I have a specific problem I want to solve':[
+    {key:'specific_problem',label:'What is the problem? Describe it in your own words.',type:'textarea',required:true}
+  ],
+  "I'm curious what AI or automation could do for my business":[
+    {key:'familiarity',label:'How familiar are you with AI and business automation?',type:'single',required:true,options:["I'm completely new to it","I've tried a few AI tools","We already use AI or automations at work"]}
+  ],
+  'I want to get more from software we already use':[
+    {key:'software_challenge',label:'What do you wish your current software did better?',type:'textarea',required:true}
+  ],
+  "I'm not sure where to start":[
+    {key:'pain_area',label:'Which part of running the business feels harder than it should?',type:'single',required:true,options:areas}
+  ]
+}
 const emailValid = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
 function getOrCreate(key: string) {
   let value = localStorage.getItem(key)
@@ -79,12 +98,13 @@ export default function BusinessAudit() {
   const order = sequences[variant]
   const key = order[step]
   const current = groups[key]
+  const fields: Field[] = key === 'intent' ? [...current.fields, ...(intentExtras[String(answers.intent || '')] || [])] : current.fields
   const setAnswer = (field: string, value: Answer) => setAnswers(old => {
     const next = { ...old, [field]: value }
     sessionStorage.setItem('lv_audit_answers', JSON.stringify(next))
     return next
   })
-  const valid = current.fields.every(f => !f.required || (Array.isArray(answers[f.key]) ? (answers[f.key] as string[]).length > 0 : typeof answers[f.key] === 'string' && (answers[f.key] as string).trim().length > 0)) && (key !== 'contact' || emailValid(String(answers.email || '')))
+  const valid = fields.every(f => !f.required || (Array.isArray(answers[f.key]) ? (answers[f.key] as string[]).length > 0 : typeof answers[f.key] === 'string' && (answers[f.key] as string).trim().length > 0)) && (key !== 'contact' || emailValid(String(answers.email || '')))
   async function send(action: string, extra: object = {}) {
     const response = await fetch('/api/business-audit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action, visitorId, variant, step, answers, resumeConsent, honeypot: botField, ...extra }) })
     if (!response.ok) throw new Error('Unable to save your answers. Please try again.')
@@ -111,8 +131,8 @@ export default function BusinessAudit() {
     <div className="mx-auto max-w-2xl px-4">
       <div className="mb-8 text-center">
         <p className="text-sm font-bold uppercase tracking-[.18em] text-blue-700">LeverVantage • Business Systems Snapshot</p>
-        <h1 className="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">Find your next operational improvement.</h1>
-        <p className="mt-3 text-slate-600">A quick, free starting point. About 5 minutes.</p>
+        <h1 className="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">Find a smarter way to run your business.</h1>
+        <p className="mt-3 text-slate-600">Tell us what brought you here. We'll help you explore the next step. About 3 minutes.</p>
       </div>
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-9">
         {done ? <div className="py-12 text-center" role="status">
@@ -126,7 +146,7 @@ export default function BusinessAudit() {
           <h2 className="text-2xl font-bold text-slate-900">{current.title}</h2>
           <p className="mb-7 mt-2 text-slate-600">{current.subtitle}</p>
           <div className="space-y-7">
-            {current.fields.map(field => <fieldset key={field.key} className="space-y-2">
+            {fields.map(field => <fieldset key={field.key} className="space-y-2">
               <legend className="mb-2 text-sm font-semibold text-slate-900">{field.label} {field.required && <span className="text-blue-600">*</span>}</legend>
               {(field.type === 'text' || field.type === 'email') && <input className={inputClass} type={field.type} maxLength={150} autoComplete={field.key === 'email' ? 'email' : field.key === 'name' ? 'name' : 'organization'} value={String(answers[field.key] || '')} onChange={e => setAnswer(field.key, e.target.value)} />}
               {field.type === 'textarea' && <textarea className={inputClass} rows={3} maxLength={1200} value={String(answers[field.key] || '')} onChange={e => setAnswer(field.key, e.target.value)} />}
@@ -146,10 +166,6 @@ export default function BusinessAudit() {
                 })}
               </div>}
             </fieldset>)}
-            {key === 'operations' && ['Yes, frequently', 'Sometimes'].includes(String(answers.duplicate_entry || '')) && <div>
-              <label className="mb-2 block text-sm font-semibold" htmlFor="examples">Which systems or tasks are involved? (Optional)</label>
-              <textarea id="examples" className={inputClass} maxLength={600} rows={2} placeholder="Example: We copy customer details from email into Jobber and then QuickBooks." value={String(answers.duplicate_examples || '')} onChange={e => setAnswer('duplicate_examples', e.target.value)} />
-            </div>}
             {key === 'contact' && <div className="rounded-xl bg-slate-50 p-4">
               <label className="flex items-start gap-3 text-sm text-slate-700">
                 <input type="checkbox" className="mt-1 accent-blue-600" checked={resumeConsent} onChange={e => setResumeConsent(e.target.checked)} />
