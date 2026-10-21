@@ -76,7 +76,16 @@ export async function POST(req: NextRequest) {
               ['Hours per week', answers.hours], ['Consequence', answers.consequence],
               ['Desired outcome', answers.goal], ['Notes', answers.notes], ['Experiment', variant]
             ]
-            const summary = lines.filter(([,v]) => v !== undefined && v !== '').map(([k,v]) => k + ': ' + (Array.isArray(v) ? v.join(', ') : String(v))).join('\\n')
+            const valueText = (v: unknown) => Array.isArray(v) ? v.join(', ') : String(v)
+            const escapeHtml = (v: unknown) => valueText(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c] || c))
+            const visible = lines.filter(([,v]) => v !== undefined && v !== '')
+            const summary = visible.map(([k,v]) => k + ': ' + valueText(v)).join('\n')
+            const contactRows = visible.filter(([k]) => ['Contact','Email','Business','Industry','Team size'].includes(k))
+            const operationsRows = visible.filter(([k]) => ['Software','Time-consuming tasks','Duplicate entry','Duplicate entry details','Where work is delayed'].includes(k))
+            const opportunityRows = visible.filter(([k]) => ['Top priority','Hours per week','Consequence','Desired outcome','Notes'].includes(k))
+            const tableRows = (rows: [string,unknown][]) => rows.map(([k,v]) => '<tr><td style="padding:11px 14px;border-bottom:1px solid #e2e8f0;color:#64748b;width:37%;vertical-align:top;font-size:13px">'+escapeHtml(k)+'</td><td style="padding:11px 14px;border-bottom:1px solid #e2e8f0;color:#0f172a;font-size:14px;font-weight:500">'+escapeHtml(v)+'</td></tr>').join('')
+            const section = (title:string,rows:[string,unknown][]) => '<h2 style="font-size:16px;color:#0f172a;margin:28px 0 10px">'+title+'</h2><table role="presentation" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;background:#fff;border:1px solid #e2e8f0;border-radius:8px">'+tableRows(rows)+'</table>'
+            const html = '<div style="background:#f1f5f9;padding:30px 12px;font-family:Arial,sans-serif"><div style="max-width:620px;margin:auto;background:#fff;padding:30px;border-radius:12px"><p style="font-size:12px;letter-spacing:2px;font-weight:bold;color:#2563eb">LEVERVANTAGE</p><h1 style="font-size:25px;line-height:1.2;margin:12px 0;color:#0f172a">New Business Systems Snapshot</h1><p style="color:#475569;font-size:14px">A business owner has completed the questionnaire.</p>'+section('Business & Contact',contactRows)+section('Current Systems & Bottlenecks',operationsRows)+section('Priority & Desired Results',opportunityRows)+'<p style="font-size:12px;color:#64748b;margin-top:25px">A/B variant: '+escapeHtml(variant)+' · Full submission stored in your LeverVantage audit database.</p></div></div>'
             const notification = await fetch('https://api.resend.com/emails', {
               method:'POST',
               headers:{Authorization:'Bearer ' + process.env.RESEND_API_KEY,'Content-Type':'application/json'},
@@ -85,7 +94,8 @@ export async function POST(req: NextRequest) {
                 to:['zachproctor@levervantage.com'],
                 reply_to:answers.email,
                 subject:'New Business Systems Snapshot — ' + String(answers.business).slice(0,100),
-                text:'A customer has completed the Business Systems Snapshot.\\n\\n' + summary
+                text:'New Business Systems Snapshot\n\n' + summary,
+                html
               })
             })
             if (!notification.ok) throw new Error('Audit owner email failed: ' + notification.status)
