@@ -19,7 +19,7 @@ export default function Hero() {
               Talk about your systems
               <span aria-hidden="true" className="ml-2">↗</span>
             </Link>
-            <Link href="/automations" className="btn-secondary w-full sm:w-auto">See how automation works</Link>
+            <Link href="/business-audit" className="btn-secondary w-full sm:w-auto">Get your free Systems Snapshot →</Link>
           </div>
           <div className="mt-12 grid grid-cols-2 gap-x-5 gap-y-3 border-t border-line pt-6 text-sm font-semibold text-text-secondary sm:flex sm:flex-wrap sm:gap-x-8">
             <span>Lead routing</span>
