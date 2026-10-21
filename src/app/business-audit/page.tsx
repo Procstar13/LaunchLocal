@@ -22,7 +22,7 @@ const areas = ['Responding to new inquiries','Estimates and follow-up','Scheduli
 const context: Field[] = [
   { key:'industry',label:'What type of business do you run?',type:'single',required:true,options:['HVAC','Plumbing','Electrical','Landscaping','Cleaning','Construction / contracting','Other'] },
   { key:'team_size',label:'How many people are on your team?',type:'single',required:true,options:['1–5','6–10','11–25','26–50','51+'] },
-  { key:'software',label:'Which tools does your team use? (Optional)',type:'multi',max:8,options:['Jobber','Housecall Pro','ServiceTitan','QuickBooks','Microsoft 365','Google Workspace','Spreadsheets','Other / not sure'] }
+  { key:'software',label:'Which tools does your team use? (Optional)',type:'multi',max:8,options:['Jobber','Housecall Pro','ServiceTitan','GoHighLevel','QuickBooks','Microsoft 365','Google Workspace','Spreadsheets','Other / not sure'] }
 ]
 const goals: Field[] = [
   { key:'goal',label:'What would make this conversation worthwhile?',type:'single',required:true,options:['See practical AI examples for my business','Save my team time','Book or complete more jobs','Improve how our software works together','Get better visibility into the business','Figure out where to start'] },
@@ -44,7 +44,7 @@ const intentExtras: Record<string,Field[]> = {
     {key:'familiarity',label:'How familiar are you with AI and business automation?',type:'single',required:true,options:["I'm completely new to it","I've tried a few AI tools","We already use AI or automations at work"]}
   ],
   'I want to get more from software we already use':[
-    {key:'software',label:'Which tools do you already use?',type:'multi',required:true,max:8,options:['Jobber','Housecall Pro','ServiceTitan','QuickBooks','Microsoft 365','Google Workspace','Spreadsheets','Other / not sure']},
+    {key:'software',label:'Which tools do you already use?',type:'multi',required:true,max:8,options:['Jobber','Housecall Pro','ServiceTitan','GoHighLevel','QuickBooks','Microsoft 365','Google Workspace','Spreadsheets','Other / not sure']},
     {key:'software_challenge',label:'What would you like these tools to do better? (Optional)',type:'textarea'}
   ],
   "I'm not sure where to start":[
@@ -99,7 +99,7 @@ export default function BusinessAudit() {
   const order = sequences[variant]
   const key = order[step]
   const current = groups[key]
-  const fields: Field[] = key === 'intent' ? [...current.fields, ...(intentExtras[String(answers.intent || '')] || []), ...(answers.intent === 'I have a specific problem I want to solve' && answers.problem_department === 'Other' ? [{key:'problem_department_other',label:'Which department or area? ',type:'text' as const,required:true}] : [])] : key === 'context' && answers.intent === 'I want to get more from software we already use' ? current.fields.filter(f => f.key !== 'software') : current.fields
+  const fields: Field[] = key === 'intent' ? [...current.fields, ...(intentExtras[String(answers.intent || '')] || []), ...(answers.intent === 'I have a specific problem I want to solve' && answers.problem_department === 'Other' ? [{key:'problem_department_other',label:'Which department or area? ',type:'text' as const,required:true}] : [])] : key === 'context' ? [...current.fields.filter(f => !(f.key === 'software' && answers.intent === 'I want to get more from software we already use')), ...(answers.industry === 'Other' ? [{key:'industry_other',label:'What type of business do you run?',type:'text' as const,required:true}] : [])] : current.fields
   const setAnswer = (field: string, value: Answer) => setAnswers(old => {
     const next = { ...old, [field]: value }
     sessionStorage.setItem('lv_audit_answers', JSON.stringify(next))
