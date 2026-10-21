@@ -61,7 +61,40 @@ export async function POST(req: NextRequest) {
           }
         }
       }
-      if (action === 'submit') await db('audit_events', 'POST', { visitor_id: visitorId, variant, step, event: 'submitted' })
+      if (action === 'submit') {
+        await db('audit_events', 'POST', { visitor_id: visitorId, variant, step, event: 'submitted' })
+        // Notification failure must not turn a successfully persisted snapshot into a failed submission.
+        try {
+          const records = await db('audit_submissions?visitor_id=eq.' + visitorId + '&select=id,owner_notified_at&limit=1','GET') as {id:string;owner_notified_at:string|null}[]
+          if (records?.[0] && !records[0].owner_notified_at) {
+            const lines: [string, unknown][] = [
+              ['Contact', answers.name], ['Email', answers.email], ['Business', answers.business],
+              ['Industry', answers.industry], ['Team size', answers.team_size],
+              ['Software', answers.software], ['Time-consuming tasks', answers.time_consumers],
+              ['Duplicate entry', answers.duplicate_entry], ['Duplicate entry details', answers.duplicate_examples],
+              ['Where work is delayed', answers.delays], ['Top priority', answers.priority],
+              ['Hours per week', answers.hours], ['Consequence', answers.consequence],
+              ['Desired outcome', answers.goal], ['Notes', answers.notes], ['Experiment', variant]
+            ]
+            const summary = lines.filter(([,v]) => v !== undefined && v !== '').map(([k,v]) => k + ': ' + (Array.isArray(v) ? v.join(', ') : String(v))).join('\\n')
+            const notification = await fetch('https://api.resend.com/emails', {
+              method:'POST',
+              headers:{Authorization:'Bearer ' + process.env.RESEND_API_KEY,'Content-Type':'application/json'},
+              body:JSON.stringify({
+                from:'LeverVantage <noreply@levervantage.com>',
+                to:['zachproctor@levervantage.com'],
+                reply_to:answers.email,
+                subject:'New Business Systems Snapshot — ' + String(answers.business).slice(0,100),
+                text:'A customer has completed the Business Systems Snapshot.\\n\\n' + summary
+              })
+            })
+            if (!notification.ok) throw new Error('Audit owner email failed: ' + notification.status)
+            await db('audit_submissions?id=eq.' + records[0].id,'PATCH',{owner_notified_at:new Date().toISOString()})
+          }
+        } catch(e) {
+          console.error('Audit owner notification failed', e instanceof Error ? e.message : 'unknown')
+        }
+      }
     } else return NextResponse.json({ error: 'Invalid action' }, { status: 400 })
     return NextResponse.json({ ok: true })
   } catch (err) {
