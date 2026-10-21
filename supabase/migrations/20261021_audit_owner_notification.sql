@@ -1,0 +1,1 @@
+alter table public.audit_submissions add column if not exists owner_notified_at timestamptz;
