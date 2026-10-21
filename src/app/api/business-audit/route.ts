@@ -43,9 +43,9 @@ export async function POST(req: NextRequest) {
       if (action === 'draft' && resumeConsent !== true) return NextResponse.json({ error: 'Consent required' }, { status: 400 })
       if (action === 'submit' && (
         !['industry','team_size','intent','goal'].every(k => typeof answers[k] === 'string' && answers[k].trim()) ||
-        (answers.intent === 'I have a specific problem I want to solve' && !String(answers.specific_problem || '').trim()) ||
+        (answers.intent === 'I have a specific problem I want to solve' && (!String(answers.problem_department || '').trim() || (answers.problem_department === 'Other' && !String(answers.problem_department_other || '').trim()))) ||
         (answers.intent === "I'm curious what AI or automation could do for my business" && !String(answers.familiarity || '').trim()) ||
-        (answers.intent === 'I want to get more from software we already use' && !String(answers.software_challenge || '').trim()) ||
+        (answers.intent === 'I want to get more from software we already use' && (!Array.isArray(answers.software) || answers.software.length === 0)) ||
         (answers.intent === "I'm not sure where to start" && !String(answers.pain_area || '').trim())
       )) return NextResponse.json({error:'Incomplete answers'},{status:400})
       let token: string | undefined
@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
           if (records?.[0] && !records[0].owner_notified_at) {
             const lines: [string, unknown][] = [
               ['Contact', answers.name], ['Email', answers.email], ['Business', answers.business],
-              ['Industry', answers.industry], ['Team size', answers.team_size], ['Reason for visit', answers.intent], ['Specific problem', answers.specific_problem], ['AI familiarity', answers.familiarity], ['Software challenge', answers.software_challenge], ['Pain area', answers.pain_area],
+              ['Industry', answers.industry], ['Team size', answers.team_size], ['Reason for visit', answers.intent], ['Problem department', answers.problem_department], ['Other department', answers.problem_department_other], ['AI familiarity', answers.familiarity], ['Software challenge', answers.software_challenge], ['Pain area', answers.pain_area],
               ['Software', answers.software], ['Time-consuming tasks', answers.time_consumers],
               ['Duplicate entry', answers.duplicate_entry], ['Duplicate entry details', answers.duplicate_examples],
               ['Where work is delayed', answers.delays], ['Top priority', answers.priority],
