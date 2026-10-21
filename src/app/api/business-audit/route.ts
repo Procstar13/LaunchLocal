@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
       if (!answers || typeof answers !== 'object' || Array.isArray(answers) || JSON.stringify(answers).length > 14000) return NextResponse.json({ error: 'Invalid answers' }, { status: 400 })
       if (!email(answers.email) || typeof answers.name !== 'string' || !answers.name.trim() || typeof answers.business !== 'string' || !answers.business.trim()) return NextResponse.json({ error: 'Contact details required' }, { status: 400 })
       if (action === 'draft' && resumeConsent !== true) return NextResponse.json({ error: 'Consent required' }, { status: 400 })
-      if (action === 'submit' && !['industry','team_size','time_consumers','duplicate_entry','delays','priority','hours','consequence','goal'].every(k => Boolean(answers[k]) && (!Array.isArray(answers[k]) || answers[k].length))) return NextResponse.json({ error: 'Incomplete answers' }, { status: 400 })
+      if (action === 'submit' && !['industry','team_size','intent','goal'].every(k => typeof answers[k] === 'string' && answers[k].trim()) || (answers.intent === 'I have a specific problem I want to solve' && !String(answers.specific_problem || '').trim()) || (answers.intent === "I'm curious what AI or automation could do for my business" && !String(answers.familiarity || '').trim()) || (answers.intent === 'I want to get more from software we already use' && !String(answers.software_challenge || '').trim()) || (answers.intent === "I'm not sure where to start" && !String(answers.pain_area || '').trim())) return NextResponse.json({ error: 'Incomplete answers' }, { status: 400 })
       let token: string | undefined
       if (action === 'draft') token = randomBytes(32).toString('hex')
       await db('audit_submissions?on_conflict=visitor_id', 'POST', { visitor_id: visitorId, variant, status: action === 'submit' ? 'submitted' : 'draft', answers, resume_consent: resumeConsent === true, updated_at: new Date().toISOString(), ...(token ? {resume_token_hash:digest(token),resume_expires_at:new Date(Date.now()+7*86400000).toISOString()} : {}), ...(action === 'submit' ? { submitted_at: new Date().toISOString(),resume_token_hash:null,resume_expires_at:null } : {}) })
@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
           if (records?.[0] && !records[0].owner_notified_at) {
             const lines: [string, unknown][] = [
               ['Contact', answers.name], ['Email', answers.email], ['Business', answers.business],
-              ['Industry', answers.industry], ['Team size', answers.team_size],
+              ['Industry', answers.industry], ['Team size', answers.team_size], ['Reason for visit', answers.intent], ['Specific problem', answers.specific_problem], ['AI familiarity', answers.familiarity], ['Software challenge', answers.software_challenge], ['Pain area', answers.pain_area],
               ['Software', answers.software], ['Time-consuming tasks', answers.time_consumers],
               ['Duplicate entry', answers.duplicate_entry], ['Duplicate entry details', answers.duplicate_examples],
               ['Where work is delayed', answers.delays], ['Top priority', answers.priority],
@@ -80,8 +80,8 @@ export async function POST(req: NextRequest) {
             const escapeHtml = (v: unknown) => valueText(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c] || c))
             const visible = lines.filter(([,v]) => v !== undefined && v !== '')
             const summary = visible.map(([k,v]) => k + ': ' + valueText(v)).join('\n')
-            const contactRows = visible.filter(([k]) => ['Contact','Email','Business','Industry','Team size'].includes(k))
-            const operationsRows = visible.filter(([k]) => ['Software','Time-consuming tasks','Duplicate entry','Duplicate entry details','Where work is delayed'].includes(k))
+            const contactRows = visible.filter(([k]) => ['Contact','Email','Business','Industry','Team size','Reason for visit','AI familiarity'].includes(k))
+            const operationsRows = visible.filter(([k]) => ['Software','Specific problem','Software challenge','Pain area'].includes(k))
             const opportunityRows = visible.filter(([k]) => ['Top priority','Hours per week','Consequence','Desired outcome','Notes'].includes(k))
             const tableRows = (rows: [string,unknown][]) => rows.map(([k,v]) => '<tr><td style="padding:11px 14px;border-bottom:1px solid #e2e8f0;color:#64748b;width:37%;vertical-align:top;font-size:13px">'+escapeHtml(k)+'</td><td style="padding:11px 14px;border-bottom:1px solid #e2e8f0;color:#0f172a;font-size:14px;font-weight:500">'+escapeHtml(v)+'</td></tr>').join('')
             const section = (title:string,rows:[string,unknown][]) => '<h2 style="font-size:16px;color:#0f172a;margin:28px 0 10px">'+title+'</h2><table role="presentation" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;background:#fff;border:1px solid #e2e8f0;border-radius:8px">'+tableRows(rows)+'</table>'
