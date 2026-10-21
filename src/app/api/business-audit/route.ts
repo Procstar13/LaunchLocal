@@ -43,6 +43,7 @@ export async function POST(req: NextRequest) {
       if (action === 'draft' && resumeConsent !== true) return NextResponse.json({ error: 'Consent required' }, { status: 400 })
       if (action === 'submit' && (
         !['industry','team_size','intent','goal'].every(k => typeof answers[k] === 'string' && answers[k].trim()) ||
+        (answers.industry === 'Other' && !String(answers.industry_other || '').trim()) ||
         (answers.intent === 'I have a specific problem I want to solve' && (!String(answers.problem_department || '').trim() || (answers.problem_department === 'Other' && !String(answers.problem_department_other || '').trim()))) ||
         (answers.intent === "I'm curious what AI or automation could do for my business" && !String(answers.familiarity || '').trim()) ||
         (answers.intent === 'I want to get more from software we already use' && (!Array.isArray(answers.software) || answers.software.length === 0)) ||
@@ -75,7 +76,7 @@ export async function POST(req: NextRequest) {
           if (records?.[0] && !records[0].owner_notified_at) {
             const lines: [string, unknown][] = [
               ['Contact', answers.name], ['Email', answers.email], ['Business', answers.business],
-              ['Industry', answers.industry], ['Team size', answers.team_size], ['Reason for visit', answers.intent], ['Problem department', answers.problem_department], ['Other department', answers.problem_department_other], ['AI familiarity', answers.familiarity], ['Software challenge', answers.software_challenge], ['Pain area', answers.pain_area],
+              ['Industry', answers.industry], ['Industry details', answers.industry_other], ['Team size', answers.team_size], ['Reason for visit', answers.intent], ['Problem department', answers.problem_department], ['Other department', answers.problem_department_other], ['AI familiarity', answers.familiarity], ['Software challenge', answers.software_challenge], ['Pain area', answers.pain_area],
               ['Software', answers.software], ['Time-consuming tasks', answers.time_consumers],
               ['Duplicate entry', answers.duplicate_entry], ['Duplicate entry details', answers.duplicate_examples],
               ['Where work is delayed', answers.delays], ['Top priority', answers.priority],
@@ -86,7 +87,7 @@ export async function POST(req: NextRequest) {
             const escapeHtml = (v: unknown) => valueText(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c] || c))
             const visible = lines.filter(([,v]) => v !== undefined && v !== '')
             const summary = visible.map(([k,v]) => k + ': ' + valueText(v)).join('\n')
-            const contactRows = visible.filter(([k]) => ['Contact','Email','Business','Industry','Team size','Reason for visit','AI familiarity'].includes(k))
+            const contactRows = visible.filter(([k]) => ['Contact','Email','Business','Industry','Industry details','Team size','Reason for visit','AI familiarity'].includes(k))
             const operationsRows = visible.filter(([k]) => ['Software','Specific problem','Software challenge','Pain area'].includes(k))
             const opportunityRows = visible.filter(([k]) => ['Top priority','Hours per week','Consequence','Desired outcome','Notes'].includes(k))
             const tableRows = (rows: [string,unknown][]) => rows.map(([k,v]) => '<tr><td style="padding:11px 14px;border-bottom:1px solid #e2e8f0;color:#64748b;width:37%;vertical-align:top;font-size:13px">'+escapeHtml(k)+'</td><td style="padding:11px 14px;border-bottom:1px solid #e2e8f0;color:#0f172a;font-size:14px;font-weight:500">'+escapeHtml(v)+'</td></tr>').join('')
