@@ -38,13 +38,14 @@ type GroupKey = keyof typeof groups
 const sequences: Record<'A' | 'B', GroupKey[]> = {A:['contact','intent','context','goals'],B:['intent','context','goals','contact']}
 const intentExtras: Record<string,Field[]> = {
   'I have a specific problem I want to solve':[
-    {key:'specific_problem',label:'What is the problem? Describe it in your own words.',type:'textarea',required:true}
+    {key:'problem_department',label:'Which part of your business needs attention?',type:'single',required:true,options:['Accounting / finance','Project management','File / document organization','Sales / customer communication','Scheduling / operations','Other']}
   ],
   "I'm curious what AI or automation could do for my business":[
     {key:'familiarity',label:'How familiar are you with AI and business automation?',type:'single',required:true,options:["I'm completely new to it","I've tried a few AI tools","We already use AI or automations at work"]}
   ],
   'I want to get more from software we already use':[
-    {key:'software_challenge',label:'What do you wish your current software did better?',type:'textarea',required:true}
+    {key:'software',label:'Which tools do you already use?',type:'multi',required:true,max:8,options:['Jobber','Housecall Pro','ServiceTitan','QuickBooks','Microsoft 365','Google Workspace','Spreadsheets','Other / not sure']},
+    {key:'software_challenge',label:'What would you like these tools to do better? (Optional)',type:'textarea'}
   ],
   "I'm not sure where to start":[
     {key:'pain_area',label:'Which part of running the business feels harder than it should?',type:'single',required:true,options:areas}
@@ -98,7 +99,7 @@ export default function BusinessAudit() {
   const order = sequences[variant]
   const key = order[step]
   const current = groups[key]
-  const fields: Field[] = key === 'intent' ? [...current.fields, ...(intentExtras[String(answers.intent || '')] || [])] : current.fields
+  const fields: Field[] = key === 'intent' ? [...current.fields, ...(intentExtras[String(answers.intent || '')] || []), ...(answers.intent === 'I have a specific problem I want to solve' && answers.problem_department === 'Other' ? [{key:'problem_department_other',label:'Which department or area? ',type:'text' as const,required:true}] : [])] : key === 'context' && answers.intent === 'I want to get more from software we already use' ? current.fields.filter(f => f.key !== 'software') : current.fields
   const setAnswer = (field: string, value: Answer) => setAnswers(old => {
     const next = { ...old, [field]: value }
     sessionStorage.setItem('lv_audit_answers', JSON.stringify(next))
