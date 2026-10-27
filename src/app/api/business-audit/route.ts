@@ -26,7 +26,8 @@ export async function POST(req: NextRequest) {
     const origin = req.headers.get('origin')
     if (origin && new URL(origin).host !== req.nextUrl.host) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     const body = await req.json()
-    const { action, visitorId, variant, step, answers, resumeConsent, honeypot } = body
+    const { action, visitorId, variant, step, answers, questionnaireVersion, resumeConsent, honeypot } = body
+    const version = questionnaireVersion === 'v3' ? 'v3' : 'v2'
     const remote = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
     const { url, secret } = connection()
     const limit = await fetch(url + '/rest/v1/rpc/check_audit_rate_limit', { method:'POST', headers:{apikey:secret, Authorization:'Bearer '+secret,'Content-Type':'application/json'}, body:JSON.stringify({p_key:digest(remote),p_limit:60}),cache:'no-store' })
@@ -43,6 +44,7 @@ export async function POST(req: NextRequest) {
       if (action === 'draft' && resumeConsent !== true) return NextResponse.json({ error: 'Consent required' }, { status: 400 })
       if (action === 'submit' && (
         !['industry','team_size','intent','goal'].every(k => typeof answers[k] === 'string' && answers[k].trim()) ||
+        (version === 'v3' && (!String(answers.frustration || '').trim() || !String(answers.urgency || '').trim())) ||
         (answers.industry === 'Other' && !String(answers.industry_other || '').trim()) ||
         (answers.intent === 'I have a specific problem I want to solve' && (!String(answers.problem_department || '').trim() || (answers.problem_department === 'Other' && !String(answers.problem_department_other || '').trim()))) ||
         (answers.intent === "I'm curious what AI or automation could do for my business" && !String(answers.familiarity || '').trim()) ||
@@ -51,7 +53,7 @@ export async function POST(req: NextRequest) {
       )) return NextResponse.json({error:'Incomplete answers'},{status:400})
       let token: string | undefined
       if (action === 'draft') token = randomBytes(32).toString('hex')
-      await db('audit_submissions?on_conflict=visitor_id', 'POST', { visitor_id: visitorId, variant, status: action === 'submit' ? 'submitted' : 'draft', answers, resume_consent: resumeConsent === true, updated_at: new Date().toISOString(), ...(token ? {resume_token_hash:digest(token),resume_expires_at:new Date(Date.now()+7*86400000).toISOString()} : {}), ...(action === 'submit' ? { submitted_at: new Date().toISOString(),resume_token_hash:null,resume_expires_at:null } : {}) })
+      await db('audit_submissions?on_conflict=visitor_id', 'POST', { visitor_id: visitorId, variant, questionnaire_version: version, status: action === 'submit' ? 'submitted' : 'draft', answers, resume_consent: resumeConsent === true, updated_at: new Date().toISOString(), ...(token ? {resume_token_hash:digest(token),resume_expires_at:new Date(Date.now()+7*86400000).toISOString()} : {}), ...(action === 'submit' ? { submitted_at: new Date().toISOString(),resume_token_hash:null,resume_expires_at:null } : {}) })
       if (action === 'draft' && token) {
         const emailResult = await fetch('https://api.resend.com/emails', { method:'POST', headers:{ Authorization:'Bearer '+process.env.RESEND_API_KEY,'Content-Type':'application/json'},body:JSON.stringify({from:'LeverVantage <hello@levervantage.com>',to:[answers.email],subject:'Your Business Systems Snapshot — resume link',text:'You asked us to save your progress. Continue your questionnaire using this private link (valid for 7 days): '+req.nextUrl.origin+'/business-audit?resume='+token+'\n\nIf you did not request this link, you can ignore this email.'}) })
         if (!emailResult.ok) throw new Error('Unable to send resume link')
@@ -76,7 +78,7 @@ export async function POST(req: NextRequest) {
           if (records?.[0] && !records[0].owner_notified_at) {
             const lines: [string, unknown][] = [
               ['Contact', answers.name], ['Email', answers.email], ['Business', answers.business],
-              ['Industry', answers.industry], ['Industry details', answers.industry_other], ['Team size', answers.team_size], ['Reason for visit', answers.intent], ['Problem department', answers.problem_department], ['Other department', answers.problem_department_other], ['AI familiarity', answers.familiarity], ['Software challenge', answers.software_challenge], ['Pain area', answers.pain_area],
+              ['Industry', answers.industry], ['Industry details', answers.industry_other], ['Team size', answers.team_size], ['Reason for visit', answers.intent], ['Primary frustration', answers.frustration], ['Frequency', answers.frequency], ['Staff time', answers.staff_time], ['Business consequences', answers.consequences], ['Urgency', answers.urgency], ['Missed inquiries', answers.missed_inquiries], ['Scheduling rework', answers.rescheduled_appointments], ['Employees involved', answers.employees_involved], ['Billing challenge', answers.billing_issue], ['Information sources', answers.information_sources], ['Problem department', answers.problem_department], ['Other department', answers.problem_department_other], ['AI familiarity', answers.familiarity], ['Software challenge', answers.software_challenge], ['Pain area', answers.pain_area],
               ['Software', answers.software], ['Time-consuming tasks', answers.time_consumers],
               ['Duplicate entry', answers.duplicate_entry], ['Duplicate entry details', answers.duplicate_examples],
               ['Where work is delayed', answers.delays], ['Top priority', answers.priority],
@@ -87,8 +89,8 @@ export async function POST(req: NextRequest) {
             const escapeHtml = (v: unknown) => valueText(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c] || c))
             const visible = lines.filter(([,v]) => v !== undefined && v !== '')
             const summary = visible.map(([k,v]) => k + ': ' + valueText(v)).join('\n')
-            const contactRows = visible.filter(([k]) => ['Contact','Email','Business','Industry','Industry details','Team size','Reason for visit','AI familiarity'].includes(k))
-            const operationsRows = visible.filter(([k]) => ['Software','Specific problem','Software challenge','Pain area'].includes(k))
+            const contactRows = visible.filter(([k]) => ['Contact','Email','Business','Industry','Industry details','Team size','Reason for visit','AI familiarity','Urgency'].includes(k))
+            const operationsRows = visible.filter(([k]) => ['Software','Primary frustration','Frequency','Staff time','Business consequences','Missed inquiries','Scheduling rework','Employees involved','Billing challenge','Information sources','Specific problem','Software challenge','Pain area'].includes(k))
             const opportunityRows = visible.filter(([k]) => ['Top priority','Hours per week','Consequence','Desired outcome','Notes'].includes(k))
             const tableRows = (rows: [string,unknown][]) => rows.map(([k,v]) => '<tr><td style="padding:11px 14px;border-bottom:1px solid #e2e8f0;color:#64748b;width:37%;vertical-align:top;font-size:13px">'+escapeHtml(k)+'</td><td style="padding:11px 14px;border-bottom:1px solid #e2e8f0;color:#0f172a;font-size:14px;font-weight:500">'+escapeHtml(v)+'</td></tr>').join('')
             const section = (title:string,rows:[string,unknown][]) => '<h2 style="font-size:16px;color:#0f172a;margin:28px 0 10px">'+title+'</h2><table role="presentation" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;background:#fff;border:1px solid #e2e8f0;border-radius:8px">'+tableRows(rows)+'</table>'
