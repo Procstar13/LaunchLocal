@@ -26,8 +26,7 @@ export async function POST(req: NextRequest) {
     const origin = req.headers.get('origin')
     if (origin && new URL(origin).host !== req.nextUrl.host) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     const body = await req.json()
-    const { action, visitorId, variant, step, answers, questionnaireVersion, resumeConsent, honeypot } = body
-    const version = questionnaireVersion === 'v3' ? 'v3' : 'v2'
+    const { action, visitorId, variant, step, answers, resumeConsent, honeypot } = body
     const remote = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
     const { url, secret } = connection()
     const limit = await fetch(url + '/rest/v1/rpc/check_audit_rate_limit', { method:'POST', headers:{apikey:secret, Authorization:'Bearer '+secret,'Content-Type':'application/json'}, body:JSON.stringify({p_key:digest(remote),p_limit:60}),cache:'no-store' })
@@ -44,7 +43,7 @@ export async function POST(req: NextRequest) {
       if (action === 'draft' && resumeConsent !== true) return NextResponse.json({ error: 'Consent required' }, { status: 400 })
       if (action === 'submit' && (
         !['industry','team_size','intent','goal'].every(k => typeof answers[k] === 'string' && answers[k].trim()) ||
-        (version === 'v3' && (!String(answers.frustration || '').trim() || !String(answers.urgency || '').trim())) ||
+        (!String(answers.frustration || '').trim() || !String(answers.urgency || '').trim()) ||
         (answers.industry === 'Other' && !String(answers.industry_other || '').trim()) ||
         (answers.intent === 'I have a specific problem I want to solve' && (!String(answers.problem_department || '').trim() || (answers.problem_department === 'Other' && !String(answers.problem_department_other || '').trim()))) ||
         (answers.intent === "I'm curious what AI or automation could do for my business" && !String(answers.familiarity || '').trim()) ||
@@ -53,7 +52,7 @@ export async function POST(req: NextRequest) {
       )) return NextResponse.json({error:'Incomplete answers'},{status:400})
       let token: string | undefined
       if (action === 'draft') token = randomBytes(32).toString('hex')
-      await db('audit_submissions?on_conflict=visitor_id', 'POST', { visitor_id: visitorId, variant, questionnaire_version: version, status: action === 'submit' ? 'submitted' : 'draft', answers, resume_consent: resumeConsent === true, updated_at: new Date().toISOString(), ...(token ? {resume_token_hash:digest(token),resume_expires_at:new Date(Date.now()+7*86400000).toISOString()} : {}), ...(action === 'submit' ? { submitted_at: new Date().toISOString(),resume_token_hash:null,resume_expires_at:null } : {}) })
+      await db('audit_submissions?on_conflict=visitor_id', 'POST', { visitor_id: visitorId, variant, status: action === 'submit' ? 'submitted' : 'draft', answers, resume_consent: resumeConsent === true, updated_at: new Date().toISOString(), ...(token ? {resume_token_hash:digest(token),resume_expires_at:new Date(Date.now()+7*86400000).toISOString()} : {}), ...(action === 'submit' ? { submitted_at: new Date().toISOString(),resume_token_hash:null,resume_expires_at:null } : {}) })
       if (action === 'draft' && token) {
         const emailResult = await fetch('https://api.resend.com/emails', { method:'POST', headers:{ Authorization:'Bearer '+process.env.RESEND_API_KEY,'Content-Type':'application/json'},body:JSON.stringify({from:'LeverVantage <hello@levervantage.com>',to:[answers.email],subject:'Your Business Systems Snapshot — resume link',text:'You asked us to save your progress. Continue your questionnaire using this private link (valid for 7 days): '+req.nextUrl.origin+'/business-audit?resume='+token+'\n\nIf you did not request this link, you can ignore this email.'}) })
         if (!emailResult.ok) throw new Error('Unable to send resume link')
