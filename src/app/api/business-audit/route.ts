@@ -43,6 +43,7 @@ export async function POST(req: NextRequest) {
       if (action === 'draft' && resumeConsent !== true) return NextResponse.json({ error: 'Consent required' }, { status: 400 })
       if (action === 'submit' && (
         !['industry','team_size','intent','goal'].every(k => typeof answers[k] === 'string' && answers[k].trim()) ||
+        (!String(answers.frustration || '').trim() || !String(answers.urgency || '').trim()) ||
         (answers.industry === 'Other' && !String(answers.industry_other || '').trim()) ||
         (answers.intent === 'I have a specific problem I want to solve' && (!String(answers.problem_department || '').trim() || (answers.problem_department === 'Other' && !String(answers.problem_department_other || '').trim()))) ||
         (answers.intent === "I'm curious what AI or automation could do for my business" && !String(answers.familiarity || '').trim()) ||
@@ -76,7 +77,7 @@ export async function POST(req: NextRequest) {
           if (records?.[0] && !records[0].owner_notified_at) {
             const lines: [string, unknown][] = [
               ['Contact', answers.name], ['Email', answers.email], ['Business', answers.business],
-              ['Industry', answers.industry], ['Industry details', answers.industry_other], ['Team size', answers.team_size], ['Reason for visit', answers.intent], ['Problem department', answers.problem_department], ['Other department', answers.problem_department_other], ['AI familiarity', answers.familiarity], ['Software challenge', answers.software_challenge], ['Pain area', answers.pain_area],
+              ['Industry', answers.industry], ['Industry details', answers.industry_other], ['Team size', answers.team_size], ['Reason for visit', answers.intent], ['Primary frustration', answers.frustration], ['Frequency', answers.frequency], ['Staff time', answers.staff_time], ['Business consequences', answers.consequences], ['Urgency', answers.urgency], ['Missed inquiries', answers.missed_inquiries], ['Scheduling rework', answers.rescheduled_appointments], ['Employees involved', answers.employees_involved], ['Billing challenge', answers.billing_issue], ['Information sources', answers.information_sources], ['Problem department', answers.problem_department], ['Other department', answers.problem_department_other], ['AI familiarity', answers.familiarity], ['Software challenge', answers.software_challenge], ['Pain area', answers.pain_area],
               ['Software', answers.software], ['Time-consuming tasks', answers.time_consumers],
               ['Duplicate entry', answers.duplicate_entry], ['Duplicate entry details', answers.duplicate_examples],
               ['Where work is delayed', answers.delays], ['Top priority', answers.priority],
@@ -87,8 +88,8 @@ export async function POST(req: NextRequest) {
             const escapeHtml = (v: unknown) => valueText(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c] || c))
             const visible = lines.filter(([,v]) => v !== undefined && v !== '')
             const summary = visible.map(([k,v]) => k + ': ' + valueText(v)).join('\n')
-            const contactRows = visible.filter(([k]) => ['Contact','Email','Business','Industry','Industry details','Team size','Reason for visit','AI familiarity'].includes(k))
-            const operationsRows = visible.filter(([k]) => ['Software','Specific problem','Software challenge','Pain area'].includes(k))
+            const contactRows = visible.filter(([k]) => ['Contact','Email','Business','Industry','Industry details','Team size','Reason for visit','AI familiarity','Urgency'].includes(k))
+            const operationsRows = visible.filter(([k]) => ['Software','Primary frustration','Frequency','Staff time','Business consequences','Missed inquiries','Scheduling rework','Employees involved','Billing challenge','Information sources','Specific problem','Software challenge','Pain area'].includes(k))
             const opportunityRows = visible.filter(([k]) => ['Top priority','Hours per week','Consequence','Desired outcome','Notes'].includes(k))
             const tableRows = (rows: [string,unknown][]) => rows.map(([k,v]) => '<tr><td style="padding:11px 14px;border-bottom:1px solid #e2e8f0;color:#64748b;width:37%;vertical-align:top;font-size:13px">'+escapeHtml(k)+'</td><td style="padding:11px 14px;border-bottom:1px solid #e2e8f0;color:#0f172a;font-size:14px;font-weight:500">'+escapeHtml(v)+'</td></tr>').join('')
             const section = (title:string,rows:[string,unknown][]) => '<h2 style="font-size:16px;color:#0f172a;margin:28px 0 10px">'+title+'</h2><table role="presentation" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;background:#fff;border:1px solid #e2e8f0;border-radius:8px">'+tableRows(rows)+'</table>'
