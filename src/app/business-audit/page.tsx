@@ -126,7 +126,7 @@ export default function BusinessAudit() {
   })
   const valid = fields.every(f => !f.required || (Array.isArray(answers[f.key]) ? (answers[f.key] as string[]).length > 0 : typeof answers[f.key] === 'string' && (answers[f.key] as string).trim().length > 0)) && (key !== 'contact' || emailValid(String(answers.email || '')))
   async function send(action: string, extra: object = {}) {
-    const response = await fetch('/api/business-audit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action, visitorId, variant, step, answers, questionnaireVersion:'v3', resumeConsent, honeypot: botField, ...extra }) })
+    const response = await fetch('/api/business-audit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action, visitorId, variant, step, answers, resumeConsent, honeypot: botField, ...extra }) })
     if (!response.ok) throw new Error('Unable to save your answers. Please try again.')
   }
   async function next() {
