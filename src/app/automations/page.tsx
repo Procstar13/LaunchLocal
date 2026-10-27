@@ -51,10 +51,10 @@ export default function AutomationsPage() {
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Link
-              href="/?plan=Automation#contact"
+              href="/business-audit"
               className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-bold text-white hover:bg-blue-600"
             >
-              Talk about your systems
+              Get your free Systems Snapshot
             </Link>
             <Link
               href="/pricing"
@@ -99,10 +99,10 @@ export default function AutomationsPage() {
               </p>
             </div>
             <Link
-              href="/?plan=Automation#contact"
+              href="/business-audit"
               className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-bold text-white hover:bg-blue-600"
             >
-              Start the conversation
+              Start your free Snapshot
             </Link>
           </div>
         </div>
