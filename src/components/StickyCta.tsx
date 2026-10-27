@@ -7,9 +7,11 @@ import { useEffect, useState } from 'react'
 export default function StickyCta() {
   const pathname = usePathname()
   const [visible, setVisible] = useState(false)
+  const isQuestionnaire = pathname === '/business-audit' || pathname.startsWith('/business-audit/')
 
   useEffect(() => {
     const update = () => {
+      if (isQuestionnaire) { setVisible(false); return }
       const pastIntro = window.scrollY > 360
       const contact = document.getElementById('contact')
 
@@ -31,12 +33,14 @@ export default function StickyCta() {
       window.removeEventListener('scroll', update)
       window.removeEventListener('resize', update)
     }
-  }, [pathname])
+  }, [pathname, isQuestionnaire])
 
   useEffect(() => {
     document.body.classList.toggle('pb-24', visible)
     return () => document.body.classList.remove('pb-24')
   }, [visible])
+
+  if (isQuestionnaire) return null
 
   return (
     <div
