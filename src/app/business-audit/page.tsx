@@ -24,10 +24,21 @@ const context: Field[] = [
   { key:'team_size',label:'How many people are on your team?',type:'single',required:true,options:['1–5','6–10','11–25','26–50','51+'] },
   { key:'software',label:'Which tools does your team use? (Optional)',type:'multi',max:8,options:['Jobber','Housecall Pro','ServiceTitan','GoHighLevel','QuickBooks','Microsoft 365','Google Workspace','Spreadsheets','Other / not sure'] }
 ]
+const frustrations = ['Missed leads, follow-ups, or customer communication','Scheduling, dispatching, or project coordination','Repetitive administrative work or duplicate data entry','Billing, collections, or financial visibility','Finding, organizing, or sharing information','Not sure — need help identifying opportunities']
 const goals: Field[] = [
-  { key:'goal',label:'What would make this conversation worthwhile?',type:'single',required:true,options:['See practical AI examples for my business','Save my team time','Book or complete more jobs','Improve how our software works together','Get better visibility into the business','Figure out where to start'] },
-  { key:'notes',label:'Anything else you would like us to know? (Optional)',type:'textarea' }
+  {key:'frustration',label:'Which challenge would you most like to improve?',type:'single',required:true,options:frustrations},
+  {key:'consequences',label:'How does this affect your business? (Select any that apply)',type:'multi',max:5,options:['Lost sales or missed opportunities','Extra administrative work','Customer complaints or delays','Delayed payments or cash flow','Difficulty growing without hiring','Not sure yet']},
+  {key:'urgency',label:'How soon would you like to improve this?',type:'single',required:true,options:['As soon as possible','Within 30 days','Within 3 months','Just exploring']},
+  {key:'goal',label:'What would make this conversation worthwhile?',type:'single',required:true,options:['See practical AI examples for my business','Save my team time','Book or complete more jobs','Improve how our software works together','Get better visibility into the business','Figure out where to start']},
+  {key:'notes',label:'Anything else you would like us to know? (Optional)',type:'textarea'}
 ]
+const problemFollowups: Record<string,Field[]> = {
+  [frustrations[0]]:[{key:'missed_inquiries',label:'About how many inquiries go unanswered or lack follow-up each month?',type:'single',options:['1–5','6–15','16–30','More than 30','Not sure']}],
+  [frustrations[1]]:[{key:'rescheduled_appointments',label:'How often do scheduling issues require rework?',type:'single',options:['Daily','Several times per week','A few times per month','Occasionally','Not sure']}],
+  [frustrations[2]]:[{key:'employees_involved',label:'How many employees regularly do this repetitive work?',type:'single',options:['1','2–3','4–10','More than 10','Not sure']}],
+  [frustrations[3]]:[{key:'billing_issue',label:'Which billing challenge comes up most?',type:'single',options:['Invoices go out late','Customers pay late','Payment follow-up takes time','Limited financial visibility','Not sure']}],
+  [frustrations[4]]:[{key:'information_sources',label:'Where is the information usually scattered?',type:'single',options:['Email','Shared drives or folders','Multiple software systems','Paper documents','Not sure']}]
+}
 const groups = {
   contact:{title:'Let’s get acquainted',subtitle:'We’ll use this to follow up about your snapshot.',fields:contact},
   intent:{title:'What brings you here?',subtitle:'There is no right answer. We’ll tailor the next questions to you.',fields:intent},
@@ -99,7 +110,15 @@ export default function BusinessAudit() {
   const order = sequences[variant]
   const key = order[step]
   const current = groups[key]
-  const fields: Field[] = key === 'intent' ? [...current.fields, ...(intentExtras[String(answers.intent || '')] || []), ...(answers.intent === 'I have a specific problem I want to solve' && answers.problem_department === 'Other' ? [{key:'problem_department_other',label:'Which department or area? ',type:'text' as const,required:true}] : [])] : key === 'context' ? [...current.fields.filter(f => !(f.key === 'software' && answers.intent === 'I want to get more from software we already use')), ...(answers.industry === 'Other' ? [{key:'industry_other',label:'What type of business do you run?',type:'text' as const,required:true}] : [])] : current.fields
+  const fields: Field[] = key === 'intent' ? [...current.fields, ...(intentExtras[String(answers.intent || '')] || []), ...(answers.intent === 'I have a specific problem I want to solve' && answers.problem_department === 'Other' ? [{key:'problem_department_other',label:'Which department or area? ',type:'text' as const,required:true}] : [])] : key === 'context' ? [...current.fields.filter(f => !(f.key === 'software' && answers.intent === 'I want to get more from software we already use')), ...(answers.industry === 'Other' ? [{key:'industry_other',label:'What type of business do you run?',type:'text' as const,required:true}] : [])] : key === 'goals' ? [
+    current.fields[0],
+    ...(answers.frustration && answers.frustration !== frustrations[5] ? [
+      {key:'frequency',label:'How often does this cause problems?',type:'single' as const,options:['Daily','Several times per week','A few times per month','Occasionally','Not sure']},
+      ...(answers.frustration === frustrations[2] || answers.frustration === frustrations[4] ? [{key:'staff_time',label:'Approximately how many staff hours does this consume each week?',type:'single' as const,options:['Less than 1 hour','1–3 hours','4–10 hours','More than 10 hours','Not sure']}] : []),
+      ...(problemFollowups[String(answers.frustration)] || [])
+    ] : []),
+    ...current.fields.slice(1)
+  ] : current.fields
   const setAnswer = (field: string, value: Answer) => setAnswers(old => {
     const next = { ...old, [field]: value }
     sessionStorage.setItem('lv_audit_answers', JSON.stringify(next))
@@ -107,7 +126,7 @@ export default function BusinessAudit() {
   })
   const valid = fields.every(f => !f.required || (Array.isArray(answers[f.key]) ? (answers[f.key] as string[]).length > 0 : typeof answers[f.key] === 'string' && (answers[f.key] as string).trim().length > 0)) && (key !== 'contact' || emailValid(String(answers.email || '')))
   async function send(action: string, extra: object = {}) {
-    const response = await fetch('/api/business-audit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action, visitorId, variant, step, answers, resumeConsent, honeypot: botField, ...extra }) })
+    const response = await fetch('/api/business-audit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action, visitorId, variant, step, answers, questionnaireVersion:'v3', resumeConsent, honeypot: botField, ...extra }) })
     if (!response.ok) throw new Error('Unable to save your answers. Please try again.')
   }
   async function next() {
