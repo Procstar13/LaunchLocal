@@ -73,7 +73,7 @@ export default function BusinessAudit() {
   const [variant, setVariant] = useState<'A' | 'B' | null>(null)
   const [visitorId, setVisitorId] = useState('')
   const [step, setStep] = useState(0)
-  useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }) }, [step])
+  useEffect(() => { window.scrollTo({ top: 0, behavior: 'auto' }) }, [step])
   const [answers, setAnswers] = useState<Answers>({})
   const [resumeConsent, setResumeConsent] = useState(false)
   const [done, setDone] = useState(false)
