@@ -12,7 +12,7 @@ export default function Footer() {
               <span className="h-2 w-2 rounded-full bg-accent" />
             </Link>
             <p className="mt-4 max-w-sm text-base leading-7 text-text-secondary">
-              We connect business systems and automate the repetitive work between leads, teams, and customers.
+              Practical AI education, business process audits, and custom implementations for small businesses.
             </p>
           </div>
 
@@ -29,9 +29,9 @@ export default function Footer() {
 
           <div>
             <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-text-muted">Start here</h2>
-            <p className="mt-4 text-sm leading-6 text-text-secondary">Tell us where work gets repeated or falls through. We&apos;ll respond within one business day.</p>
-            <Link href="/?plan=Automation#contact" className="mt-4 inline-flex border-b border-text-primary pb-1 text-sm font-bold text-text-primary hover:text-accent">
-              Discuss a workflow
+            <p className="mt-4 text-sm leading-6 text-text-secondary">Start with a hands-on AI session, or explore an audit if you already have a workflow to improve.</p>
+            <Link href="/ai-education" className="mt-4 inline-flex border-b border-text-primary pb-1 text-sm font-bold text-text-primary hover:text-accent">
+              Explore AI Workshops
             </Link>
           </div>
         </div>
