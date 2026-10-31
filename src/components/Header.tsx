@@ -18,6 +18,7 @@ export default function Header() {
     { href: '/#process', label: 'Process' },
     { href: '/automations', label: 'How it works' },
     { href: '/pricing', label: 'Web services' },
+    { href: '/ai-education', label: 'AI Education' },
   ]
 
   return (
