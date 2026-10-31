@@ -51,10 +51,10 @@ export default function AutomationsPage() {
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Link
-              href="/business-audit"
+              href="/?plan=Business%20Process%20Audit#contact"
               className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-bold text-white hover:bg-blue-600"
             >
-              Get your free Systems Snapshot
+              Request a $650 Process Audit
             </Link>
             <Link
               href="/pricing"
@@ -92,17 +92,17 @@ export default function AutomationsPage() {
         <div className="page-shell">
           <div className="grid gap-8 rounded-xl bg-text-primary p-8 text-white shadow-lg sm:p-12 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-300">Scoped after the audit</p>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-300">Audit first. Implementation second.</p>
               <h2 className="mt-4 font-display text-3xl font-bold sm:text-4xl">Tell us what you use today.</h2>
               <p className="mt-4 max-w-2xl leading-7 text-white/65">
                 We will look at your website, CRM, and follow-up, then recommend the integrations and automations that are worth doing. No hard sell.
               </p>
             </div>
             <Link
-              href="/business-audit"
+              href="/?plan=Business%20Process%20Audit#contact"
               className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-bold text-white hover:bg-blue-600"
             >
-              Start your free Snapshot
+              Request a $650 Audit
             </Link>
           </div>
         </div>
