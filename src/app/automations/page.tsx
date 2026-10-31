@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 
 const offerings = [
   {
-    title: 'Systems Audit',
+    title: 'Business Process Audit — $650',
     description:
-      'We map how your website, CRM, leads, scheduling, and follow-up work today — and where they drop the ball.',
+      'We interview your team, map the current workflow, identify bottlenecks, and deliver a written findings report with prioritized recommendations. Implementation is quoted separately.',
   },
   {
     title: 'CRM Integration',
