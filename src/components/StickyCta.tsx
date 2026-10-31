@@ -52,16 +52,16 @@ export default function StickyCta() {
       <div className="page-shell flex items-center justify-between gap-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <div className="hidden min-w-0 sm:block">
           <p className="truncate font-display text-sm font-bold text-text-primary">
-            Connect your systems. Automate the handoffs.
+            Learn AI. Find opportunities. Improve your systems.
           </p>
-          <p className="text-xs text-text-muted">Custom-scoped after a systems conversation</p>
+          <p className="text-xs text-text-muted">Practical workshops from $150</p>
         </div>
         <Link
-          href="/?plan=Automation#contact"
+          href="/ai-education"
           className="btn-primary w-full sm:w-auto sm:min-w-[220px]"
           tabIndex={visible ? 0 : -1}
         >
-          Discuss a workflow
+          Explore AI Workshops
         </Link>
       </div>
     </div>
