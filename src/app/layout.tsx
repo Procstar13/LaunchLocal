@@ -11,10 +11,10 @@ const GA_MEASUREMENT_ID = 'G-99W9PQTM4B'
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | Business Systems & Automation`,
+    default: `${siteConfig.name} | AI Education, Audits & Automation`,
     template: `%s | ${siteConfig.name}`,
   },
-  description: 'We connect the tools service businesses already use and automate repetitive work across leads, CRM, scheduling, follow-up, and reporting.',
+  description: 'Practical AI education, business process audits, and custom automation for small businesses.',
   keywords: 'business automation Arizona, workflow automation, CRM integration, lead follow-up automation, service business systems',
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: `${siteConfig.name} | Business Systems & Automation`,
+    title: `${siteConfig.name} | AI Education, Audits & Automation`,
     description: 'Connect your business systems and automate the repetitive work between leads, teams, and customers.',
     type: 'website',
     locale: 'en_US',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: `${siteConfig.name} | Business Systems & Automation`,
+    title: `${siteConfig.name} | AI Education, Audits & Automation`,
     description: 'Practical workflow automation and system integration for service businesses.',
   },
   other: {
