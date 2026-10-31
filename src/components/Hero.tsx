@@ -6,20 +6,20 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:48px_48px] opacity-35" />
       <div className="page-shell relative grid min-h-[720px] min-w-0 items-center gap-14 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
         <div className="relative z-10 min-w-0 max-w-2xl">
-          <div className="eyebrow">Business systems &amp; automation</div>
+          <div className="eyebrow">AI education, audits &amp; implementation</div>
           <h1 className="font-display text-[clamp(2.65rem,6vw,5.6rem)] font-extrabold leading-[0.98] tracking-[-0.05em] text-text-primary">
-            Connect your systems.
-            <span className="mt-1 block text-accent">Automate the busywork.</span>
+            Understand AI.
+            <span className="mt-1 block text-accent">Improve your business.</span>
           </h1>
           <p className="mt-8 max-w-xl text-xl leading-8 text-text-secondary sm:text-2xl sm:leading-9">
-            We help service businesses connect the tools they already use, remove repetitive handoffs, and build reliable workflows from lead to follow-up.
+            Practical AI education, business process audits, and custom solutions that help small businesses make better use of technology.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Link href="/?plan=Automation#contact" className="btn-primary w-full sm:w-auto">
-              Talk about your systems
+            <Link href="/ai-education" className="btn-primary w-full sm:w-auto">
+              Explore AI Education
               <span aria-hidden="true" className="ml-2">↗</span>
             </Link>
-            <Link href="/business-audit" className="btn-secondary w-full sm:w-auto">Get your free Systems Snapshot →</Link>
+            <Link href="/automations" className="btn-secondary w-full sm:w-auto">Explore Business Audits →</Link>
           </div>
           <div className="mt-12 grid grid-cols-2 gap-x-5 gap-y-3 border-t border-line pt-6 text-sm font-semibold text-text-secondary sm:flex sm:flex-wrap sm:gap-x-8">
             <span>Lead routing</span>
