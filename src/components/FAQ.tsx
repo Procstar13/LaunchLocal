@@ -12,6 +12,14 @@ const faqs = [
     answer: 'Usually, no. We start by mapping the systems you already have and look for practical ways to connect them. If a tool is the source of the problem, we will explain the tradeoff before recommending a change.',
   },
   {
+    question: 'What is the difference between the free Snapshot and the $650 audit?',
+    answer: 'The free Business Systems Snapshot is a self-guided questionnaire to identify what may need attention. The $650 Business Process Audit includes deeper discovery, interviews, a current-state process map, and written recommendations. It does not include implementation.',
+  },
+  {
+    question: 'Do I need to take an AI workshop before booking an audit?',
+    answer: 'No. Education is a useful entry point, not a requirement. You can request an audit or discuss an implementation whenever you are ready.',
+  },
+  {
     question: 'How is automation priced?',
     answer: 'Automation work is custom-scoped after an audit because the number of systems, workflow complexity, access requirements, and testing needs vary. You will receive a clear scope before implementation begins.',
   },

@@ -34,8 +34,8 @@ export default function Hero() {
           <div className="relative rounded-xl border border-line bg-white p-5 shadow-xl sm:p-7">
             <div className="flex items-center justify-between border-b border-line pb-4">
               <div>
-                <p className="font-display text-sm font-bold text-text-primary">Lead workflow</p>
-                <p className="mt-1 text-xs text-text-muted">Connected and monitored</p>
+                <p className="font-display text-sm font-bold text-text-primary">Your path to improvement</p>
+                <p className="mt-1 text-xs text-text-muted">Learn → Audit → Implement</p>
               </div>
               <span className="flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-accent">
                 <span className="h-2 w-2 rounded-full bg-accent" />
@@ -44,10 +44,10 @@ export default function Hero() {
             </div>
             <ol className="mt-5 space-y-3">
               {[
-                ['01', 'New inquiry received', 'Website or lead source'],
-                ['02', 'Contact created', 'CRM'],
-                ['03', 'Follow-up triggered', 'Email or text'],
-                ['04', 'Team notified', 'Ready for action'],
+                ['01', 'Learn what AI can do', 'Practical education'],
+                ['02', 'Map the opportunity', 'Business process audit'],
+                ['03', 'Prioritize the solution', 'Written recommendations'],
+                ['04', 'Build and verify', 'Scoped implementation'],
               ].map(([number, title, detail], index) => (
                 <li key={number} className="relative flex items-center gap-4 rounded-lg border border-line bg-section-bg p-4">
                   {index < 3 && <span className="absolute left-[1.85rem] top-full h-3 w-px bg-accent/40" />}
@@ -62,8 +62,8 @@ export default function Hero() {
             </ol>
           </div>
           <div className="relative -mt-4 ml-5 max-w-sm rounded-lg border border-blue-200 bg-blue-50 px-5 py-4 shadow-md sm:ml-10">
-            <p className="font-display text-sm font-bold text-text-primary">Less copying. Fewer missed steps.</p>
-            <p className="mt-1 text-sm text-text-secondary">A workflow built around how your business actually operates.</p>
+            <p className="font-display text-sm font-bold text-text-primary">A practical path from ideas to outcomes.</p>
+            <p className="mt-1 text-sm text-text-secondary">You decide where to start. We help with the next step.</p>
           </div>
         </div>
       </div>
