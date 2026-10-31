@@ -50,7 +50,7 @@ export default function AIEducationPage() {
                 <ul className="mt-6 flex-1 space-y-3 text-sm leading-6 text-text-secondary">
                   {session.outcomes.map((outcome) => <li key={outcome} className="flex gap-3"><span className="text-accent">✓</span>{outcome}</li>)}
                 </ul>
-                <Link className="btn-primary mt-8" href={`/?plan=${encodeURIComponent(session.plan)}#contact`}>Request a session</Link>
+                <Link className="btn-primary mt-8" href={`/?plan=${encodeURIComponent(session.plan)}#contact`}>Book Your Session</Link>
               </article>
             ))}
           </div>

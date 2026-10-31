@@ -1,26 +1,9 @@
 import Link from 'next/link'
 
 const services = [
-  {
-    number: '01',
-    title: 'Lead capture & routing',
-    description: 'Move new inquiries from your website and lead sources into the right system, notify the right person, and reduce missed opportunities.',
-  },
-  {
-    number: '02',
-    title: 'CRM & system integration',
-    description: 'Connect the tools your team already uses so customer information stays current without being copied from one place to another.',
-  },
-  {
-    number: '03',
-    title: 'Follow-up workflows',
-    description: 'Automate routine reminders, status updates, review requests, and follow-up while keeping your team in control of the conversation.',
-  },
-  {
-    number: '04',
-    title: 'Reporting & visibility',
-    description: 'Bring the useful numbers together so you can see what entered the pipeline, what happened next, and where work gets stuck.',
-  },
+  { number: '01', title: 'Educate', description: 'Build confidence with practical AI sessions and identify where AI could help your business.', href: '/ai-education', cta: 'Explore AI workshops' },
+  { number: '02', title: 'Audit', description: 'Our $650 business process audit maps a workflow, identifies bottlenecks, and delivers written recommendations.', href: '/automations', cta: 'Explore business audits' },
+  { number: '03', title: 'Implement', description: 'When a solution makes business sense, we scope, build, test, and hand off the right automation or integration.', href: '/automations', cta: 'See implementation services' },
 ]
 
 export default function Benefits() {
@@ -30,10 +13,10 @@ export default function Benefits() {
         <div className="grid gap-8 border-b border-line pb-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>
             <div className="eyebrow">What we offer</div>
-            <h2 className="section-title">Make the work between your tools happen automatically.</h2>
+            <h2 className="section-title">Learn first. Improve what matters. Build with purpose.</h2>
           </div>
           <p className="section-copy lg:justify-self-end">
-            We map the handoffs that slow your team down, connect the systems involved, and automate the repeatable steps without forcing a full technology overhaul.
+            Start with education, move to a deeper audit when you have a process to improve, and implement only what delivers value. You can enter at any stage.
           </p>
         </div>
 
@@ -48,6 +31,7 @@ export default function Benefits() {
                 {service.title}
               </h3>
               <p className="max-w-xl leading-7 text-text-secondary">{service.description}</p>
+              <Link href={service.href} className="text-sm font-bold text-accent hover:text-text-primary">{service.cta} →</Link>
             </article>
           ))}
         </div>
