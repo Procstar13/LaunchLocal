@@ -33,6 +33,9 @@ export default function Contact() {
       Launch: 'I am interested in the Local Business Launch package.',
       Growth: 'I am interested in the Local Growth plan.',
       'Tune-Up': 'I would like to request a Website Tune-Up.',
+      'AI Fundamentals': 'I would like to book the $150 AI Fundamentals for Business Owners session. Please share scheduling and payment details.',
+      'AI Website Workshop': 'I would like to book the $250 Build & Manage Your Website With AI workshop. Please share scheduling and payment details.',
+      'Business Process Audit': 'I would like to request the $650 Business Process Audit. The workflow I would like to improve is:',
     }
 
     setFormData((current) => current.message ? current : {
@@ -203,10 +206,10 @@ export default function Contact() {
         <div>
           <div className="eyebrow text-blue-100 before:bg-blue-100">Start a conversation</div>
           <h2 className="font-display text-4xl font-bold leading-[1.05] text-white sm:text-5xl">
-            Where does work slow down or fall through?
+            What would you like to learn or improve?
           </h2>
           <p className="mt-6 max-w-md text-lg leading-8 text-white/75">
-            Tell us which tools are involved, what your team repeats, or what gets missed. We&apos;ll respond within one business day with a useful next step.
+            Ask about an AI workshop, request a process audit, or discuss a custom implementation. Tell us a little about your goals and we&apos;ll follow up about the next step.
           </p>
           <div className="mt-10 border-t border-white/20 pt-6 text-sm leading-7 text-white/70">
             <p>No hard sell.</p>
@@ -303,7 +306,7 @@ export default function Contact() {
                       ? 'border-red-500 focus:ring-red-500' 
                       : 'border-text-muted/30 focus:border-accent'
                   }`}
-                  placeholder="Which tools are involved, and what would you like to happen automatically?"
+                  placeholder="Tell us what you would like to learn, improve, or build."
                 />
                 {errors.message && (
                   <p className="mt-1 text-red-400 text-sm font-inter">{errors.message}</p>
