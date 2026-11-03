@@ -57,10 +57,10 @@ export default function AutomationsPage() {
               Request a $650 Process Audit
             </Link>
             <Link
-              href="/pricing"
+              href="/business-audit"
               className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/30 px-6 py-3 text-sm font-bold text-white hover:border-white"
             >
-              See website and growth plans
+              Start Your Free Systems Snapshot
             </Link>
           </div>
         </div>

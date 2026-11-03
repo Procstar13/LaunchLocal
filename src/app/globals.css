@@ -10,13 +10,13 @@
 
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip;
     font-family: 'Inter', system-ui, sans-serif;
   }
 
   body {
     @apply bg-background text-text-primary antialiased;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   h1, h2, h3, h4, h5, h6 {

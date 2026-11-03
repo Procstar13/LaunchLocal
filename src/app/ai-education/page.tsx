@@ -59,10 +59,16 @@ export default function AIEducationPage() {
       </section>
       <section className="bg-section-bg py-20">
         <div className="page-shell max-w-4xl">
-          <div className="eyebrow">Need a deeper look at your business?</div>
+          <div className="eyebrow">Not sure where to start?</div>
+          <h2 className="section-title mt-3">Start with a free Business Systems Snapshot.</h2>
+          <p className="section-copy mt-5">Tell us what challenges your team faces and where you would like to improve. Our short questionnaire helps identify potential opportunities for AI, automation, and better use of the software you already have.</p>
+          <Link className="btn-primary mt-7" href="/business-audit">Start Your Free Systems Snapshot</Link>
+          <div className="mt-12 border-t border-line pt-10">
+            <div className="eyebrow">Ready for a deeper look?</div>
           <h2 className="section-title mt-3">Business Process Audit — $650</h2>
           <p className="section-copy mt-5">For businesses ready to improve a specific workflow, we conduct discovery and interviews, map the process, identify bottlenecks and automation opportunities, and provide a written findings report with prioritized recommendations. Implementation is scoped and priced separately.</p>
           <Link className="btn-secondary mt-7" href="/?plan=Business%20Process%20Audit#contact">Request an audit</Link>
+          </div>
         </div>
       </section>
     </div>
