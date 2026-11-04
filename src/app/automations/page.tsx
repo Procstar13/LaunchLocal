@@ -95,7 +95,7 @@ export default function AutomationsPage() {
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-300">Audit first. Implementation second.</p>
               <h2 className="mt-4 font-display text-3xl font-bold sm:text-4xl">Tell us what you use today.</h2>
               <p className="mt-4 max-w-2xl leading-7 text-white/65">
-                We will look at your website, CRM, and follow-up, then recommend the integrations and automations that are worth doing. No hard sell.
+                We will look at your website, CRM, and follow-up, then recommend the integrations and automations that are worth doing. Implementation projects start at $2,500 and are scoped separately after the workflow and expected result are clear.
               </p>
             </div>
             <Link

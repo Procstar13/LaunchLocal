@@ -2,6 +2,19 @@
 
 import { useState, useEffect } from 'react'
 
+const offeringOptions = [
+  'AI Fundamentals — $150',
+  'Build & Manage Your Website With AI — $250',
+  'AI Working Session — $750',
+  'AI Operations Day — $1,500',
+  'Business Process Audit — $650',
+  'Build & Implementation — starting at $2,500',
+  'Local Business Launch — $999',
+  'Local Growth — $249/month',
+  'Website Tune-Up — starting at $349',
+  'Not sure yet',
+]
+
 declare global {
   interface Window {
     grecaptcha: {
@@ -16,6 +29,7 @@ export default function Contact() {
     name: '',
     email: '',
     businessName: '',
+    offering: '',
     message: '',
     website: '' // Honeypot field
   })
@@ -28,20 +42,52 @@ export default function Contact() {
     const plan = new URLSearchParams(window.location.search).get('plan')
     if (!plan) return
 
-    const prompts: Record<string, string> = {
-      Automation: 'I would like to discuss a workflow or automation opportunity in my business.',
-      Launch: 'I am interested in the Local Business Launch package.',
-      Growth: 'I am interested in the Local Growth plan.',
-      'Tune-Up': 'I would like to request a Website Tune-Up.',
-      'AI Fundamentals': 'I would like to book the $150 AI Fundamentals for Business Owners session. Please share scheduling and payment details.',
-      'AI Website Workshop': 'I would like to book the $250 Build & Manage Your Website With AI workshop. Please share scheduling and payment details.',
-      'Business Process Audit': 'I would like to request the $650 Business Process Audit. The workflow I would like to improve is:',
+    const planDetails: Record<string, { offering: string; message: string }> = {
+      Automation: {
+        offering: 'Build & Implementation — starting at $2,500',
+        message: 'I would like to discuss a workflow or automation opportunity in my business.',
+      },
+      Launch: {
+        offering: 'Local Business Launch — $999',
+        message: 'I am interested in the Local Business Launch package.',
+      },
+      Growth: {
+        offering: 'Local Growth — $249/month',
+        message: 'I am interested in the Local Growth plan.',
+      },
+      'Tune-Up': {
+        offering: 'Website Tune-Up — starting at $349',
+        message: 'I would like to request a Website Tune-Up.',
+      },
+      'AI Fundamentals': {
+        offering: 'AI Fundamentals — $150',
+        message: 'I would like to book the $150 AI Fundamentals for Business Owners session. Please share scheduling and payment details.',
+      },
+      'AI Website Workshop': {
+        offering: 'Build & Manage Your Website With AI — $250',
+        message: 'I would like to book the $250 Build & Manage Your Website With AI workshop. Please share scheduling and payment details.',
+      },
+      'AI Working Session': {
+        offering: 'AI Working Session — $750',
+        message: 'I am interested in the $750 AI Working Session. The business tasks I would like to improve are:',
+      },
+      'AI Operations Day': {
+        offering: 'AI Operations Day — $1,500',
+        message: 'I am interested in the $1,500 AI Operations Day. The business tasks I would like to improve are:',
+      },
+      'Business Process Audit': {
+        offering: 'Business Process Audit — $650',
+        message: 'I would like to request the $650 Business Process Audit. The workflow I would like to improve is:',
+      },
     }
 
-    setFormData((current) => current.message ? current : {
+    const selectedPlan = planDetails[plan]
+
+    setFormData((current) => ({
       ...current,
-      message: prompts[plan] ?? `I am interested in learning more about ${plan}.`,
-    })
+      offering: selectedPlan?.offering ?? plan,
+      message: current.message || selectedPlan?.message || `I am interested in learning more about ${plan}.`,
+    }))
   }, [])
 
   // Load reCAPTCHA script
@@ -66,7 +112,7 @@ export default function Contact() {
     loadRecaptcha()
   }, [])
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
     // Clear error when user starts typing
@@ -97,6 +143,10 @@ export default function Contact() {
     
     if (!formData.businessName.trim()) {
       newErrors.businessName = 'Business name is required'
+    }
+
+    if (!formData.offering) {
+      newErrors.offering = 'Please choose an option'
     }
     
     if (!formData.message.trim()) {
@@ -157,7 +207,7 @@ export default function Contact() {
 
       if (response.ok && result.success) {
         setIsSubmitted(true)
-        setFormData({ name: '', email: '', businessName: '', message: '', website: '' })
+        setFormData({ name: '', email: '', businessName: '', offering: '', message: '', website: '' })
         setErrors({})
       } else {
         setErrors({ submit: result.error || 'Failed to send message. Please try again.' })
@@ -287,6 +337,32 @@ export default function Contact() {
                 />
                 {errors.businessName && (
                   <p className="mt-1 text-red-400 text-sm font-inter">{errors.businessName}</p>
+                )}
+              </div>
+
+              {/* Offering Field */}
+              <div>
+                <label htmlFor="offering" className="mb-2 block text-sm font-bold text-text-primary">
+                  What are you interested in? *
+                </label>
+                <select
+                  id="offering"
+                  name="offering"
+                  value={formData.offering}
+                  onChange={handleChange}
+                  className={`w-full rounded-lg border bg-white px-4 py-3.5 text-text-primary ${
+                    errors.offering
+                      ? 'border-red-500 focus:ring-red-500'
+                      : 'border-text-muted/30 focus:border-accent'
+                  }`}
+                >
+                  <option value="">Choose an offer</option>
+                  {offeringOptions.map((offering) => (
+                    <option key={offering} value={offering}>{offering}</option>
+                  ))}
+                </select>
+                {errors.offering && (
+                  <p className="mt-1 text-red-400 text-sm font-inter">{errors.offering}</p>
                 )}
               </div>
 
