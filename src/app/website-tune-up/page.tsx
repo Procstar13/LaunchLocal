@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { websiteTuneUp } from '@/data/pricing'
+import TrackedOfferLink from '@/components/TrackedOfferLink'
 
 export const metadata: Metadata = {
   title: 'Website Tune-Up',
@@ -69,12 +70,15 @@ export default function WebsiteTuneUpPage() {
             If the website is outdated, broken, or not sending leads, we audit it, repair the basics, and make sure inquiries reach you. Starting at ${websiteTuneUp.price}. Larger repairs are quoted after the audit.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Link
+            <TrackedOfferLink
               href={`/?plan=${encodeURIComponent(websiteTuneUp.shortName)}#contact`}
               className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-bold text-white hover:bg-blue-600"
+              offerId="website_tune_up"
+              offerName="Website Tune-Up"
+              placement="website_tune_up_hero"
             >
               Request a Tune-Up
-            </Link>
+            </TrackedOfferLink>
             <Link
               href="/pricing"
               className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/25 px-6 py-3 text-sm font-bold text-white hover:border-white"
@@ -176,12 +180,15 @@ export default function WebsiteTuneUpPage() {
                 No hard sell. After the audit, you will know what is included in the starting Tune-Up and what, if anything, should be quoted separately.
               </p>
             </div>
-            <Link
+            <TrackedOfferLink
               href={`/?plan=${encodeURIComponent(websiteTuneUp.shortName)}#contact`}
               className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-bold text-white hover:bg-blue-600"
+              offerId="website_tune_up"
+              offerName="Website Tune-Up"
+              placement="website_tune_up_bottom_cta"
             >
               Request a Tune-Up
-            </Link>
+            </TrackedOfferLink>
           </div>
         </div>
       </section>

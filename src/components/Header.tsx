@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { siteConfig } from '@/config/site'
+import TrackedOfferLink from '@/components/TrackedOfferLink'
 
 export default function Header() {
   const pathname = usePathname()
@@ -43,9 +44,15 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:block">
-          <Link href="/ai-education" className="btn-primary min-h-10 px-5">
+          <TrackedOfferLink
+            href="/ai-education"
+            className="btn-primary min-h-10 px-5"
+            offerId="ai_education_overview"
+            offerName="AI Education"
+            placement="desktop_header"
+          >
             Explore AI Workshops
-          </Link>
+          </TrackedOfferLink>
         </div>
 
         <button
@@ -77,9 +84,15 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <Link href="/ai-education" className="btn-primary mt-5">
+            <TrackedOfferLink
+              href="/ai-education"
+              className="btn-primary mt-5"
+              offerId="ai_education_overview"
+              offerName="AI Education"
+              placement="mobile_menu"
+            >
               Explore AI Workshops
-            </Link>
+            </TrackedOfferLink>
           </nav>
         </div>
       )}

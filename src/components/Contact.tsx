@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { getOfferAnalytics, trackLeadGenerated } from '@/lib/analytics'
 
 const offeringOptions = [
   'AI Fundamentals — $150',
@@ -206,6 +207,7 @@ export default function Contact() {
       const result = await response.json()
 
       if (response.ok && result.success) {
+        trackLeadGenerated(getOfferAnalytics(formData.offering))
         setIsSubmitted(true)
         setFormData({ name: '', email: '', businessName: '', offering: '', message: '', website: '' })
         setErrors({})

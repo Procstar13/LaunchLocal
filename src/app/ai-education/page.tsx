@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import TrackedOfferLink from '@/components/TrackedOfferLink'
 
 export const metadata: Metadata = {
   title: 'AI Education & Hands-On Workshops',
@@ -15,6 +16,8 @@ const individualSessions = [
     description: 'Understand what AI can do for your business, practice using ChatGPT effectively, and explore practical ways to save time.',
     outcomes: ['Understand AI capabilities and limitations', 'Practice prompts for real business tasks', 'Identify opportunities in your daily work'],
     plan: 'AI Fundamentals',
+    offerId: 'ai_fundamentals' as const,
+    offerName: 'AI Fundamentals',
   },
   {
     title: 'Build & Manage Your Website With AI',
@@ -23,6 +26,8 @@ const individualSessions = [
     description: 'Learn to create, publish, and maintain your own website using ChatGPT, GitHub, and Vercel, with an introduction to contact forms.',
     outcomes: ['Build and publish a starter website', 'Learn to make edits and manage updates', 'Understand hosting, domains, and contact form setup'],
     plan: 'AI Website Workshop',
+    offerId: 'ai_website_workshop' as const,
+    offerName: 'Build & Manage Your Website With AI',
   },
 ]
 
@@ -40,6 +45,8 @@ const businessSessions = [
       'One follow-up call',
     ],
     plan: 'AI Working Session',
+    offerId: 'ai_working_session' as const,
+    offerName: 'AI Working Session',
   },
   {
     title: 'AI Operations Day',
@@ -54,6 +61,8 @@ const businessSessions = [
       'One follow-up call',
     ],
     plan: 'AI Operations Day',
+    offerId: 'ai_operations_day' as const,
+    offerName: 'AI Operations Day',
   },
 ]
 
@@ -82,7 +91,15 @@ export default function AIEducationPage() {
                 <ul className="mt-6 flex-1 space-y-3 text-sm leading-6 text-text-secondary">
                   {session.outcomes.map((outcome) => <li key={outcome} className="flex gap-3"><span className="text-accent">✓</span>{outcome}</li>)}
                 </ul>
-                <Link className="btn-primary mt-8" href={`/?plan=${encodeURIComponent(session.plan)}#contact`}>Book Your Session</Link>
+                <TrackedOfferLink
+                  className="btn-primary mt-8"
+                  href={`/?plan=${encodeURIComponent(session.plan)}#contact`}
+                  offerId={session.offerId}
+                  offerName={session.offerName}
+                  placement="ai_education_individual_card"
+                >
+                  Book Your Session
+                </TrackedOfferLink>
               </article>
             ))}
           </div>
@@ -106,7 +123,15 @@ export default function AIEducationPage() {
                 <ul className="mt-6 flex-1 space-y-3 text-sm leading-6 text-text-secondary">
                   {session.outcomes.map((outcome) => <li key={outcome} className="flex gap-3"><span className="text-accent">✓</span>{outcome}</li>)}
                 </ul>
-                <Link className="btn-primary mt-8" href={`/?plan=${encodeURIComponent(session.plan)}#contact`}>Request This Session</Link>
+                <TrackedOfferLink
+                  className="btn-primary mt-8"
+                  href={`/?plan=${encodeURIComponent(session.plan)}#contact`}
+                  offerId={session.offerId}
+                  offerName={session.offerName}
+                  placement="ai_education_business_card"
+                >
+                  Request This Session
+                </TrackedOfferLink>
               </article>
             ))}
           </div>
@@ -153,7 +178,15 @@ export default function AIEducationPage() {
             <div className="eyebrow">Ready for a deeper look?</div>
           <h2 className="section-title mt-3">Business Process Audit — $650</h2>
           <p className="section-copy mt-5">For businesses ready to improve a specific workflow, we conduct discovery and interviews, map the process, identify bottlenecks and automation opportunities, and provide a written findings report with prioritized recommendations. Implementation is scoped and priced separately.</p>
-          <Link className="btn-secondary mt-7" href="/?plan=Business%20Process%20Audit#contact">Request an audit</Link>
+          <TrackedOfferLink
+            className="btn-secondary mt-7"
+            href="/?plan=Business%20Process%20Audit#contact"
+            offerId="business_process_audit"
+            offerName="Business Process Audit"
+            placement="ai_education_audit_section"
+          >
+            Request an audit
+          </TrackedOfferLink>
           </div>
         </div>
       </section>

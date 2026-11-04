@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import TrackedOfferLink from '@/components/TrackedOfferLink'
 
 const principles = [
   ['Map', 'Document how information and work move through the business today, including the manual workarounds.'],
@@ -44,9 +44,15 @@ export default function About() {
           <p className="max-w-2xl text-lg leading-8 text-white/70">
             Keep your tools. Improve the handoffs between them.
           </p>
-          <Link href="/?plan=Automation#contact" className="inline-flex shrink-0 items-center font-bold text-blue-300 hover:text-white">
+          <TrackedOfferLink
+            href="/?plan=Automation#contact"
+            className="inline-flex shrink-0 items-center font-bold text-blue-300 hover:text-white"
+            offerId="implementation"
+            offerName="Build & Implementation"
+            placement="homepage_process"
+          >
             Let&apos;s talk <span className="ml-2" aria-hidden="true">↗</span>
-          </Link>
+          </TrackedOfferLink>
         </div>
       </div>
     </section>
