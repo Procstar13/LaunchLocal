@@ -18,11 +18,8 @@ export type OfferAnalytics = {
 
 declare global {
   interface Window {
-    gtag?: (
-      command: 'event',
-      eventName: string,
-      parameters?: Record<string, string | number | boolean>
-    ) => void
+    dataLayer?: unknown[]
+    gtag?: (...arguments_: unknown[]) => void
   }
 }
 
