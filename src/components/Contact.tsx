@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import { getOfferAnalytics, trackLeadGenerated } from '@/lib/analytics'
 
 const offeringOptions = [
-  'AI Fundamentals — $150',
-  'Build & Manage Your Website With AI — $250',
+  'AI Fundamentals — $250',
+  'Build & Manage Your Website With AI — $450',
   'AI Working Session — $750',
   'AI Operations Day — $1,500',
   'Business Process Audit — $650',
@@ -61,12 +61,12 @@ export default function Contact() {
         message: 'I would like to request a Website Tune-Up.',
       },
       'AI Fundamentals': {
-        offering: 'AI Fundamentals — $150',
-        message: 'I would like to book the $150 AI Fundamentals for Business Owners session. Please share scheduling and payment details.',
+        offering: 'AI Fundamentals — $250',
+        message: 'I would like to book the $250 AI Fundamentals for Business Owners session. Please share scheduling and payment details.',
       },
       'AI Website Workshop': {
-        offering: 'Build & Manage Your Website With AI — $250',
-        message: 'I would like to book the $250 Build & Manage Your Website With AI workshop. Please share scheduling and payment details.',
+        offering: 'Build & Manage Your Website With AI — $450',
+        message: 'I would like to book the $450 Build & Manage Your Website With AI workshop. Please share scheduling and payment details.',
       },
       'AI Working Session': {
         offering: 'AI Working Session — $750',
