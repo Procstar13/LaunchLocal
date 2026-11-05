@@ -24,8 +24,8 @@ declare global {
 }
 
 const offersByFormLabel: Record<string, OfferAnalytics> = {
-  'AI Fundamentals — $150': { offerId: 'ai_fundamentals', offerName: 'AI Fundamentals' },
-  'Build & Manage Your Website With AI — $250': {
+  'AI Fundamentals — $250': { offerId: 'ai_fundamentals', offerName: 'AI Fundamentals' },
+  'Build & Manage Your Website With AI — $450': {
     offerId: 'ai_website_workshop',
     offerName: 'Build & Manage Your Website With AI',
   },
