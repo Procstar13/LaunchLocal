@@ -37,10 +37,10 @@ const businessSessions = [
     price: '$750',
     duration: 'Private half-day session',
     label: 'Introductory price',
-    description: 'Build and practice two repeatable AI-assisted workflows using examples from your business.',
+    description: 'Use examples from your business to build and practice practical AI-assisted processes around your highest-priority work.',
     outcomes: [
       '30–45-minute intake before the session',
-      'Two repeatable workflows your team can run',
+      'Hands-on work focused on your highest-priority use cases',
       'Customized prompt pack and written instructions',
       'One follow-up call',
     ],
@@ -53,10 +53,10 @@ const businessSessions = [
     price: '$1,500',
     duration: 'Private full-day session',
     label: 'Introductory price',
-    description: 'Turn several recurring business tasks into documented, reusable AI-assisted processes.',
+    description: 'Turn priority business tasks into documented, reusable AI-assisted processes, starting with the opportunities that offer the clearest value.',
     outcomes: [
       'Pre-session intake and example review',
-      'Three to five repeatable workflows',
+      'Hands-on development prioritized by value, complexity, and system readiness',
       'Customized prompt library and team operating guide',
       'One follow-up call',
     ],
@@ -135,6 +135,7 @@ export default function AIEducationPage() {
               </article>
             ))}
           </div>
+          <p className="mt-6 text-sm leading-6 text-text-muted">Customized training is time-based, not sold by workflow count. Session priorities are agreed during intake, and completed outputs depend on complexity, access, data quality, and system readiness.</p>
         </div>
       </section>
 
