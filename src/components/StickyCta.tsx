@@ -54,7 +54,7 @@ export default function StickyCta() {
           <p className="truncate font-display text-sm font-bold text-text-primary">
             Learn AI. Find opportunities. Improve your systems.
           </p>
-          <p className="text-xs text-text-muted">Practical workshops from $150</p>
+          <p className="text-xs text-text-muted">Practical workshops from $250</p>
         </div>
         <TrackedOfferLink
           href="/ai-education"
