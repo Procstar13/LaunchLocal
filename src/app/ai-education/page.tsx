@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 const individualSessions = [
   {
     title: 'AI Fundamentals for Business Owners',
-    price: '$150',
+    price: '$250',
     duration: '60-minute guided session',
-    description: 'Understand what AI can do for your business, practice using ChatGPT effectively, and explore practical ways to save time.',
+    description: 'Understand what AI can do for your business, practice using AI tools effectively, and explore practical ways to save time.',
     outcomes: ['Understand AI capabilities and limitations', 'Practice prompts for real business tasks', 'Identify opportunities in your daily work'],
     plan: 'AI Fundamentals',
     offerId: 'ai_fundamentals' as const,
@@ -21,9 +21,9 @@ const individualSessions = [
   },
   {
     title: 'Build & Manage Your Website With AI',
-    price: '$250',
+    price: '$450',
     duration: '90-minute hands-on workshop',
-    description: 'Learn to create, publish, and maintain your own website using ChatGPT, GitHub, and Vercel, with an introduction to contact forms.',
+    description: 'Learn to create, publish, and maintain your own website using an AI assistant, GitHub, and Vercel, with an introduction to contact forms.',
     outcomes: ['Build and publish a starter website', 'Learn to make edits and manage updates', 'Understand hosting, domains, and contact form setup'],
     plan: 'AI Website Workshop',
     offerId: 'ai_website_workshop' as const,
