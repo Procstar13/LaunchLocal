@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import TrackedOfferLink from '@/components/TrackedOfferLink'
 
 const stages = [
   {
@@ -6,10 +7,12 @@ const stages = [
     eyebrow: 'Learn the tools',
     title: 'AI Education',
     price: 'From $150',
-    description: 'Practical, beginner-friendly training that helps you use AI confidently and spot opportunities in your business.',
-    points: ['AI Fundamentals — $150', 'Build & Manage Your Website With AI — $250'],
+    description: 'Practical education for individuals and teams, built around the work your business already does.',
+    points: ['AI Fundamentals — $150', 'AI Working Session — $750', 'AI Operations Day — $1,500'],
     cta: 'Explore AI sessions',
     href: '/ai-education',
+    offerId: 'ai_education_overview' as const,
+    offerName: 'AI Education',
   },
   {
     number: '02',
@@ -20,16 +23,20 @@ const stages = [
     points: ['Current-state process map', 'Prioritized improvement opportunities', 'Written findings and recommendations'],
     cta: 'Request a process audit',
     href: '/?plan=Business%20Process%20Audit#contact',
+    offerId: 'business_process_audit' as const,
+    offerName: 'Business Process Audit',
   },
   {
     number: '03',
     eyebrow: 'Make it work',
     title: 'Implementation',
-    price: 'Custom quote',
+    price: 'Starting at $2,500',
     description: 'Turn the right recommendations into working automations, integrations, or internal tools—tested around your team.',
-    points: ['Clearly defined scope', 'Practical build and testing', 'Handoff and support options'],
+    points: ['Clearly defined scope', 'System connections and guardrails', 'Testing, documentation, and handoff'],
     cta: 'Discuss an implementation',
     href: '/?plan=Automation#contact',
+    offerId: 'implementation' as const,
+    offerName: 'Build & Implementation',
   },
 ]
 
@@ -60,7 +67,15 @@ export default function Benefits() {
                   </li>
                 ))}
               </ul>
-              <Link href={stage.href} className="btn-primary mt-8">{stage.cta}</Link>
+              <TrackedOfferLink
+                href={stage.href}
+                className="btn-primary mt-8"
+                offerId={stage.offerId}
+                offerName={stage.offerName}
+                placement="homepage_offer_card"
+              >
+                {stage.cta}
+              </TrackedOfferLink>
             </article>
           ))}
         </div>

@@ -1,5 +1,15 @@
 import Link from 'next/link'
 import { pricingFootnote, pricingTiers, veteranDiscountNote, websiteTuneUp } from '@/data/pricing'
+import TrackedOfferLink from '@/components/TrackedOfferLink'
+import type { OfferAnalytics } from '@/lib/analytics'
+
+const pricingOfferByShortName: Record<string, OfferAnalytics> = {
+  Launch: { offerId: 'local_business_launch', offerName: 'Local Business Launch' },
+  Growth: { offerId: 'local_growth', offerName: 'Local Growth' },
+}
+
+const getPricingOffer = (shortName: string): OfferAnalytics =>
+  pricingOfferByShortName[shortName] ?? { offerId: 'not_sure', offerName: shortName }
 
 export default function Pricing() {
   return (
@@ -57,12 +67,15 @@ export default function Pricing() {
                 })}
               </ul>
 
-              <Link
+              <TrackedOfferLink
                 href={`/?plan=${encodeURIComponent(tier.shortName)}#contact`}
                 className={tier.featured ? 'btn-primary mt-8' : 'btn-secondary mt-8'}
+                offerId={getPricingOffer(tier.shortName).offerId}
+                offerName={getPricingOffer(tier.shortName).offerName}
+                placement="homepage_website_offer"
               >
                 {tier.cta}
-              </Link>
+              </TrackedOfferLink>
             </article>
           ))}
         </div>
@@ -85,9 +98,15 @@ export default function Pricing() {
               <Link href={websiteTuneUp.href} className="btn-secondary">
                 {websiteTuneUp.cta}
               </Link>
-              <Link href={`/?plan=${encodeURIComponent(websiteTuneUp.shortName)}#contact`} className="btn-primary">
+              <TrackedOfferLink
+                href={`/?plan=${encodeURIComponent(websiteTuneUp.shortName)}#contact`}
+                className="btn-primary"
+                offerId="website_tune_up"
+                offerName="Website Tune-Up"
+                placement="homepage_website_tune_up"
+              >
                 Request a Tune-Up
-              </Link>
+              </TrackedOfferLink>
             </div>
           </div>
         </article>

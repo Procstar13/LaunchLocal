@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { siteConfig } from '@/config/site'
+import TrackedOfferLink from '@/components/TrackedOfferLink'
 
 export default function Footer() {
   return (
@@ -30,9 +31,15 @@ export default function Footer() {
           <div>
             <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-text-muted">Start here</h2>
             <p className="mt-4 text-sm leading-6 text-text-secondary">Start with a hands-on AI session, or explore an audit if you already have a workflow to improve.</p>
-            <Link href="/ai-education" className="mt-4 inline-flex border-b border-text-primary pb-1 text-sm font-bold text-text-primary hover:text-accent">
+            <TrackedOfferLink
+              href="/ai-education"
+              className="mt-4 inline-flex border-b border-text-primary pb-1 text-sm font-bold text-text-primary hover:text-accent"
+              offerId="ai_education_overview"
+              offerName="AI Education"
+              placement="footer_start_here"
+            >
               Explore AI Workshops
-            </Link>
+            </TrackedOfferLink>
           </div>
         </div>
 

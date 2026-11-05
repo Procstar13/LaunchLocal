@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import TrackedOfferLink from '@/components/TrackedOfferLink'
 
 export const metadata: Metadata = {
   title: 'Business Automation & System Integration',
@@ -50,12 +51,15 @@ export default function AutomationsPage() {
             Your website, CRM, leads, scheduling, and customer follow-up shouldn&apos;t operate independently. We connect the systems you already use and automate the work between them.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Link
+            <TrackedOfferLink
               href="/?plan=Business%20Process%20Audit#contact"
               className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-bold text-white hover:bg-blue-600"
+              offerId="business_process_audit"
+              offerName="Business Process Audit"
+              placement="automations_hero"
             >
               Request a $650 Process Audit
-            </Link>
+            </TrackedOfferLink>
             <Link
               href="/business-audit"
               className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/30 px-6 py-3 text-sm font-bold text-white hover:border-white"
@@ -95,15 +99,18 @@ export default function AutomationsPage() {
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-300">Audit first. Implementation second.</p>
               <h2 className="mt-4 font-display text-3xl font-bold sm:text-4xl">Tell us what you use today.</h2>
               <p className="mt-4 max-w-2xl leading-7 text-white/65">
-                We will look at your website, CRM, and follow-up, then recommend the integrations and automations that are worth doing. No hard sell.
+                We will look at your website, CRM, and follow-up, then recommend the integrations and automations that are worth doing. Implementation projects start at $2,500 and are scoped separately after the workflow and expected result are clear.
               </p>
             </div>
-            <Link
+            <TrackedOfferLink
               href="/?plan=Business%20Process%20Audit#contact"
               className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-bold text-white hover:bg-blue-600"
+              offerId="business_process_audit"
+              offerName="Business Process Audit"
+              placement="automations_bottom_cta"
             >
               Request a $650 Audit
-            </Link>
+            </TrackedOfferLink>
           </div>
         </div>
       </section>

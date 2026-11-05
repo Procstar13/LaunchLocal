@@ -145,7 +145,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { name, email, businessName, message, website, recaptchaToken } = body
+    const { name, email, businessName, offering, message, website, recaptchaToken } = body
 
     // Honeypot validation
     if (website && website.trim()) {
@@ -172,13 +172,14 @@ export async function POST(request: NextRequest) {
     }
 
     // Basic validation
-    if (!name || !email || !businessName || !message) {
+    if (!name || !email || !businessName || !offering || !message) {
       logError(new Error('Missing required fields'), 'VALIDATION_ERROR', { 
         requestId, 
         ip, 
         hasName: !!name,
         hasEmail: !!email,
         hasBusinessName: !!businessName,
+        hasOffering: !!offering,
         hasMessage: !!message
       })
       return NextResponse.json(
@@ -191,6 +192,7 @@ export async function POST(request: NextRequest) {
     const sanitizedName = sanitizeInput(name)
     const sanitizedEmail = sanitizeInput(email)
     const sanitizedBusinessName = sanitizeInput(businessName)
+    const sanitizedOffering = sanitizeInput(offering)
     const sanitizedMessage = sanitizeInput(message)
 
     // Email validation
@@ -221,7 +223,7 @@ export async function POST(request: NextRequest) {
     const emailData = {
       from: `${siteConfig.name} <noreply@levervantage.com>`, // Requires a verified Resend domain
       to: ['zachproctor@levervantage.com'],
-      subject: `New Contact Form Submission from ${sanitizedBusinessName}`,
+      subject: `New ${sanitizedOffering} inquiry from ${sanitizedBusinessName}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #3b82f6;">New Contact Form Submission</h2>
@@ -229,6 +231,7 @@ export async function POST(request: NextRequest) {
             <p><strong>Name:</strong> ${sanitizedName}</p>
             <p><strong>Email:</strong> ${sanitizedEmail}</p>
             <p><strong>Business:</strong> ${sanitizedBusinessName}</p>
+            <p><strong>Interested in:</strong> ${sanitizedOffering}</p>
             <p><strong>Message:</strong></p>
             <p style="white-space: pre-wrap;">${sanitizedMessage}</p>
           </div>

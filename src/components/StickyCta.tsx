@@ -1,8 +1,8 @@
 'use client'
 
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import TrackedOfferLink from '@/components/TrackedOfferLink'
 
 export default function StickyCta() {
   const pathname = usePathname()
@@ -56,13 +56,16 @@ export default function StickyCta() {
           </p>
           <p className="text-xs text-text-muted">Practical workshops from $150</p>
         </div>
-        <Link
+        <TrackedOfferLink
           href="/ai-education"
           className="btn-primary w-full sm:w-auto sm:min-w-[220px]"
           tabIndex={visible ? 0 : -1}
+          offerId="ai_education_overview"
+          offerName="AI Education"
+          placement="sticky_cta"
         >
           Explore AI Workshops
-        </Link>
+        </TrackedOfferLink>
       </div>
     </div>
   )
